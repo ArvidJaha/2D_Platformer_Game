@@ -67,13 +67,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (!iswallJumping)
         {
-            rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
             Flip();
 
         }
 
-        animator.SetFloat("yVelocity", rb.velocity.y);
-        animator.SetFloat("magnitude", rb.velocity.magnitude);
+        animator.SetFloat("yVelocity", rb.linearVelocity.y);
+        animator.SetFloat("magnitude", rb.linearVelocity.magnitude);
         animator.SetBool("isWallSliding", isWallSliding);
     }
 
@@ -85,10 +85,10 @@ public class PlayerMovement : MonoBehaviour
     
     private void ProcessGravity()
     {
-        if(rb.velocity.y < 0)
+        if(rb.linearVelocity.y < 0)
         {
             rb.gravityScale = baseGravity * fallSpeedMultiplier;
-            rb.velocity = new Vector2(rb.velocity.x, Math.Max(rb.velocity.y, -maxFallSpeed));
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Math.Max(rb.linearVelocity.y, -maxFallSpeed));
         }
         else
         {
@@ -101,7 +101,7 @@ private void ProcessWallSlide()
         if(!isGrounded && WallCheck() && horizontalMovement != 0)
         {
             isWallSliding = true;
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -wallSlideSpeed));
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -wallSlideSpeed));
         }
         else
         {
@@ -142,13 +142,13 @@ private void ProcessWallSlide()
         {
             if(context.performed) //hold jump, max height
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
                 jumpsRemaining--;
                 JumpFX();
             }
             else if (context.canceled) //light tap of jump, less height
             {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
                 jumpsRemaining--;
                 JumpFX();
 
@@ -158,7 +158,7 @@ private void ProcessWallSlide()
         if(context.performed && wallJumpTimer > 0)
         {
             iswallJumping = true;
-            rb.velocity = new Vector2(wallJumpDirection * wallJumpPower.x, wallJumpPower.y);
+            rb.linearVelocity = new Vector2(wallJumpDirection * wallJumpPower.x, wallJumpPower.y);
             wallJumpTimer = 0;
             JumpFX();
 
@@ -205,7 +205,7 @@ private void ProcessWallSlide()
             transform.localScale = ls;
 
 
-            if(rb.velocity.y == 0)
+            if(rb.linearVelocity.y == 0)
             {
                 smokeFX.Play();                
             }
