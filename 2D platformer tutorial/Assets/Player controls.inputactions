@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "Player controls",
     "maps": [
         {
@@ -19,6 +20,15 @@
                     "type": "Button",
                     "id": "ed5dacf7-6f94-4292-8037-7770f4526aba",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hold",
+                    "type": "Button",
+                    "id": "586f4673-51d0-48d4-a0a7-e22e446daee1",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -143,6 +153,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b91e5838-e0f0-4240-a80d-4a95a1be7475",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
