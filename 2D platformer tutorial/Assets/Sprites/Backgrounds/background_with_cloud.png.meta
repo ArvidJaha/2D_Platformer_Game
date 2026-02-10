@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3b955fb58ff83294394d148cf8f79e75
+guid: 37fac16f323916a4e97fc3ea94c8612c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5651230444720112643
-    second: arctic_background_0
+      213: 5749701704794625452
+    second: background_with_cloud_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arctic_background_0
+      name: background_with_cloud_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dfbb59e1adbc291b0800000000000000
-      internalID: -5651230444720112643
+      spriteID: ca5ddbebc3b0bcf40800000000000000
+      internalID: 5749701704794625452
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      arctic_background_0: -5651230444720112643
+      background_with_cloud_0: 5749701704794625452
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
