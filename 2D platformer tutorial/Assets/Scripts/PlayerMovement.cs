@@ -82,7 +82,9 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0 , wallLayer);
 
     }
-    
+
+
+
     private void ProcessGravity()
     {
         if(rb.linearVelocity.y < 0)
