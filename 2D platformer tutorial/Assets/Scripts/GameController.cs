@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject gameOverScreen;
     public GameObject player;
+    public Vector3 spawnPoint;
 
     public static event Action OnReset;
 
@@ -28,7 +29,7 @@ public class GameController : MonoBehaviour
     void ResetGame()
     {
         gameOverScreen.SetActive(false);
-        player.transform.position = Vector3.zero; // reset player position
+        player.transform.position = spawnPoint; // reset player position
         OnReset.Invoke(); // trigger game reset event for other scripts to reset their states
     }
 
