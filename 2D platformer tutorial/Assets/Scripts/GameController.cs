@@ -7,7 +7,6 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public GameObject gameOverScreen;
     public GameObject player;
     public Vector3 spawnPoint;
 
@@ -21,15 +20,9 @@ public class GameController : MonoBehaviour
         PlayerHealth.OnPlayerDeath += ResetGame; // subscribe to player death event
     }
 
-    void GameOverScreen()
-    {
-        gameOverScreen.SetActive(true);
-    }
 
     void ResetGame()
-    {
-        gameOverScreen.SetActive(false);
-        player.transform.position = spawnPoint; // reset player position
+    {        player.transform.position = spawnPoint; // reset player position
         OnReset.Invoke(); // trigger game reset event for other scripts to reset their states
     }
 
