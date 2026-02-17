@@ -22,7 +22,8 @@ public class GameController : MonoBehaviour
 
 
     void ResetGame()
-    {        player.transform.position = spawnPoint; // reset player position
+    {        
+        player.transform.position = spawnPoint; // reset player position
         OnReset.Invoke(); // trigger game reset event for other scripts to reset their states
     }
 
