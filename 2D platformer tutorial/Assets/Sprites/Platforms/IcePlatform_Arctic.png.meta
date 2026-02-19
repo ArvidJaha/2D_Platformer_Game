@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 33fd28bcc809c7944bb899e83c34502c
+guid: 31dd7f726129d314dad28861fd6fcdbb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6175064692937923731
-    second: iceberg_0
+      213: 5251970910906428274
+    second: IcePlatform_Arctic_0
+  - first:
+      213: -9018299218940119058
+    second: IcePlatform_Arctic_1
+  - first:
+      213: 2282961745683040694
+    second: IcePlatform_Arctic_2
+  - first:
+      213: 1289405192420638432
+    second: IcePlatform_Arctic_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,9 +49,9 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -51,7 +60,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: iceberg_0
+      name: IcePlatform_Arctic_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 1920
-        height: 1008
+        x: 16
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +137,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 39c1f9f0f9c32b550800000000000000
-      internalID: 6175064692937923731
+      spriteID: 27b2343a7bfb2e840800000000000000
+      internalID: 5251970910906428274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IcePlatform_Arctic_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee734e034a098d280800000000000000
+      internalID: -9018299218940119058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IcePlatform_Arctic_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b94e3fac95beaf10800000000000000
+      internalID: 2282961745683040694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IcePlatform_Arctic_3
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eeb6c1e033e4e110800000000000000
+      internalID: 1289405192420638432
       vertices: []
       indices: 
       edges: []
@@ -138,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 22075d380ac5f014c94fce1fb8972ccc
+    spriteID: cda763f0d96bc1f4bb63e093f8ec18cf
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      iceberg_0: 6175064692937923731
+      IcePlatform_Arctic_0: 5251970910906428274
+      IcePlatform_Arctic_1: -9018299218940119058
+      IcePlatform_Arctic_2: 2282961745683040694
+      IcePlatform_Arctic_3: 1289405192420638432
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
