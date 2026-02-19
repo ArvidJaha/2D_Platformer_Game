@@ -23,6 +23,12 @@ TextureImporter:
   - first:
       213: -6983515874663289518
     second: IceGround_Arctic_6
+  - first:
+      213: -7553430310050941736
+    second: IceGround_Arctic_7
+  - first:
+      213: 7416375278641425103
+    second: IceGround_Arctic_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -200,7 +206,7 @@ TextureImporter:
       name: IceGround_Arctic_3
       rect:
         serializedVersion: 2
-        x: 207
+        x: 208
         y: 16
         width: 32
         height: 32
@@ -222,7 +228,7 @@ TextureImporter:
       name: IceGround_Arctic_4
       rect:
         serializedVersion: 2
-        x: 273
+        x: 272
         y: 16
         width: 32
         height: 32
@@ -284,11 +290,55 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: IceGround_Arctic_7
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 16
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d4bebd1723dc2790800000000000000
+      internalID: -7553430310050941736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IceGround_Arctic_8
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 16
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fca2964b5024ce660800000000000000
+      internalID: 7416375278641425103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: edc33b23551df0d41be5b36d8289bff1
+    spriteID: 91323ddaaf04716408f52b5b124d6837
     internalID: 0
     vertices: []
     indices: 
@@ -305,6 +355,8 @@ TextureImporter:
       IceGround_Arctic_4: 4976712873706569698
       IceGround_Arctic_5: 7003693130395907015
       IceGround_Arctic_6: -6983515874663289518
+      IceGround_Arctic_7: -7553430310050941736
+      IceGround_Arctic_8: 7416375278641425103
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
