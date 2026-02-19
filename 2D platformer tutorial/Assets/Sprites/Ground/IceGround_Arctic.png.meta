@@ -65,7 +65,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 4
+  spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -156,10 +156,10 @@ TextureImporter:
       name: IceGround_Arctic_1
       rect:
         serializedVersion: 2
-        x: 81
-        y: 17
-        width: 30
-        height: 31
+        x: 80
+        y: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,9 +179,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 145
-        y: 17
-        width: 30
-        height: 31
+        y: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,10 +200,10 @@ TextureImporter:
       name: IceGround_Arctic_3
       rect:
         serializedVersion: 2
-        x: 209
-        y: 17
-        width: 30
-        height: 30
+        x: 207
+        y: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,9 +223,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 273
-        y: 17
-        width: 30
-        height: 30
+        y: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,10 +244,10 @@ TextureImporter:
       name: IceGround_Arctic_5
       rect:
         serializedVersion: 2
-        x: 337
-        y: 17
-        width: 30
-        height: 31
+        x: 335
+        y: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,10 +266,10 @@ TextureImporter:
       name: IceGround_Arctic_6
       rect:
         serializedVersion: 2
-        x: 401
-        y: 17
-        width: 30
-        height: 30
+        x: 400
+        y: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -288,7 +288,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6e8ff1d00723c694caf96113d3d71e53
+    spriteID: edc33b23551df0d41be5b36d8289bff1
     internalID: 0
     vertices: []
     indices: 
@@ -296,9 +296,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
       IceGround_Arctic_0: -2497020276889600264
       IceGround_Arctic_1: 3894998842694627570
