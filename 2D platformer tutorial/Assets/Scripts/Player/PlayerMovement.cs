@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-private void ProcessWallSlide()
+    private void ProcessWallSlide()
     {
         if(!isGrounded && WallCheck() && horizontalMovement != 0)
         {
