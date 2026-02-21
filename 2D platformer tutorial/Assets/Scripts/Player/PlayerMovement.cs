@@ -25,6 +25,9 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     bool isGrounded;
 
+    [Header("spikeCheck")]
+    public LayerMask spikeLayer;
+
     [Header("wallCheck")]
     public Transform wallCheckPos;
     public Vector2 wallCheckSize = new Vector2(0.5f, 0.5f);
@@ -61,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
     {
         
         GroundCheck();
+        SpikeCheck();
         ProcessGravity();
         ProcessWallSlide();
         processWallJump();
@@ -187,6 +191,19 @@ public class PlayerMovement : MonoBehaviour
     private void GroundCheck()
     {
         if(Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0 , groundLayer))
+        {
+            jumpsRemaining = maxJumps;
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+    }
+
+    private void SpikeCheck()
+    {
+        if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, spikeLayer))
         {
             jumpsRemaining = maxJumps;
             isGrounded = true;

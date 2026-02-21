@@ -11,9 +11,9 @@ public class LevelGenerator : MonoBehaviour
 {
     [Header("Level Size")]
     [Range(1, 16)]
-    [SerializeField] private int levelHeight = 4;
+    [SerializeField] private int levelHeight = 5;
     [Range(1, 16)]
-    [SerializeField] private int levelWidth = 4;
+    [SerializeField] private int levelWidth = 1;
 
     //Keep track of level
     Level level;
@@ -77,6 +77,7 @@ public class LevelGenerator : MonoBehaviour
 
     public bool doingSetup;
     public PlayerMovement player;
+    public GameController gameController;
 
     public void GenerateLevel()
     {
@@ -180,7 +181,8 @@ public class LevelGenerator : MonoBehaviour
             //Place items down
             PlaceItems(r);
             //Place entrance, exit and set spawn pos
-           if (r == level.Entrance) spawnPos = tilemap.GetCellCenterWorld(PlaceEntrance(r)); 
+            if (r == level.Entrance) {
+                spawnPos = tilemap.GetCellCenterWorld(PlaceEntrance(r));} 
            else if (r == level.Exit) PlaceExit(r);
         }
     }
@@ -237,8 +239,10 @@ public class LevelGenerator : MonoBehaviour
             //If there is a floor below make position available for door placement
             if (tilemap.GetTile(pos) == null
                 && tilemap.GetTile(pos + Vector3Int.down) != null
-                && tilemap.GetTile(pos + Vector3Int.up) == null)
+                && tilemap.GetTile(pos + Vector3Int.up) == null
+                && tilemap.GetTile(pos) != tiles[(uint)TileID.LADDER]) //added this line so player dont spawn on ladder(spike)
                 availablePos.Add(pos);
+                gameController.spawnPoint = pos;
         }
         Vector3Int doorPos = availablePos[Random.Range(0, availablePos.Count)];
         return doorPos;

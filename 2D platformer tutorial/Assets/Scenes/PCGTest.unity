@@ -291,13 +291,13 @@ GameObject:
   - component: {fileID: 126441976}
   - component: {fileID: 126441974}
   - component: {fileID: 126441979}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spike
   m_TagString: Spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &126441973
 Transform:
   m_ObjectHideFlags: 0
@@ -1014,6 +1014,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  spikeLayer:
+    serializedVersion: 2
+    m_Bits: 128
   wallCheckPos: {fileID: 68650121}
   wallCheckSize: {x: 0.2, y: 0.7}
   wallLayer:
@@ -3050,34 +3053,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20fee0ed4816f844abd67f202a0c224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelGenerator
-  levelHeight: 4
-  levelWidth: 4
+  levelHeight: 1
+  levelWidth: 5
   spawnPos: {x: 0, y: 0, z: 0}
   tiles:
-  - {fileID: 11400000, guid: 179fd5d9b89d51540a7f8b68df344f07, type: 2}
-  - {fileID: 11400000, guid: a36101ff7ac240845bba2fe79128d803, type: 2}
+  - {fileID: 11400000, guid: 6e0a49ab7b5bab349997127440b26831, type: 2}
+  - {fileID: 11400000, guid: 6e0a49ab7b5bab349997127440b26831, type: 2}
   - {fileID: 11400000, guid: 14fcc0c545df1c54dae7afdcbe5270ee, type: 2}
-  - {fileID: 11400000, guid: 179fd5d9b89d51540a7f8b68df344f07, type: 2}
-  - {fileID: 11400000, guid: a36101ff7ac240845bba2fe79128d803, type: 2}
   - {fileID: 11400000, guid: 14fcc0c545df1c54dae7afdcbe5270ee, type: 2}
-  - {fileID: 11400000, guid: a36101ff7ac240845bba2fe79128d803, type: 2}
-  - {fileID: 11400000, guid: 179fd5d9b89d51540a7f8b68df344f07, type: 2}
+  - {fileID: 11400000, guid: e7b3065ef4f623f41b2f104c80a6785f, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   tilemap: {fileID: 943674226}
   doorTilemap: {fileID: 2012602687}
   itemTilemap: {fileID: 1837766467}
-  ladderTilemap: {fileID: 1077333294}
+  ladderTilemap: {fileID: 126441978}
   background: {fileID: 22817708}
   templates:
   - images:
-    - {fileID: 2800000, guid: 677f1b984ff93f146a61db7721a9ad02, type: 3}
-    - {fileID: 2800000, guid: 42a4b0e62bc0aab4e9dfa3c74fd0bce1, type: 3}
-    - {fileID: 2800000, guid: 2627eb4cdaa0f7f418ca076e902e3ef0, type: 3}
-    - {fileID: 2800000, guid: 7c4677de585db5a419d6520c6902a007, type: 3}
+    - {fileID: 2800000, guid: 7ab863239ff40d5418ed43b0328c1882, type: 3}
+    - {fileID: 2800000, guid: 7ab863239ff40d5418ed43b0328c1882, type: 3}
+    - {fileID: 2800000, guid: 7ab863239ff40d5418ed43b0328c1882, type: 3}
+    - {fileID: 2800000, guid: 7ab863239ff40d5418ed43b0328c1882, type: 3}
   - images:
-    - {fileID: 2800000, guid: 1ecdf05570431f74c88a019c914d2052, type: 3}
-    - {fileID: 2800000, guid: 9d44c32b6f4ae434cab4523a18cd7676, type: 3}
-    - {fileID: 2800000, guid: d3dc045d6c11e684a82b112d1e852307, type: 3}
-    - {fileID: 2800000, guid: e376ca43db6ef52459b5a700a3d97cef, type: 3}
+    - {fileID: 2800000, guid: b2e8b021364b36a459eaaa257f5d6044, type: 3}
   - images:
     - {fileID: 2800000, guid: 519797dc73f9f874b82cac492feff1f4, type: 3}
     - {fileID: 2800000, guid: 1b150a3246f1fc94a90e8d53a0ecb4ff, type: 3}
@@ -3086,6 +3086,7 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 58738c55dfbf28c49af61ac9918579b4, type: 3}
   doingSetup: 0
   player: {fileID: 248160939}
+  gameController: {fileID: 0}
   style:
     m_Name: 
     m_Normal:
@@ -4111,7 +4112,7 @@ Transform:
   m_GameObject: {fileID: 1385437590}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.65, y: 1.14, z: 0}
+  m_LocalPosition: {x: 2.61, y: 5.23, z: 0}
   m_LocalScale: {x: 3.2455244, y: 3.5551991, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
