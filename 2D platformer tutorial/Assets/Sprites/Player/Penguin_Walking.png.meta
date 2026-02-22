@@ -73,7 +73,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -84,10 +84,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -156,9 +156,9 @@ TextureImporter:
         y: 142
         width: 31
         height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      alignment: 9
+      pivot: {x: 0.51502204, y: 0.5183211}
+      border: {x: 3, y: 3, z: 3, w: 2}
       customData: 
       outline: []
       physicsShape: []
@@ -178,9 +178,9 @@ TextureImporter:
         y: 142
         width: 31
         height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      alignment: 9
+      pivot: {x: 0.5038846, y: 0.53489333}
+      border: {x: 3, y: 3, z: 3, w: 3}
       customData: 
       outline: []
       physicsShape: []
@@ -200,9 +200,9 @@ TextureImporter:
         y: 141
         width: 34
         height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      alignment: 9
+      pivot: {x: 0.54793817, y: 0.5359333}
+      border: {x: 6, y: 4, z: 3, w: 3}
       customData: 
       outline: []
       physicsShape: []
@@ -218,13 +218,13 @@ TextureImporter:
       name: Penguin_Walking_3
       rect:
         serializedVersion: 2
-        x: 8
-        y: 77
-        width: 40
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        x: 9
+        y: 78
+        width: 38
+        height: 38
+      alignment: 9
+      pivot: {x: 0.61959046, y: 0.5431027}
+      border: {x: 11, y: 3, z: 3, w: 2}
       customData: 
       outline: []
       physicsShape: []
@@ -245,7 +245,7 @@ TextureImporter:
         width: 17
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -266,9 +266,9 @@ TextureImporter:
         y: 78
         width: 32
         height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      alignment: 9
+      pivot: {x: 0.530987, y: 0.528718}
+      border: {x: 4, y: 3, z: 2, w: 3}
       customData: 
       outline: []
       physicsShape: []
@@ -288,9 +288,9 @@ TextureImporter:
         y: 77
         width: 38
         height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      alignment: 9
+      pivot: {x: 0.61779505, y: 0.5497793}
+      border: {x: 11, y: 4, z: 3, w: 3}
       customData: 
       outline: []
       physicsShape: []
@@ -311,7 +311,7 @@ TextureImporter:
         width: 13
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -332,9 +332,9 @@ TextureImporter:
         y: 14
         width: 33
         height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      alignment: 9
+      pivot: {x: 0.54939085, y: 0.5195166}
+      border: {x: 5, y: 3, z: 3, w: 3}
       customData: 
       outline: []
       physicsShape: []
@@ -355,7 +355,7 @@ TextureImporter:
         width: 14
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -376,9 +376,9 @@ TextureImporter:
         y: 14
         width: 39
         height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      alignment: 9
+      pivot: {x: 0.613436, y: 0.53131366}
+      border: {x: 11, y: 4, z: 3, w: 3}
       customData: 
       outline: []
       physicsShape: []
@@ -399,7 +399,7 @@ TextureImporter:
         width: 8
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -420,9 +420,9 @@ TextureImporter:
         y: 14
         width: 31
         height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      alignment: 9
+      pivot: {x: 0.51421183, y: 0.53792804}
+      border: {x: 3, y: 3, z: 3, w: 3}
       customData: 
       outline: []
       physicsShape: []
@@ -438,7 +438,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 7f4ed7bf2973273419135ce9c2a872cd
     internalID: 0
     vertices: []
     indices: 
@@ -453,6 +453,7 @@ TextureImporter:
       Penguin_Walking_10: 678036795303249405
       Penguin_Walking_11: 4991648420821906770
       Penguin_Walking_12: 3119338980302359210
+      Penguin_Walking_13: -1968838440
       Penguin_Walking_2: 2035608192765931777
       Penguin_Walking_3: 5846916688602178061
       Penguin_Walking_4: -1620548064991250929
