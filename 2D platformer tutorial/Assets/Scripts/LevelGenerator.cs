@@ -13,7 +13,7 @@ public class LevelGenerator : MonoBehaviour
     [Range(1, 16)]
     [SerializeField] private int levelHeight = 5;
     [Range(1, 16)]
-    [SerializeField] private int levelWidth = 1;
+    [SerializeField] private int levelWidth = 5;
 
     //Keep track of level
     Level level;
@@ -70,14 +70,13 @@ public class LevelGenerator : MonoBehaviour
             [Color.clear] = TileID.EMPTY
         };
 
-        player = FindFirstObjectByType<PlayerMovement>();
+        //player = FindFirstObjectByType<PlayerMovement>();
 
         GenerateLevel();
     }
 
     public bool doingSetup;
-    public PlayerMovement player;
-    public GameController gameController;
+    //public PlayerMovement player;
 
     public void GenerateLevel()
     {
@@ -92,7 +91,7 @@ public class LevelGenerator : MonoBehaviour
         BuildRooms();
 
         //Spawn player in
-        player.transform.position = spawnPos;
+        //player.transform.position = spawnPos;
 
         //Stop timer and print time elapsed
         watch.Stop();
@@ -182,8 +181,9 @@ public class LevelGenerator : MonoBehaviour
             PlaceItems(r);
             //Place entrance, exit and set spawn pos
             if (r == level.Entrance) {
-                spawnPos = tilemap.GetCellCenterWorld(PlaceEntrance(r));} 
-           else if (r == level.Exit) PlaceExit(r);
+                spawnPos = tilemap.GetCellCenterWorld(PlaceEntrance(r));
+            }
+            else if (r == level.Exit) PlaceExit(r);
         }
     }
 
@@ -235,14 +235,14 @@ public class LevelGenerator : MonoBehaviour
         List<Vector3Int> availablePos = new List<Vector3Int>();
         foreach (Room.Tile t in r.tiles)
         {
-            var pos = t.pos;
+            var pos = t.pos;    
             //If there is a floor below make position available for door placement
             if (tilemap.GetTile(pos) == null
                 && tilemap.GetTile(pos + Vector3Int.down) != null
                 && tilemap.GetTile(pos + Vector3Int.up) == null
-                && tilemap.GetTile(pos) != tiles[(uint)TileID.LADDER]) //added this line so player dont spawn on ladder(spike)
+                && itemTilemap.GetTile(pos) == null
+                && ladderTilemap.GetTile(pos) != tiles[(uint)TileID.LADDER]) //added this line so player dont spawn on ladder(spike)
                 availablePos.Add(pos);
-                gameController.spawnPoint = pos;
         }
         Vector3Int doorPos = availablePos[Random.Range(0, availablePos.Count)];
         return doorPos;
