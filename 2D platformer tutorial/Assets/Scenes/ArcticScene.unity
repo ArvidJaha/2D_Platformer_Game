@@ -766,7 +766,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 792438690}
@@ -843,6 +843,10 @@ CompositeCollider2D:
       - X: 279375008
         Y: 63125000
     - - X: 30000000
+        Y: 30000000
+      - X: 40000000
+        Y: 30000000
+      - X: 40000000
         Y: 40000000
       - X: -50000000
         Y: 40000000
@@ -850,14 +854,6 @@ CompositeCollider2D:
         Y: 20000000
       - X: 30000000
         Y: 20000000
-    - - X: 39843752
-        Y: 40000000
-      - X: 30156250
-        Y: 40000000
-      - X: 30156250
-        Y: 30000000
-      - X: 39843752
-        Y: 30000000
     - - X: 80000000
         Y: 40000000
       - X: 70000000
@@ -882,30 +878,22 @@ CompositeCollider2D:
         Y: 30000000
       - X: 180000000
         Y: 30000000
-    - - X: 219843744
-        Y: 40000000
-      - X: 210156256
-        Y: 40000000
-      - X: 210156256
-        Y: 30000000
-      - X: 219843744
-        Y: 30000000
     - - X: 250000000
+        Y: 30000000
+      - X: 260000000
+        Y: 30000000
+      - X: 260000000
         Y: 40000000
+      - X: 210000000
+        Y: 40000000
+      - X: 210000000
+        Y: 30000000
       - X: 220000000
-        Y: 40000000
+        Y: 30000000
       - X: 220000000
         Y: 20000000
       - X: 250000000
         Y: 20000000
-    - - X: 259843744
-        Y: 40000000
-      - X: 250156256
-        Y: 40000000
-      - X: 250156256
-        Y: 30000000
-      - X: 259843744
-        Y: 30000000
   m_CompositePaths:
     m_Paths:
     - - {x: 27.937489, y: 6.3125}
@@ -923,18 +911,14 @@ CompositeCollider2D:
       - {x: 27, y: 6.499828}
       - {x: 27.000017, y: 6.4062433}
       - {x: 27.218756, y: 6.3125}
-    - - {x: 25.984346, y: 3}
-      - {x: 25.984346, y: 4}
-      - {x: 25.015625, y: 3.999971}
-      - {x: 25.015656, y: 3}
     - - {x: 24.999971, y: 2}
-      - {x: 24.999971, y: 4}
-      - {x: 22, y: 3.999971}
+      - {x: 25.000029, y: 3}
+      - {x: 26, y: 3.0000293}
+      - {x: 25.999971, y: 4}
+      - {x: 21, y: 3.999971}
+      - {x: 21.000029, y: 3}
+      - {x: 22, y: 2.9999707}
       - {x: 22.000029, y: 2}
-    - - {x: 21.984346, y: 3}
-      - {x: 21.984346, y: 4}
-      - {x: 21.015625, y: 3.999971}
-      - {x: 21.015656, y: 3}
     - - {x: 17.999971, y: 3}
       - {x: 17.999971, y: 4}
       - {x: 17, y: 3.999971}
@@ -947,12 +931,10 @@ CompositeCollider2D:
       - {x: 7.9999704, y: 4}
       - {x: 7, y: 3.999971}
       - {x: 7.0000296, y: 3}
-    - - {x: 3.9843462, y: 3}
-      - {x: 3.9843462, y: 4}
-      - {x: 3.015625, y: 3.999971}
-      - {x: 3.0156543, y: 3}
     - - {x: 2.999971, y: 2}
-      - {x: 2.999971, y: 4}
+      - {x: 3.0000293, y: 3}
+      - {x: 4, y: 3.0000293}
+      - {x: 3.999971, y: 4}
       - {x: -5, y: 3.999971}
       - {x: -4.999971, y: 2}
   m_VertexDistance: 0.0005
@@ -1799,8 +1781,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.0666667, y: 1.0666667}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 0.90625, y: 1.1875}
+    newSize: {x: 0.90625, y: 1.1875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1883,12 +1865,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 541921761, guid: 0677d34efc810cc42ad94c967534ac18, type: 3}
+  m_Sprite: {fileID: -7249336617800755273, guid: 5fae1176cb572a14dbbf228d67a1fa2d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.90625, y: 1.1875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -7073,7 +7055,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2009480896}
@@ -7312,7 +7294,7 @@ GameObject:
   - component: {fileID: 1288981536}
   - component: {fileID: 1288981535}
   - component: {fileID: 1288981534}
-  - component: {fileID: 1288981537}
+  - component: {fileID: 1288981538}
   m_Layer: 0
   m_Name: Background Quad
   m_TagString: Untagged
@@ -7414,7 +7396,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288981532}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1288981537
+--- !u!114 &1288981538
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7426,7 +7408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d272d41d469f243b994a716c29b521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  speed: 0.1
+  speed: 0.01
 --- !u!1 &1369343571
 GameObject:
   m_ObjectHideFlags: 0
@@ -7613,6 +7595,7 @@ GameObject:
   - component: {fileID: 1521270091}
   - component: {fileID: 1521270090}
   - component: {fileID: 1521270089}
+  - component: {fileID: 1521270092}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7627,7 +7610,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521270088}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1521270090
 Camera:
   m_ObjectHideFlags: 0
@@ -7694,6 +7677,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1521270092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521270088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec8cb278dc2ef545a0a69b485f4fef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
+  player: {fileID: 614102312}
 --- !u!1 &1839804056
 GameObject:
   m_ObjectHideFlags: 0
