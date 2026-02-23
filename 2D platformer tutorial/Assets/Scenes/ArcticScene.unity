@@ -10360,7 +10360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   maxHealth: 3
-  HealthUI: {fileID: 0}
+  HealthUI: {fileID: 1369343573}
 --- !u!58 &614102314
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -10750,8 +10750,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9024577c9a527498bd69a9176fc64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  player: {fileID: 0}
-  spawnPoint: {x: 0, y: 0, z: 0}
+  player: {fileID: 614102312}
+  spawnPoint: {x: 0, y: 6, z: 0}
 --- !u!4 &678873021
 Transform:
   m_ObjectHideFlags: 0
@@ -16115,7 +16115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1269560169
 MonoBehaviour:
   m_ObjectHideFlags: 0
