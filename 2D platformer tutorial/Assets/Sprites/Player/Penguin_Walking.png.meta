@@ -1,37 +1,46 @@
 fileFormatVersion: 2
-guid: 4c4bf5e2244b26b489f0806e42a73ecb
+guid: 1ae1d303c753ab648940d2bacaae643c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7190687854021142997
-    second: Checkpoint_Flag_0
+      213: -6660395299766927082
+    second: Penguin_Walking_0
   - first:
-      213: 4865190570532296242
-    second: Checkpoint_Flag_1
+      213: 709271261703361644
+    second: Penguin_Walking_1
   - first:
-      213: -8294027488180659037
-    second: Checkpoint_Flag_2
+      213: 2035608192765931777
+    second: Penguin_Walking_2
   - first:
-      213: 9095901714281363377
-    second: Checkpoint_Flag_3
+      213: 5846916688602178061
+    second: Penguin_Walking_3
   - first:
-      213: 3231185342826579969
-    second: Checkpoint_Flag_4
+      213: -1620548064991250929
+    second: Penguin_Walking_4
   - first:
-      213: 816841747969241970
-    second: Checkpoint_Flag_5
+      213: -4297517591593570773
+    second: Penguin_Walking_5
   - first:
-      213: -5340439401487898397
-    second: Checkpoint_Flag_6
+      213: 5658137627140626968
+    second: Penguin_Walking_6
   - first:
-      213: -2352713374271902711
-    second: Checkpoint_Flag_7
+      213: -9005122673522340721
+    second: Penguin_Walking_7
   - first:
-      213: 388052799289469772
-    second: Checkpoint_Flag_8
+      213: 2938448561921793276
+    second: Penguin_Walking_8
   - first:
-      213: 6312417571245076370
-    second: Checkpoint_Flag_9
+      213: 4373606585099488779
+    second: Penguin_Walking_9
+  - first:
+      213: 678036795303249405
+    second: Penguin_Walking_10
+  - first:
+      213: 4991648420821906770
+    second: Penguin_Walking_11
+  - first:
+      213: 3119338980302359210
+    second: Penguin_Walking_12
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -78,7 +87,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -140,101 +149,101 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Checkpoint_Flag_0
+      name: Penguin_Walking_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 16
-        width: 19
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        x: 17
+        y: 142
+        width: 31
+        height: 39
+      alignment: 9
+      pivot: {x: 0.51502204, y: 0.5183211}
+      border: {x: 3, y: 3, z: 3, w: 2}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5d965ad51847ac360800000000000000
-      internalID: 7190687854021142997
+      spriteID: 61106bd53c58193a0800000000000000
+      internalID: -6660395299766927082
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkpoint_Flag_1
+      name: Penguin_Walking_1
       rect:
         serializedVersion: 2
-        x: 91
-        y: 16
-        width: 19
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        x: 81
+        y: 142
+        width: 31
+        height: 39
+      alignment: 9
+      pivot: {x: 0.5038846, y: 0.53489333}
+      border: {x: 3, y: 3, z: 3, w: 3}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 23658290c01a48340800000000000000
-      internalID: 4865190570532296242
+      spriteID: c64d8336476d7d900800000000000000
+      internalID: 709271261703361644
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkpoint_Flag_2
+      name: Penguin_Walking_2
       rect:
         serializedVersion: 2
-        x: 155
-        y: 16
-        width: 19
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        x: 142
+        y: 141
+        width: 34
+        height: 41
+      alignment: 9
+      pivot: {x: 0.54793817, y: 0.5359333}
+      border: {x: 6, y: 4, z: 3, w: 3}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ac9aa171f1b5ec80800000000000000
-      internalID: -8294027488180659037
+      spriteID: 10130bfbddeef3c10800000000000000
+      internalID: 2035608192765931777
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkpoint_Flag_3
+      name: Penguin_Walking_3
       rect:
         serializedVersion: 2
-        x: 219
-        y: 16
-        width: 19
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        x: 9
+        y: 78
+        width: 38
+        height: 38
+      alignment: 9
+      pivot: {x: 0.61959046, y: 0.5431027}
+      border: {x: 11, y: 3, z: 3, w: 2}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b77b9fba622b3e70800000000000000
-      internalID: 9095901714281363377
+      spriteID: d02af6fffbb642150800000000000000
+      internalID: 5846916688602178061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkpoint_Flag_4
+      name: Penguin_Walking_4
       rect:
         serializedVersion: 2
-        x: 283
-        y: 16
-        width: 19
-        height: 34
+        x: 63
+        y: 78
+        width: 17
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -243,64 +252,64 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 10880a223f977dc20800000000000000
-      internalID: 3231185342826579969
+      spriteID: f06ffb4fe18a289e0800000000000000
+      internalID: -1620548064991250929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkpoint_Flag_5
+      name: Penguin_Walking_5
       rect:
         serializedVersion: 2
-        x: 347
-        y: 16
-        width: 19
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        x: 80
+        y: 78
+        width: 32
+        height: 39
+      alignment: 9
+      pivot: {x: 0.530987, y: 0.528718}
+      border: {x: 4, y: 3, z: 2, w: 3}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2737a61fd31065b00800000000000000
-      internalID: 816841747969241970
+      spriteID: b2ea21905862c54c0800000000000000
+      internalID: -4297517591593570773
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkpoint_Flag_6
+      name: Penguin_Walking_6
       rect:
         serializedVersion: 2
-        x: 411
-        y: 16
-        width: 19
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        x: 138
+        y: 77
+        width: 38
+        height: 40
+      alignment: 9
+      pivot: {x: 0.61779505, y: 0.5497793}
+      border: {x: 11, y: 4, z: 3, w: 3}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3e860d1c8a2f2e5b0800000000000000
-      internalID: -5340439401487898397
+      spriteID: 81a1dfb913eb58e40800000000000000
+      internalID: 5658137627140626968
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkpoint_Flag_7
+      name: Penguin_Walking_7
       rect:
         serializedVersion: 2
-        x: 475
-        y: 16
-        width: 19
-        height: 34
+        x: 7
+        y: 13
+        width: 13
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -309,42 +318,42 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 90c663cb6ab795fd0800000000000000
-      internalID: -2352713374271902711
+      spriteID: f8c82edb3a0670380800000000000000
+      internalID: -9005122673522340721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkpoint_Flag_8
+      name: Penguin_Walking_8
       rect:
         serializedVersion: 2
-        x: 539
-        y: 16
-        width: 19
-        height: 34
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        x: 15
+        y: 14
+        width: 33
+        height: 40
+      alignment: 9
+      pivot: {x: 0.54939085, y: 0.5195166}
+      border: {x: 5, y: 3, z: 3, w: 3}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c4baeb707f3a26500800000000000000
-      internalID: 388052799289469772
+      spriteID: cfc1b14066777c820800000000000000
+      internalID: 2938448561921793276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Checkpoint_Flag_9
+      name: Penguin_Walking_9
       rect:
         serializedVersion: 2
-        x: 603
-        y: 16
-        width: 19
-        height: 34
+        x: 63
+        y: 13
+        width: 14
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -353,8 +362,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 29f2fff16563a9750800000000000000
-      internalID: 6312417571245076370
+      spriteID: b0e0a2c440c22bc30800000000000000
+      internalID: 4373606585099488779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Penguin_Walking_10
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 14
+        width: 39
+        height: 39
+      alignment: 9
+      pivot: {x: 0.613436, y: 0.53131366}
+      border: {x: 11, y: 4, z: 3, w: 3}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df5c1b87fded86900800000000000000
+      internalID: 678036795303249405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Penguin_Walking_11
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 14
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 255bab6bac5e54540800000000000000
+      internalID: 4991648420821906770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Penguin_Walking_12
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 14
+        width: 31
+        height: 39
+      alignment: 9
+      pivot: {x: 0.51421183, y: 0.53792804}
+      border: {x: 3, y: 3, z: 3, w: 3}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaa83fe864e1a4b20800000000000000
+      internalID: 3119338980302359210
       vertices: []
       indices: 
       edges: []
@@ -363,7 +438,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9787870aec0cf7247a378f0c8ce3ca8f
+    spriteID: 7f4ed7bf2973273419135ce9c2a872cd
     internalID: 0
     vertices: []
     indices: 
@@ -371,20 +446,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Checkpoint_Flag_0: 7190687854021142997
-      Checkpoint_Flag_1: 4865190570532296242
-      Checkpoint_Flag_2: -8294027488180659037
-      Checkpoint_Flag_3: 9095901714281363377
-      Checkpoint_Flag_4: 3231185342826579969
-      Checkpoint_Flag_5: 816841747969241970
-      Checkpoint_Flag_6: -5340439401487898397
-      Checkpoint_Flag_7: -2352713374271902711
-      Checkpoint_Flag_8: 388052799289469772
-      Checkpoint_Flag_9: 6312417571245076370
+      Penguin_Walking_0: -6660395299766927082
+      Penguin_Walking_1: 709271261703361644
+      Penguin_Walking_10: 678036795303249405
+      Penguin_Walking_11: 4991648420821906770
+      Penguin_Walking_12: 3119338980302359210
+      Penguin_Walking_13: -1968838440
+      Penguin_Walking_2: 2035608192765931777
+      Penguin_Walking_3: 5846916688602178061
+      Penguin_Walking_4: -1620548064991250929
+      Penguin_Walking_5: -4297517591593570773
+      Penguin_Walking_6: 5658137627140626968
+      Penguin_Walking_7: -9005122673522340721
+      Penguin_Walking_8: 2938448561921793276
+      Penguin_Walking_9: 4373606585099488779
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
