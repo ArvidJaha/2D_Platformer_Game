@@ -23,9 +23,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheckPos;
     public Vector2 groundCheckSize = new Vector2(0.5f, 0.5f);
     public LayerMask groundLayer;
-    bool isGrounded;    
+    bool isGrounded; 
 
-    [Header("spikeCheck")]
+    [Header("spikeLayer")]
     public LayerMask spikeLayer;
 
     [Header("wallCheck")]
@@ -56,13 +56,13 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         GroundCheck();
         ProcessGravity();
         ProcessWallSlide();
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool WallCheck()
     {
-        return Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0 , wallLayer);
+        return Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, wallLayer);
 
     }
 
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ProcessGravity()
     {
-        if(rb.linearVelocity.y < 0)
+        if (rb.linearVelocity.y < 0)
         {
             rb.gravityScale = baseGravity * fallSpeedMultiplier;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, Math.Max(rb.linearVelocity.y, -maxFallSpeed));
@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ProcessWallSlide()
     {
-        if(!isGrounded && WallCheck() && horizontalMovement != 0)
+        if (!isGrounded && WallCheck() && horizontalMovement != 0)
         {
             isWallSliding = true;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -wallSlideSpeed));
@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isWallSliding)
         {
-            iswallJumping = false; 
+            iswallJumping = false;
             wallJumpDirection = -transform.localScale.x;
             wallJumpTimer = wallJumpTime;
 
@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpsRemaining > 0)
         {
-            if(context.performed) //hold jump, max height
+            if (context.performed) //hold jump, max height
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
                 jumpsRemaining--;
@@ -160,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         //wall jump
-        if(context.performed && wallJumpTimer > 0)
+        if (context.performed && wallJumpTimer > 0)
         {
             iswallJumping = true;
             rb.linearVelocity = new Vector2(wallJumpDirection * wallJumpPower.x, wallJumpPower.y);
@@ -168,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
             JumpFX();
 
             //force flip
-            if(transform.localScale.x != wallJumpDirection)
+            if (transform.localScale.x != wallJumpDirection)
             {
                 isFacingRight = !isFacingRight;
                 Vector3 ls = transform.localScale;
@@ -177,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             Invoke(nameof(CancelWallJump), wallJumpTime + 0.1f);
-            
+
         }
     }
 
@@ -189,8 +189,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundCheck()
     {
-        if(Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0 , groundLayer) 
-            || Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, spikeLayer))
+        if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer | spikeLayer))
         {
             jumpsRemaining = maxJumps;
             isGrounded = true;
@@ -201,11 +200,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
-
     private void Flip()
     {
-        if(isFacingRight && horizontalMovement < 0 || !isFacingRight && horizontalMovement > 0)
+        if (isFacingRight && horizontalMovement < 0 || !isFacingRight && horizontalMovement > 0)
         {
             isFacingRight = !isFacingRight;
             Vector3 ls = transform.localScale;
@@ -213,9 +210,9 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = ls;
 
 
-            if(rb.linearVelocity.y == 0)
+            if (rb.linearVelocity.y == 0)
             {
-                smokeFX.Play();                
+                smokeFX.Play();
             }
         }
     }

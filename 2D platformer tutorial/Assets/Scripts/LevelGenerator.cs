@@ -11,9 +11,9 @@ public class LevelGenerator : MonoBehaviour
 {
     [Header("Level Size")]
     [Range(1, 16)]
-    [SerializeField] private int levelHeight = 5;
+    [SerializeField] private int levelHeight = 4;
     [Range(1, 16)]
-    [SerializeField] private int levelWidth = 5;
+    [SerializeField] private int levelWidth = 4;
 
     //Keep track of level
     Level level;
@@ -62,7 +62,7 @@ public class LevelGenerator : MonoBehaviour
         //Store tiles by their color
         byColor = new Dictionary<Color32, TileID>()
         {
-            [Color.black] = TileID.DIRT ,
+            [Color.black] = TileID.DIRT,
             [Color.blue] = TileID.STONE,
             [Color.red] = TileID.LADDER,
             [Color.green] = TileID.RANDOM,
@@ -70,13 +70,11 @@ public class LevelGenerator : MonoBehaviour
             [Color.clear] = TileID.EMPTY
         };
 
-        //player = FindFirstObjectByType<PlayerMovement>();
 
         GenerateLevel();
     }
 
     public bool doingSetup;
-    //public PlayerMovement player;
 
     public void GenerateLevel()
     {
@@ -90,8 +88,7 @@ public class LevelGenerator : MonoBehaviour
         level.Generate();
         BuildRooms();
 
-        //Spawn player in
-        //player.transform.position = spawnPos;
+        
 
         //Stop timer and print time elapsed
         watch.Stop();
@@ -161,7 +158,7 @@ public class LevelGenerator : MonoBehaviour
                         switch (id)
                         {
                             case TileID.RANDOM:
-                                if (Random.value <= .25f) 
+                                if (Random.value <= .25f)
                                     tilemap.SetTile(pos, tiles[(uint)id]);
                                 else if (Random.value <= .25f)
                                     tilemap.SetTile(pos, tiles[(uint)TileID.DIRT]);
@@ -174,15 +171,17 @@ public class LevelGenerator : MonoBehaviour
                                 break;
                         }
                     }
-                    else Debug.LogError("Error parsing image!");
+                    else //Debug.LogError("Error parsing image!");
+                    {
+                        Color32 unknown = colors[y * Config.ROOM_WIDTH + x];
+                        Debug.LogError($"Error parsing image! Unknown color: R={unknown.r} G={unknown.g} B={unknown.b} A={unknown.a} at x={x} y={y}");
+                    }
                 }
             }
             //Place items down
             PlaceItems(r);
             //Place entrance, exit and set spawn pos
-            if (r == level.Entrance) {
-                spawnPos = tilemap.GetCellCenterWorld(PlaceEntrance(r));
-            }
+            if (r == level.Entrance) spawnPos = tilemap.GetCellCenterWorld(PlaceEntrance(r));
             else if (r == level.Exit) PlaceExit(r);
         }
     }
@@ -191,7 +190,7 @@ public class LevelGenerator : MonoBehaviour
     public void PlaceItems(Room r)
     {
         foreach (Room.Tile t in r.tiles)
-        {         
+        {
             var pos = t.pos;
             if (tilemap.GetTile(pos) == null && tilemap.GetTile(pos + Vector3Int.down) != null)
             {
@@ -235,13 +234,12 @@ public class LevelGenerator : MonoBehaviour
         List<Vector3Int> availablePos = new List<Vector3Int>();
         foreach (Room.Tile t in r.tiles)
         {
-            var pos = t.pos;    
+            var pos = t.pos;
             //If there is a floor below make position available for door placement
             if (tilemap.GetTile(pos) == null
                 && tilemap.GetTile(pos + Vector3Int.down) != null
                 && tilemap.GetTile(pos + Vector3Int.up) == null
-                && itemTilemap.GetTile(pos) == null
-                && ladderTilemap.GetTile(pos) != tiles[(uint)TileID.LADDER]) //added this line so player dont spawn on ladder(spike)
+                && ladderTilemap.GetTile(pos) == null) //entrance dont spawn on ladders
                 availablePos.Add(pos);
         }
         Vector3Int doorPos = availablePos[Random.Range(0, availablePos.Count)];
@@ -264,7 +262,7 @@ public class LevelGenerator : MonoBehaviour
     {
         if (!Application.isPlaying || doingSetup) return;
         DrawRooms();
-        DrawPath();    
+        DrawPath();
     }
 
     void DrawRooms()
@@ -274,7 +272,7 @@ public class LevelGenerator : MonoBehaviour
             //Draw room ID and boundary
             Gizmos.color = new Color32(255, 253, 0, 128);
             Gizmos.DrawWireCube(r.Center(), new Vector2(Config.ROOM_WIDTH, Config.ROOM_HEIGHT));
-            Handles.Label(r.Origin() + new Vector2(.5f,-.5f), r.Type.ToString(), style);
+            Handles.Label(r.Origin() + new Vector2(.5f, -.5f), r.Type.ToString(), style);
 
             if (r == level.Entrance) Gizmos.color = Color.green;
             else if (r == level.Exit) Gizmos.color = Color.red;
@@ -301,4 +299,3 @@ public class LevelGenerator : MonoBehaviour
     }
 #endif
 }
-

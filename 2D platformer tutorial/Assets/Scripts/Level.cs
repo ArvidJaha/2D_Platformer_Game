@@ -35,57 +35,52 @@ public class Level
     {
         rooms = new Room[width * height];
         path = new HashSet<Room>();
-        for (int x = 0; x < width; x++) {
+        for (int x = 0; x < width; x++)
+        {
             for (int y = 0; y < height; y++)
-                rooms[GetRoomID(x, y)] = new Room(GetRoomID(x, y),x,y);
+                rooms[GetRoomID(x, y)] = new Room(GetRoomID(x, y), x, y);
         }
     }
 
     //Room path generation algorithm
     private void GenerateRoomPath()
     {
-        //Pick a room from the top row and place the entrance
-        int start = Random.Range(0, width);
-        int x = start, prevX = start;
-        int y = 0, prevY = 0;
+        int start = Random.Range(0, height);
+        int x = 0, prevX = 0;
+        int y = start, prevY = start;
 
         rooms[GetRoomID(x, y)].Type = 1;
         entrance = rooms[GetRoomID(x, y)];
 
-        //Generate path until bottom floor
-        while (y < height)
+        while (x < width - 1)
         {
-            //Select next random direction to move          
+            prevX = x;
+            prevY = y;
             switch (RandomDirection())
             {
                 case Direction.RIGHT:
-                    if (x < width - 1 && rooms[GetRoomID(x+1, y)].Type == 0) x++; //Check if room is empty and move to the right if it is
-                    else if (x > 0 && rooms[GetRoomID(x-1, y)].Type == 0) x--; //Move to the left 
-                    else goto case Direction.DOWN;
-                    rooms[GetRoomID(x, y)].Type = 1; //Corridor you run through
+                    if (x < width - 1 && rooms[GetRoomID(x + 1, y)].Type == 0)
+                        x++;
                     break;
-                case Direction.LEFT:
-                    if (x > 0 && rooms[GetRoomID(x - 1, y)].Type == 0) x--; //Move to the left 
-                    else if (x < width - 1 && rooms[GetRoomID(x + 1, y)].Type == 0) x++; //Move to the right
-                    else goto case Direction.DOWN;
-                    rooms[GetRoomID(x, y)].Type = 1; //Corridor you run through
+
+                case Direction.UP:
+                    if (y > 0 && rooms[GetRoomID(x, y - 1)].Type == 0)
+                        y--;
                     break;
                 case Direction.DOWN:
-                    y++;
-                    //If not out of bounds
-                    if (y < height)
-                    {
-                        rooms[GetRoomID(prevX, prevY)].Type = 2; //Room you fall from
-                        rooms[GetRoomID(x, y)].Type = 3; //Room you drop into
-                    }
-                    else exit = rooms[GetRoomID(x, y-1)]; //Place exit room     
+                    if (y < height - 1 && rooms[GetRoomID(x, y + 1)].Type == 0)
+                        y++;
                     break;
             }
+            if (x == prevX && y == prevY) x++;
 
+            rooms[GetRoomID(x, y)].Type = 1;
             path.Add(rooms[GetRoomID(prevX, prevY)]);
             prevX = x;
             prevY = y;
         }
+
+        exit = rooms[GetRoomID(x, y)];
     }
 
     enum Direction
@@ -102,14 +97,15 @@ public class Level
         int choice = Mathf.FloorToInt(Random.value * 4.99f);
         switch (choice)
         {
-            //40% Chance to go right or left and 20% to go down
-            case 0: case 1: return Direction.LEFT;
-            case 2: case 3: return Direction.RIGHT;
-            default: return Direction.DOWN;
+            case 0: case 1: return Direction.RIGHT;  // 40% right
+            case 2: return Direction.UP;              // 20% up
+            case 3: return Direction.DOWN;            // 20% down
+            default: return Direction.RIGHT;
         }
     }
 
-    private int GetRoomID(int x, int y) {
+    private int GetRoomID(int x, int y)
+    {
         return y * width + x;
     }
 }
