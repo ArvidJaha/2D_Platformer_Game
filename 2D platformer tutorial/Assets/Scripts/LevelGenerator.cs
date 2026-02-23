@@ -83,7 +83,7 @@ public class LevelGenerator : MonoBehaviour
         var watch = System.Diagnostics.Stopwatch.StartNew();
 
         ClearTiles();
-        GenerateBorder();
+        //GenerateBorder();
         level = new Level(levelWidth, levelHeight);
         level.Generate();
         BuildRooms();
@@ -133,6 +133,7 @@ public class LevelGenerator : MonoBehaviour
     {
         foreach (Room r in level.Rooms)
         {
+            if (r.Type == 0) continue;
             int offsetX = r.X * Config.ROOM_WIDTH; //Left to right
             int offsetY = -r.Y * Config.ROOM_HEIGHT; //Top to bottom
 
