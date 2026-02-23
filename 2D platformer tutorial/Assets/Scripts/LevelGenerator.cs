@@ -161,7 +161,7 @@ public class LevelGenerator : MonoBehaviour
                         switch (id)
                         {
                             case TileID.RANDOM:
-                                if (Random.value <= .25f) 
+                                if (Random.value <= .25f)
                                     tilemap.SetTile(pos, tiles[(uint)id]);
                                 else if (Random.value <= .25f)
                                     tilemap.SetTile(pos, tiles[(uint)TileID.DIRT]);
