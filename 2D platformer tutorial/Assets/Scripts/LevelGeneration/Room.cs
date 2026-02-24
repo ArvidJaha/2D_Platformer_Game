@@ -30,14 +30,14 @@ public class Room
     public Vector2 Center()
     {
         int offsetX = X * Config.ROOM_WIDTH; //Left to right
-        int offsetY = -Y * Config.ROOM_HEIGHT; //Top to bottom
+        int offsetY = Y * Config.ROOM_HEIGHT; //Top to bottom
         return new Vector2(offsetX + Config.ROOM_WIDTH/2, offsetY+Config.ROOM_HEIGHT/2);
     }
 
     public Vector2 Origin()
     {
         int offsetX = X * Config.ROOM_WIDTH; //Left to right
-        int offsetY = -Y * Config.ROOM_HEIGHT; //Top to bottom
+        int offsetY = Y * Config.ROOM_HEIGHT; //Top to bottom
         return new Vector2(offsetX, offsetY + Config.ROOM_HEIGHT);
     }
 }

@@ -60,21 +60,33 @@ public class Level
             {
                 case Direction.RIGHT:
                     if (x < width - 1 && rooms[GetRoomID(x + 1, y)].Type == 0)
+                    {
                         x++;
+                        rooms[GetRoomID(x, y)].Type = 1;
+                    }
+                    
                     break;
 
                 case Direction.UP:
                     if (y > 0 && rooms[GetRoomID(x, y - 1)].Type == 0)
+                    {
                         y--;
+                        rooms[GetRoomID(x, y)].Type = 2;
+                    }
+                        
                     break;
                 case Direction.DOWN:
                     if (y < height - 1 && rooms[GetRoomID(x, y + 1)].Type == 0)
+                    {
                         y++;
+                        rooms[GetRoomID(x, y)].Type = 3;
+                    }
+                        
                     break;
             }
-            if (x == prevX && y == prevY) x++;
+            //if (x == prevX && y == prevY) x++;
 
-            rooms[GetRoomID(x, y)].Type = 1;
+            //rooms[GetRoomID(x, y)].Type = 1;
             path.Add(rooms[GetRoomID(prevX, prevY)]);
             prevX = x;
             prevY = y;
@@ -85,10 +97,10 @@ public class Level
 
     enum Direction
     {
-        UP = 0,
+        DOWN = 0,
         LEFT = 1,
         RIGHT = 2,
-        DOWN = 3
+        UP = 3
     };
 
     //Pick random direction to go

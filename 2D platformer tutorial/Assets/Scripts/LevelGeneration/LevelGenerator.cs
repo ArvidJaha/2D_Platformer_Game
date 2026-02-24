@@ -75,6 +75,7 @@ public class LevelGenerator : MonoBehaviour
     }
 
     public bool doingSetup;
+    public Vector3 exitPos;
 
     public void GenerateLevel()
     {
@@ -135,7 +136,7 @@ public class LevelGenerator : MonoBehaviour
         {
             if (r.Type == 0) continue;
             int offsetX = r.X * Config.ROOM_WIDTH; //Left to right
-            int offsetY = -r.Y * Config.ROOM_HEIGHT; //Top to bottom
+            int offsetY = r.Y * Config.ROOM_HEIGHT; //Top to bottom
 
             //Try to get template from list, and store pixels into flattened array
             if (r.Type >= templates.Length || templates[r.Type].images.Length == 0)
@@ -227,7 +228,8 @@ public class LevelGenerator : MonoBehaviour
     public void PlaceExit(Room r)
     {
         Vector3Int pos = RandomDoorPosition(r);
-        doorTilemap.SetTile(pos, tiles[(uint)TileID.ENTRANCE]);
+        doorTilemap.SetTile(pos, tiles[(uint)TileID.EXIT]);
+        exitPos = tilemap.GetCellCenterWorld(pos);
     }
 
     public Vector3Int RandomDoorPosition(Room r)
