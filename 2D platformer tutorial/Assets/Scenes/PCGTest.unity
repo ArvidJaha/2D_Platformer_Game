@@ -3538,11 +3538,11 @@ MonoBehaviour:
   - images:
     - {fileID: 2800000, guid: 2495b9e122e29c049a0bb861f130e605, type: 3}
   - images:
-    - {fileID: 2800000, guid: b2e8b021364b36a459eaaa257f5d6044, type: 3}
+    - {fileID: 2800000, guid: 1878c8fe5db6698489c1d8575c64753c, type: 3}
   - images:
-    - {fileID: 2800000, guid: 5f8adeaf05355734ca052175c23a1dce, type: 3}
+    - {fileID: 2800000, guid: a2aef3864b4eefa47ba64b7495f32ba9, type: 3}
   - images:
-    - {fileID: 2800000, guid: 95adc8122c31b7e49a842cae6eace38d, type: 3}
+    - {fileID: 2800000, guid: a2aef3864b4eefa47ba64b7495f32ba9, type: 3}
   doingSetup: 0
   exitPos: {x: 0, y: 0, z: 0}
   style:
