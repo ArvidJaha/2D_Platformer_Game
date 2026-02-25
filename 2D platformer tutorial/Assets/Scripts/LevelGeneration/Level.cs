@@ -52,6 +52,8 @@ public class Level
         rooms[GetRoomID(x, y)].Type = 1;
         entrance = rooms[GetRoomID(x, y)];
 
+
+
         while (x < width - 1)
         {
             prevX = x;
@@ -62,7 +64,7 @@ public class Level
                     if (x < width - 1 && rooms[GetRoomID(x + 1, y)].Type == 0)
                     {
                         x++;
-                        rooms[GetRoomID(x, y)].Type = 1;
+                        rooms[GetRoomID(x, y)].Type = 2;
                     }
                     
                     break;
@@ -71,7 +73,7 @@ public class Level
                     if (y > 0 && rooms[GetRoomID(x, y - 1)].Type == 0)
                     {
                         y--;
-                        rooms[GetRoomID(x, y)].Type = 2;
+                        rooms[GetRoomID(x, y)].Type = 3;
                     }
                         
                     break;
@@ -79,7 +81,7 @@ public class Level
                     if (y < height - 1 && rooms[GetRoomID(x, y + 1)].Type == 0)
                     {
                         y++;
-                        rooms[GetRoomID(x, y)].Type = 3;
+                        rooms[GetRoomID(x, y)].Type = 4;
                     }
                         
                     break;
@@ -106,12 +108,12 @@ public class Level
     //Pick random direction to go
     Direction RandomDirection()
     {
-        int choice = Mathf.FloorToInt(Random.value * 4.99f);
+        int choice = Random.Range(0, 3); // 0,1,2
         switch (choice)
         {
-            case 0: case 1: return Direction.RIGHT;  // 40% right
-            case 2: return Direction.UP;              // 20% up
-            case 3: return Direction.DOWN;            // 20% down
+            case 0: return Direction.RIGHT;  // 33% right
+            case 1: return Direction.UP;              // 33% up
+            case 2: return Direction.DOWN;            // 33% down
             default: return Direction.RIGHT;
         }
     }

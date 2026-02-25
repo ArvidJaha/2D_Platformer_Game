@@ -22,7 +22,7 @@ public class LevelGenerator : MonoBehaviour
     public enum TileID : uint
     {
         Ground,
-        STONE,
+        Wall,
         ENTRANCE,
         EXIT,
         LADDER,
@@ -41,6 +41,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private Tilemap itemTilemap;
     [SerializeField] private Tilemap ladderTilemap;
     [SerializeField] private Tilemap background;
+    [SerializeField] private Tilemap Wall;
 
     public Tilemap Tilemap { get => tilemap; }
 
@@ -63,9 +64,9 @@ public class LevelGenerator : MonoBehaviour
         byColor = new Dictionary<Color32, TileID>()
         {
             [Color.black] = TileID.Ground,
-            [Color.blue] = TileID.STONE,
+            [Color.grey] = TileID.Wall,
+            [Color.blue] = TileID.Wall,
             [Color.red] = TileID.LADDER,
-            [Color.purple] = TileID.Ground,
             [Color.green] = TileID.RANDOM,
             [Color.white] = TileID.EMPTY,
             [Color.clear] = TileID.EMPTY
@@ -169,6 +170,9 @@ public class LevelGenerator : MonoBehaviour
                                 break;
                             case TileID.LADDER:
                                 ladderTilemap.SetTile(pos, tiles[(uint)id]);
+                                break;
+                            case TileID.Wall:
+                                Wall.SetTile(pos, tiles[(uint)id]);
                                 break;
                             default:
                                 tilemap.SetTile(pos, tiles[(uint)id]);

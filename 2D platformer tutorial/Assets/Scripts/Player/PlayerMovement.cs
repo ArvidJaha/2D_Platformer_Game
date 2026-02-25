@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     //wall Jumping 
     bool iswallJumping;
     float wallJumpDirection;
-    float wallJumpTime = 0.5f;
+    float wallJumpTime = 0.45f;
     float wallJumpTimer;
     public Vector2 wallJumpPower = new Vector2(5f, 10f);
 
@@ -80,9 +80,9 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isWallSliding", isWallSliding);
     }
 
-    private bool WallCheck()
+    private bool WallJumpCheck()
     {
-        return Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, wallLayer);
+        return Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, wallLayer | groundLayer);
 
     }
 
@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ProcessWallSlide()
     {
-        if (!isGrounded && WallCheck() && horizontalMovement != 0)
+        if (!isGrounded && WallJumpCheck() && horizontalMovement != 0)
         {
             isWallSliding = true;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -wallSlideSpeed));
@@ -176,7 +176,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.localScale = ls;
             }
 
-            Invoke(nameof(CancelWallJump), wallJumpTime + 0.1f);
+            Invoke(nameof(CancelWallJump), wallJumpTime);
 
         }
     }
