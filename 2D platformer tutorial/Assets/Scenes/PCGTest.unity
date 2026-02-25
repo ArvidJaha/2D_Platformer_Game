@@ -1009,7 +1009,7 @@ MonoBehaviour:
   smokeFX: {fileID: 1911687223}
   moveSpeed: 5
   jumpPower: 10
-  maxJumps: 2
+  maxJumps: 50
   groundCheckPos: {fileID: 2143693388}
   groundCheckSize: {x: 0.52, y: 0.02}
   groundLayer:
@@ -3042,8 +3042,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20fee0ed4816f844abd67f202a0c224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelGenerator
-  levelHeight: 1
-  levelWidth: 2
+  levelHeight: 5
+  levelWidth: 5
   spawnPos: {x: 0, y: 0, z: 0}
   tiles:
   - {fileID: 11400000, guid: 6e0a49ab7b5bab349997127440b26831, type: 2}

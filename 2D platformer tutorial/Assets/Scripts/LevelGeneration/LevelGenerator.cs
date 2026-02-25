@@ -79,6 +79,7 @@ public class LevelGenerator : MonoBehaviour
 
     public void GenerateLevel()
     {
+        Debug.Log("GENERATING");
         doingSetup = true;
         //Keep track of time it takes to generate levels
         var watch = System.Diagnostics.Stopwatch.StartNew();
