@@ -967,6 +967,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ed5dacf7-6f94-4292-8037-7770f4526aba
     m_ActionName: 'Player/Jump[/Keyboard/space,/Keyboard/upArrow,/Keyboard/w]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 248160939}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Slide
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: eb104601-d16d-4de1-8b71-908b5af7672d
+    m_ActionName: 'Player/Slide[/Keyboard/leftShift,/Keyboard/shift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1010,6 +1026,10 @@ MonoBehaviour:
   wallSlideSpeed: 1
   isWallSliding: 0
   wallJumpPower: {x: 5, y: 10}
+  slideSpeed: 12
+  slideDuration: 0.5
+  flopSpeed: 16
+  currentMoveSpeed: 0
 --- !u!95 &248160940
 Animator:
   serializedVersion: 7
@@ -3516,7 +3536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelGenerator
   levelHeight: 4
-  levelWidth: 5
+  levelWidth: 10
   spawnPos: {x: 0, y: 0, z: 0}
   tiles:
   - {fileID: 11400000, guid: 733a466c5e758d94c875e6db5aac32bb, type: 2}
