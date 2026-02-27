@@ -15,6 +15,9 @@ public class PlayerHealth : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    [SerializeField] private float damageCooldown = 0.5f; // half a second
+    private float lastDamageTime = -Mathf.Infinity;
+
     public static event Action OnPlayerDeath; // event for player death
     void Start()
     {
@@ -28,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) //detects collision with spikes and calls TakeDamage
     {
-        if (collision.gameObject.CompareTag("Spike"))
+        if (collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Enemy"))
         {
             TakeDamage(1);
         }
@@ -44,6 +47,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (Time.time - lastDamageTime < damageCooldown) return;
+
+        lastDamageTime = Time.time;
         currentHealth -= damage;
         HealthUI.UpdateHearts(currentHealth);
 

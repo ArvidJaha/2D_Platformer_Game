@@ -1115,6 +1115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   maxHealth: 3
   HealthUI: {fileID: 353164774}
+  damageCooldown: 0.5
 --- !u!114 &248160944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12825,6 +12826,22 @@ PrefabInstance:
     - target: {fileID: 4786435885615210929, guid: 2c93a86509909be48a423d9f87f9cce1, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791183376588267077, guid: 2c93a86509909be48a423d9f87f9cce1, type: 3}
+      propertyPath: range
+      value: 0.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791183376588267077, guid: 2c93a86509909be48a423d9f87f9cce1, type: 3}
+      propertyPath: distance
+      value: 0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791183376588267077, guid: 2c93a86509909be48a423d9f87f9cce1, type: 3}
+      propertyPath: loseRange
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6791183376588267077, guid: 2c93a86509909be48a423d9f87f9cce1, type: 3}
+      propertyPath: detectionRange
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
