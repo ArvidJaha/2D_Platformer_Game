@@ -3170,7 +3170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1051238872
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3603,16 +3603,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6e0a49ab7b5bab349997127440b26831, type: 2}
   - {fileID: 11400000, guid: 14fcc0c545df1c54dae7afdcbe5270ee, type: 2}
   - {fileID: 11400000, guid: 14fcc0c545df1c54dae7afdcbe5270ee, type: 2}
-  - {fileID: 11400000, guid: e7b3065ef4f623f41b2f104c80a6785f, type: 2}
+  - {fileID: 11400000, guid: fe8f09e3dcd7e8940b0dd101fab9a3f9, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   tilemap: {fileID: 943674226}
   doorTilemap: {fileID: 2012602687}
   itemTilemap: {fileID: 1837766467}
-  ladderTilemap: {fileID: 126441978}
+  ladderTilemap: {fileID: 745117978}
   background: {fileID: 22817708}
-  Wall: {fileID: 0}
+  Wall: {fileID: 1365240662}
   templates:
   - images:
     - {fileID: 2800000, guid: a9c7182ac976b4540944ef508a2cc105, type: 3}
@@ -3729,7 +3729,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1365240657
 Transform:
   m_ObjectHideFlags: 0
@@ -3821,7 +3821,35 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1365240658}
+    m_ColliderPaths:
+    - - X: 180333328
+        Y: 170333328
+      - X: 178333344
+        Y: 170333328
+      - X: 177666672
+        Y: 169666672
+      - X: 177666672
+        Y: -50333332
+      - X: 180333328
+        Y: -50333332
+    - - X: -107666664
+        Y: 170333328
+      - X: -110333336
+        Y: 170333328
+      - X: -110333336
+        Y: -50333332
+      - X: -107666664
+        Y: -50333332
+    - - X: -67666672
+        Y: 110333336
+      - X: -70333336
+        Y: 110333336
+      - X: -70333336
+        Y: 19666666
+      - X: -67666672
+        Y: 19666666
   m_CompositePaths:
     m_Paths:
     - - {x: 18.033304, y: -5.0333333}
