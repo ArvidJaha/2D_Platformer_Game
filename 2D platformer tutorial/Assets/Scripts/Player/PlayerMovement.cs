@@ -43,9 +43,6 @@ public class PlayerMovement : MonoBehaviour
     public float wallSlideSpeed = 1f;
     public bool isWallSliding;
 
-    [Header("SlidingInAir")]
-    public bool isAirSliding = false;
-
     //wall Jumping 
     bool iswallJumping;
     float wallJumpDirection;
@@ -79,7 +76,6 @@ public class PlayerMovement : MonoBehaviour
         ProcessGravity();
         ProcessWallSlide();
         processWallJump();
-        SlidingInAir();
 
         if (isSliding)
         {
@@ -266,19 +262,5 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireCube(groundCheckPos.position, groundCheckSize);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(wallCheckPos.position, wallCheckSize);
-    }
-
-    private void SlidingInAir(InputAction.CallbackContext context)
-    {
-        if (!isGrounded && context.performed)
-        {
-            isAirSliding = true;
-
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x * 1.5f, rb.linearVelocity.y);
-        }
-    }
-    private void SlideFX()
-    {
-        animator.SetTrigger("slide");
     }
 }

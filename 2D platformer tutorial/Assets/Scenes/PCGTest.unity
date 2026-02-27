@@ -1163,36 +1163,36 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: fb74c500d3c861b4dac9b863446a8377, type: 3}
-        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-        m_MethodName: set_name
-        m_Mode: 5
+      - m_Target: {fileID: 248160939}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: PlayerMovement.Jump
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: ed5dacf7-6f94-4292-8037-7770f4526aba
     m_ActionName: 'Player/Jump[/Keyboard/space,/Keyboard/upArrow,/Keyboard/w]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: fb74c500d3c861b4dac9b863446a8377, type: 3}
-        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-        m_MethodName: set_name
-        m_Mode: 5
+      - m_Target: {fileID: 248160939}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Slide
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: PlayerMovement.SlidingInAir
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 936d232e-5a18-4433-9602-d21c1c863c1a
-    m_ActionName: Player/Slide
+    m_ActionId: eb104601-d16d-4de1-8b71-908b5af7672d
+    m_ActionName: 'Player/Slide[/Keyboard/leftShift,/Keyboard/shift]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1235,8 +1235,11 @@ MonoBehaviour:
   fallSpeedMultiplier: 2
   wallSlideSpeed: 1
   isWallSliding: 0
-  isAirSliding: 0
   wallJumpPower: {x: 5, y: 10}
+  slideSpeed: 10
+  slideDuration: 0.5
+  flopSpeed: 13
+  currentMoveSpeed: 0
 --- !u!95 &248160940
 Animator:
   serializedVersion: 7
@@ -1794,7 +1797,7 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.227451, g: 0.47450984, b: 0.73333335, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1845,7 +1848,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 2, z: -10}
+  m_LocalPosition: {x: 1, y: 2, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3609,6 +3612,7 @@ MonoBehaviour:
   itemTilemap: {fileID: 1837766467}
   ladderTilemap: {fileID: 126441978}
   background: {fileID: 22817708}
+  Wall: {fileID: 0}
   templates:
   - images:
     - {fileID: 2800000, guid: a9c7182ac976b4540944ef508a2cc105, type: 3}
