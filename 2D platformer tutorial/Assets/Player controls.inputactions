@@ -27,7 +27,7 @@
                 {
                     "name": "Slide",
                     "type": "Button",
-                    "id": "936d232e-5a18-4433-9602-d21c1c863c1a",
+                    "id": "eb104601-d16d-4de1-8b71-908b5af7672d",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -158,8 +158,19 @@
                 },
                 {
                     "name": "",
-                    "id": "02222de1-e27a-4c2d-9e55-363fa19357e1",
+                    "id": "d52b0d8d-78e8-40c7-979e-658552c20b8e",
                     "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Slide",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3f966bd-0394-4e7e-a1bc-54d4b87c3fcd",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

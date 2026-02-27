@@ -49,12 +49,20 @@ public class PlayerMovement : MonoBehaviour
     //wall Jumping 
     bool iswallJumping;
     float wallJumpDirection;
-    float wallJumpTime = 0.5f;
+    float wallJumpTime = 0.45f;
     float wallJumpTimer;
     public Vector2 wallJumpPower = new Vector2(5f, 10f);
 
+    [Header("Slide")]
+    public float slideSpeed = 10f;
+    public float slideDuration = 0.5f;
+    float slideTimer; 
+    bool isSliding;
 
+    [Header("Flop")]
+    public float flopSpeed = 13f;
 
+    [SerializeField] private float currentMoveSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -65,12 +73,27 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        currentMoveSpeed = Mathf.Abs(rb.linearVelocity.x);
 
         GroundCheck();
         ProcessGravity();
         ProcessWallSlide();
         processWallJump();
         SlidingInAir();
+
+        if (isSliding)
+        {
+            slideTimer -= Time.deltaTime;
+
+            float direction = transform.localScale.x;
+            float speed = isGrounded ? slideSpeed : flopSpeed;
+            rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
+
+            if (slideTimer <= 0)
+                isSliding = false;
+
+            return; // cancels normal movement while sliding
+        }
 
         if (!iswallJumping)
         {
@@ -84,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isWallSliding", isWallSliding);
     }
 
-    private bool WallCheck()
+    private bool WallJumpCheck()
     {
         return Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, wallLayer);
 
@@ -107,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ProcessWallSlide()
     {
-        if (!isGrounded && WallCheck() && horizontalMovement != 0)
+        if (!isGrounded && WallJumpCheck() && horizontalMovement != 0)
         {
             isWallSliding = true;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -wallSlideSpeed));
@@ -139,6 +162,22 @@ public class PlayerMovement : MonoBehaviour
         iswallJumping = false;
     }
 
+    public void Slide(InputAction.CallbackContext context)
+    {
+        if (context.performed && !isSliding)
+        {
+            StartSlide();
+        }
+    }
+
+    void StartSlide()
+    {
+        isSliding = true;
+        slideTimer = slideDuration;
+
+        float direction = transform.localScale.x;
+        rb.linearVelocity = new Vector2(direction * slideSpeed, 0f);
+    }
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -180,7 +219,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.localScale = ls;
             }
 
-            Invoke(nameof(CancelWallJump), wallJumpTime + 0.1f);
+            Invoke(nameof(CancelWallJump), wallJumpTime);
 
         }
     }

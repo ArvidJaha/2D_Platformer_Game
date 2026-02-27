@@ -21,8 +21,8 @@ public class LevelGenerator : MonoBehaviour
 
     public enum TileID : uint
     {
-        DIRT,
-        STONE,
+        Ground,
+        Wall,
         ENTRANCE,
         EXIT,
         LADDER,
@@ -41,6 +41,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private Tilemap itemTilemap;
     [SerializeField] private Tilemap ladderTilemap;
     [SerializeField] private Tilemap background;
+    [SerializeField] private Tilemap Wall;
 
     public Tilemap Tilemap { get => tilemap; }
 
@@ -62,8 +63,9 @@ public class LevelGenerator : MonoBehaviour
         //Store tiles by their color
         byColor = new Dictionary<Color32, TileID>()
         {
-            [Color.black] = TileID.DIRT,
-            [Color.blue] = TileID.STONE,
+            [Color.black] = TileID.Ground,
+            [Color.grey] = TileID.Wall,
+            [Color.blue] = TileID.Wall,
             [Color.red] = TileID.LADDER,
             [Color.green] = TileID.RANDOM,
             [Color.white] = TileID.EMPTY,
@@ -123,7 +125,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 //Fill border
                 if (x == -1 || y == -1 || x == width || y == height)
-                    tilemap.SetTile(new Vector3Int(x, -y + Config.ROOM_HEIGHT - 1, 0), tiles[(uint)TileID.DIRT]);
+                    tilemap.SetTile(new Vector3Int(x, -y + Config.ROOM_HEIGHT - 1, 0), tiles[(uint)TileID.Ground]);
                 //Fill background
                 else tileArray[y * width + x] = tiles[(uint)TileID.BACKGROUND];
             }
@@ -164,10 +166,13 @@ public class LevelGenerator : MonoBehaviour
                                 if (Random.value <= .25f)
                                     tilemap.SetTile(pos, tiles[(uint)id]);
                                 else if (Random.value <= .25f)
-                                    tilemap.SetTile(pos, tiles[(uint)TileID.DIRT]);
+                                    tilemap.SetTile(pos, tiles[(uint)TileID.Ground]);
                                 break;
                             case TileID.LADDER:
                                 ladderTilemap.SetTile(pos, tiles[(uint)id]);
+                                break;
+                            case TileID.Wall:
+                                Wall.SetTile(pos, tiles[(uint)id]);
                                 break;
                             default:
                                 tilemap.SetTile(pos, tiles[(uint)id]);
