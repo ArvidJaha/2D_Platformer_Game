@@ -25,7 +25,7 @@ public class LevelGenerator : MonoBehaviour
         Wall,
         ENTRANCE,
         EXIT,
-        LADDER,
+        Spike,
         ITEM,
         RANDOM,
         BACKGROUND,
@@ -66,7 +66,7 @@ public class LevelGenerator : MonoBehaviour
             [Color.black] = TileID.Ground,
             [Color.grey] = TileID.Wall,
             [Color.blue] = TileID.Wall,
-            [Color.red] = TileID.LADDER,
+            [Color.red] = TileID.Spike,
             [Color.green] = TileID.RANDOM,
             [Color.white] = TileID.EMPTY,
             [Color.clear] = TileID.EMPTY
@@ -168,7 +168,7 @@ public class LevelGenerator : MonoBehaviour
                                 else if (Random.value <= .25f)
                                     tilemap.SetTile(pos, tiles[(uint)TileID.Ground]);
                                 break;
-                            case TileID.LADDER:
+                            case TileID.Spike:
                                 ladderTilemap.SetTile(pos, tiles[(uint)id]);
                                 break;
                             case TileID.Wall:
