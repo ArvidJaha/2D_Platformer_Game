@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
     public LevelGenerator levelGenerator;
     public GameObject exitTriggerPrefab;
     GameObject currentExit;
+    int score = 0;
+    public TMP_Text scoreText;
 
     public static event Action OnReset;
 
@@ -23,7 +25,14 @@ public class GameController : MonoBehaviour
         PlayerHealth.OnPlayerDeath += ResetGame; // subscribe to player death event
         ExitTrigger.OnPlayerEnteredExit += LoadLevel;
         player.transform.position = levelGenerator.spawnPos;
+        Fish.OnFishCollected += IncreaseScore; // increment score when a fish is collected
         SpawnExitTrigger();
+    }
+
+    void IncreaseScore(int value)
+    {
+        score += value;
+        scoreText.text = "Score: " + score;
     }
 
     void SpawnExitTrigger()
