@@ -753,9 +753,9 @@ BoxCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.0036872625, y: -0.16408345}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.0666667, y: 1.0666667}
+    border: {x: 0.15625, y: 0.09375, z: 0.0625, w: 0.09375}
+    pivot: {x: 0.5212179, y: 0.54857755}
+    oldSize: {x: 0.90625, y: 1.1875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -839,7 +839,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 541921761, guid: 0677d34efc810cc42ad94c967534ac18, type: 3}
+  m_Sprite: {fileID: -7249336617800755273, guid: 5fae1176cb572a14dbbf228d67a1fa2d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1025,6 +1025,7 @@ MonoBehaviour:
   fallSpeedMultiplier: 2
   wallSlideSpeed: 1
   isWallSliding: 0
+  isAirSliding: 0
   wallJumpPower: {x: 5, y: 10}
   slideSpeed: 12
   slideDuration: 0.5

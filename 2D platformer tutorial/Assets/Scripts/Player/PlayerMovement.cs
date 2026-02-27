@@ -79,8 +79,6 @@ public class PlayerMovement : MonoBehaviour
         ProcessGravity();
         ProcessWallSlide();
         processWallJump();
-        SlidingInAir();
-
         if (isSliding)
         {
             slideTimer -= Time.deltaTime;
@@ -91,11 +89,9 @@ public class PlayerMovement : MonoBehaviour
 
             if (slideTimer <= 0)
                 isSliding = false;
-
-            return; // cancels normal movement while sliding
         }
 
-        if (!iswallJumping)
+        else if (!iswallJumping)
         {
             rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
             Flip();
@@ -105,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
         animator.SetFloat("magnitude", rb.linearVelocity.magnitude);
         animator.SetBool("isWallSliding", isWallSliding);
+        animator.SetBool("isSliding", isSliding);
     }
 
     private bool WallJumpCheck()
@@ -177,6 +174,8 @@ public class PlayerMovement : MonoBehaviour
 
         float direction = transform.localScale.x;
         rb.linearVelocity = new Vector2(direction * slideSpeed, 0f);
+
+
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -268,17 +267,6 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireCube(wallCheckPos.position, wallCheckSize);
     }
 
-    private void SlidingInAir(InputAction.CallbackContext context)
-    {
-        if (!isGrounded && context.performed)
-        {
-            isAirSliding = true;
 
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x * 1.5f, rb.linearVelocity.y);
-        }
-    }
-    private void SlideFX()
-    {
-        animator.SetTrigger("slide");
-    }
+
 }
