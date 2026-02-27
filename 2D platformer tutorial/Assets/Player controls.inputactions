@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "Player controls",
     "maps": [
         {
@@ -18,7 +19,16 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "ed5dacf7-6f94-4292-8037-7770f4526aba",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Slide",
+                    "type": "Button",
+                    "id": "936d232e-5a18-4433-9602-d21c1c863c1a",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -143,6 +153,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "02222de1-e27a-4c2d-9e55-363fa19357e1",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Slide",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 9651503c046433149866d642d4639dbe
+guid: adc02fec22227574b86c5825fa4e79a8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 761334832056468474
-    second: penguinJump_0
+      213: -5308842580795883466
+    second: jumpTransition_0
+  - first:
+      213: 7149256824242579909
+    second: jumpTransition_1
+  - first:
+      213: 7343239493966916207
+    second: jumpTransition_2
+  - first:
+      213: 734340224785803202
+    second: jumpTransition_3
+  - first:
+      213: -3057873817926345292
+    second: jumpTransition_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +63,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 44
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,23 +125,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: penguinJump_0
+      name: jumpTransition_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 6
-        width: 39
-        height: 53
+        x: 11
+        y: 2
+        width: 30
+        height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 6, y: 4, z: 6, w: 3}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 630813bdcc33356b0800000000000000
+      internalID: -5308842580795883466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpTransition_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 1
+        width: 23
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 7, y: 3, z: 3, w: 4}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c924090433473360800000000000000
+      internalID: 7149256824242579909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpTransition_2
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 1
+        width: 37
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 13, y: 4, z: 12, w: 9}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6a6482e96d68e560800000000000000
+      internalID: 7343239493966916207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpTransition_3
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 6
+        width: 45
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 5, y: 4, z: 8, w: 6}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c763a23b86e03a00800000000000000
+      internalID: 734340224785803202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpTransition_4
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 10
+        width: 43
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: af38bdbfefdc09a00800000000000000
-      internalID: 761334832056468474
+      spriteID: 4bd5882c6ff3095d0800000000000000
+      internalID: -3057873817926345292
       vertices: []
       indices: 
       edges: []
@@ -138,7 +238,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 7d2cf4b0d8e5aa543a4d377d7b058c88
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +248,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      penguinJump_0: 761334832056468474
+      jumpTransition_0: -5308842580795883466
+      jumpTransition_1: 7149256824242579909
+      jumpTransition_2: 7343239493966916207
+      jumpTransition_3: 734340224785803202
+      jumpTransition_4: -3057873817926345292
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
