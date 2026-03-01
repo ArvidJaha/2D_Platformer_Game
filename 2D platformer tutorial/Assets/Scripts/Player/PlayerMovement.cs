@@ -62,7 +62,15 @@ public class PlayerMovement : MonoBehaviour
     [Header("Flop")]
     public float flopSpeed = 13f;
 
-    [SerializeField] private float currentMoveSpeed;
+    [Header("Coyote Time")]
+    public float coyoteTime = 0.2f;
+    float coyoteTimeCounter;
+
+    [Header("jump Buffer")]
+    float jumpBuffer = 0.2f;
+    float jumpBufferCounter;
+
+    bool wasGrounded;
 
     // Start is called before the first frame update
     void Start()
@@ -73,9 +81,22 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentMoveSpeed = Mathf.Abs(rb.linearVelocity.x);
 
         GroundCheck();
+        if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        //if (jumpBufferCounter > -0.1)
+        //    jumpBufferCounter -= Time.deltaTime;
+        //Debug.Log($"CoyoteTimeCounter: {coyoteTimeCounter}, JumpBufferCounter: {jumpBufferCounter}");
+
+
         ProcessGravity();
         ProcessWallSlide();
         processWallJump();
@@ -185,22 +206,34 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (jumpsRemaining > 0)
+        if (context.performed)
         {
-            if (context.performed) //hold jump, max height
+            //jumpBufferCounter = jumpBuffer;
+            // Ground or coyote jump
+            if (coyoteTimeCounter > 0)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
+                jumpsRemaining = maxJumps - 1;
+                coyoteTimeCounter = 0;
+                //jumpBufferCounter = 0;
+                JumpFX();
+            }
+            // Air jump
+            else if (jumpsRemaining > 0)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
                 jumpsRemaining--;
                 JumpFX();
             }
-            else if (context.canceled) //light tap of jump, less height
+        } else if (context.canceled)
+        {
+            if (rb.linearVelocity.y > 0)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
-                jumpsRemaining--;
-                JumpFX();
-
             }
         }
+
+
         //wall jump
         if (context.performed && wallJumpTimer > 0)
         {
@@ -229,16 +262,16 @@ public class PlayerMovement : MonoBehaviour
         smokeFX.Play();
     }
 
+
     private void GroundCheck()
     {
-        if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer | spikeLayer))
+        wasGrounded = isGrounded;
+
+        isGrounded = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer | spikeLayer);
+
+        if (!wasGrounded && isGrounded) // landed this frame
         {
             jumpsRemaining = maxJumps;
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
         }
     }
 
