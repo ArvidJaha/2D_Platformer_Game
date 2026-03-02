@@ -1005,9 +1005,9 @@ MonoBehaviour:
   animator: {fileID: 248160940}
   isFacingRight: 1
   smokeFX: {fileID: 1911687223}
-  moveSpeed: 5
-  jumpPower: 10
-  maxJumps: 2
+  moveSpeed: 15
+  jumpPower: 15
+  maxJumps: 200
   groundCheckPos: {fileID: 2143693388}
   groundCheckSize: {x: 0.52, y: 0.02}
   groundLayer:
@@ -1031,7 +1031,7 @@ MonoBehaviour:
   slideSpeed: 12
   slideDuration: 0.5
   flopSpeed: 16
-  currentMoveSpeed: 0
+  coyoteTime: 0.2
 --- !u!95 &248160940
 Animator:
   serializedVersion: 7
@@ -3752,7 +3752,7 @@ MonoBehaviour:
   itemTilemap: {fileID: 1837766467}
   ladderTilemap: {fileID: 126441978}
   background: {fileID: 22817708}
-  Wall: {fileID: 1365240662}
+  wallTilemap: {fileID: 1365240662}
   templates:
   - images: []
   - images:
@@ -3760,9 +3760,9 @@ MonoBehaviour:
   - images:
     - {fileID: 2800000, guid: 95adc8122c31b7e49a842cae6eace38d, type: 3}
   - images:
-    - {fileID: 2800000, guid: a2aef3864b4eefa47ba64b7495f32ba9, type: 3}
+    - {fileID: 2800000, guid: a9c7182ac976b4540944ef508a2cc105, type: 3}
   - images:
-    - {fileID: 2800000, guid: a2aef3864b4eefa47ba64b7495f32ba9, type: 3}
+    - {fileID: 2800000, guid: b03a0cce3a9e69449b9ba77e73b567ee, type: 3}
   doingSetup: 0
   exitPos: {x: 0, y: 0, z: 0}
   style:

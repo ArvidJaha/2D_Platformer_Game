@@ -41,7 +41,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private Tilemap itemTilemap;
     [SerializeField] private Tilemap ladderTilemap;
     [SerializeField] private Tilemap background;
-    [SerializeField] private Tilemap Wall;
+    [SerializeField] private Tilemap wallTilemap;
 
     public Tilemap Tilemap { get => tilemap; }
 
@@ -108,6 +108,7 @@ public class LevelGenerator : MonoBehaviour
         ladderTilemap.ClearAllTiles();
         itemTilemap.ClearAllTiles();
         doorTilemap.ClearAllTiles();
+        wallTilemap.ClearAllTiles();
     }
 
     //Places a border around the rooms and a background
@@ -172,7 +173,7 @@ public class LevelGenerator : MonoBehaviour
                                 ladderTilemap.SetTile(pos, tiles[(uint)id]);
                                 break;
                             case TileID.Wall:
-                                Wall.SetTile(pos, tiles[(uint)id]);
+                                wallTilemap.SetTile(pos, tiles[(uint)id]);
                                 break;
                             default:
                                 tilemap.SetTile(pos, tiles[(uint)id]);
