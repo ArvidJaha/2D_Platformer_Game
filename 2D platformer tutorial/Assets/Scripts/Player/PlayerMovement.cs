@@ -70,6 +70,17 @@ public class PlayerMovement : MonoBehaviour
     float jumpBuffer = 0.2f;
     float jumpBufferCounter;
 
+    [Header("Acceleration")]
+    public float groundAcceleration = 60f;
+    public float groundDeceleration = 60f;
+
+    public float iceAcceleration = 20f;
+    public float iceDeceleration = 5f;
+
+    bool isOnIce;
+    public LayerMask iceLayer;
+
+
     bool wasGrounded;
 
     // Start is called before the first frame update
@@ -109,12 +120,31 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
 
             if (slideTimer <= 0)
+    
                 isSliding = false;
         }
 
         else if (!iswallJumping)
         {
-            rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
+            float targetSpeed = horizontalMovement * moveSpeed; // Calculate target speed based on input and move speed
+
+            float accel = isOnIce ? iceAcceleration : groundAcceleration; // Use different acceleration values for ice and ground
+            float decel = isOnIce ? iceDeceleration : groundDeceleration; // Use different deceleration values for ice and ground
+
+            if (Mathf.Abs(horizontalMovement) > 0.01f) // If there is significant horizontal input, accelerate towards target speed
+            {
+                rb.linearVelocity = new Vector2(
+                    Mathf.MoveTowards(rb.linearVelocity.x, targetSpeed, accel * Time.deltaTime),
+                    rb.linearVelocity.y
+                );
+            }
+            else // If there is no horizontal input, decelerate towards 0
+            {
+                rb.linearVelocity = new Vector2(
+                    Mathf.MoveTowards(rb.linearVelocity.x, 0f, decel * Time.deltaTime),
+                    rb.linearVelocity.y
+                );
+            }
             Flip();
 
         }
@@ -268,6 +298,8 @@ public class PlayerMovement : MonoBehaviour
         wasGrounded = isGrounded;
 
         isGrounded = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer | spikeLayer);
+
+        isOnIce = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, iceLayer);
 
         if (!wasGrounded && isGrounded) // landed this frame
         {
