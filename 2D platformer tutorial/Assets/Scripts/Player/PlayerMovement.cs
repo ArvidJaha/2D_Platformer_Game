@@ -66,9 +66,6 @@ public class PlayerMovement : MonoBehaviour
     public float coyoteTime = 0.2f;
     float coyoteTimeCounter;
 
-    [Header("jump Buffer")]
-    float jumpBuffer = 0.2f;
-    float jumpBufferCounter;
 
     [Header("Acceleration")]
     public float groundAcceleration = 60f;
@@ -103,9 +100,7 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
 
-        //if (jumpBufferCounter > -0.1)
-        //    jumpBufferCounter -= Time.deltaTime;
-        //Debug.Log($"CoyoteTimeCounter: {coyoteTimeCounter}, JumpBufferCounter: {jumpBufferCounter}");
+
 
 
         ProcessGravity();
@@ -238,14 +233,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
-            //jumpBufferCounter = jumpBuffer;
-            // Ground or coyote jump
+
             if (coyoteTimeCounter > 0)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
                 jumpsRemaining = maxJumps - 1;
                 coyoteTimeCounter = 0;
-                //jumpBufferCounter = 0;
+
                 JumpFX();
             }
             // Air jump
