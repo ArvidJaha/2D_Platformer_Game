@@ -710,7 +710,6 @@ GameObject:
   - component: {fileID: 248160942}
   - component: {fileID: 248160941}
   - component: {fileID: 248160943}
-  - component: {fileID: 248160944}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1124,18 +1123,6 @@ MonoBehaviour:
   maxHealth: 3
   HealthUI: {fileID: 353164774}
   damageCooldown: 0.5
---- !u!114 &248160944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 248160933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05a47faa8ca65fc4f8c54b838698654e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1 &266207580
 GameObject:
   m_ObjectHideFlags: 0
@@ -4117,9 +4104,9 @@ MonoBehaviour:
   - images:
     - {fileID: 2800000, guid: 95adc8122c31b7e49a842cae6eace38d, type: 3}
   - images:
-    - {fileID: 2800000, guid: a9c7182ac976b4540944ef508a2cc105, type: 3}
+    - {fileID: 2800000, guid: 5f8adeaf05355734ca052175c23a1dce, type: 3}
   - images:
-    - {fileID: 2800000, guid: b03a0cce3a9e69449b9ba77e73b567ee, type: 3}
+    - {fileID: 2800000, guid: 1878c8fe5db6698489c1d8575c64753c, type: 3}
   - images:
     - {fileID: 2800000, guid: b03a0cce3a9e69449b9ba77e73b567ee, type: 3}
   doingSetup: 0

@@ -63,6 +63,7 @@ public class Level
         rooms[GetRoomID(x, y)].Type = 1;
         firstRooms[GetRoomID(x, y)].Type = 1;
         entrance = rooms[GetRoomID(x, y)];
+        path.Add(entrance);
         int steps = 0;
         int maxSteps = 15;
 
@@ -110,13 +111,12 @@ public class Level
                     }
                     break;
             }
-            //if (x == prevX && y == prevY) x++;
-
-            //rooms[GetRoomID(x, y)].Type = 1;
-            path.Add(rooms[GetRoomID(prevX, prevY)]);
-
-            prevX = x;
-            prevY = y;
+            if (x != prevX || y != prevY)
+            {
+                rooms[GetRoomID(x, y)].Type = 2;
+                firstRooms[GetRoomID(x, y)].Type = 2;
+                path.Add(rooms[GetRoomID(x, y)]);
+            }
         }
 
         exit = rooms[GetRoomID(x, y)];

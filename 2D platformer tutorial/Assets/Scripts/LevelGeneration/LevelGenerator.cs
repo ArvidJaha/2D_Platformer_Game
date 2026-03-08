@@ -260,6 +260,16 @@ public class LevelGenerator : MonoBehaviour
                 && ladderTilemap.GetTile(pos) == null) //entrance dont spawn on ladders
                 availablePos.Add(pos);
         }
+        if (availablePos.Count == 0)
+        {
+            // Fallback: any non-null tile position in the room
+            foreach (Room.Tile t in r.tiles)
+            {
+                if (t.id != TileID.EMPTY && t.id != TileID.Wall)
+                    availablePos.Add(t.pos);
+            }
+        }
+
         Vector3Int doorPos = availablePos[Random.Range(0, availablePos.Count)];
         return doorPos;
     }
