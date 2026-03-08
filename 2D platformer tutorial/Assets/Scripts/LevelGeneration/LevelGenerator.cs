@@ -194,7 +194,7 @@ public class LevelGenerator : MonoBehaviour
             PlaceItems(r);
             //Place entrance, exit and set spawn pos
             if (r == level.Entrance) spawnPos = tilemap.GetCellCenterWorld(PlaceEntrance(r));
-            else if (r == level.Exit) PlaceFish(r);
+            else if (level.exits.Contains(r)) PlaceFish(r);
         }
     }
 
