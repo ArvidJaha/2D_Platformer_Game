@@ -15,6 +15,8 @@ public class Level
     private Room[] rooms;
     private Room[] firstRooms;
     private HashSet<Room> path;
+    private HashSet<Room> firstPath;
+
     private Room entrance;
     private Room exit;
     public HashSet<Room> exits = new HashSet<Room>();
@@ -39,6 +41,7 @@ public class Level
         rooms = new Room[width * height];
         firstRooms = new Room[width * height];
         path = new HashSet<Room>();
+        firstPath = new HashSet<Room>();
 
         for (int x = 0; x < width; x++)
         {
@@ -64,12 +67,12 @@ public class Level
         firstRooms[GetRoomID(x, y)].Type = 1;
         entrance = rooms[GetRoomID(x, y)];
         path.Add(entrance);
+        firstPath.Add(entrance);
         int steps = 0;
         int maxSteps = 15;
 
         while (steps < maxSteps)
         {
-            steps++;
             prevX = x;
             prevY = y;
             switch (RandomDirection())
@@ -113,9 +116,9 @@ public class Level
             }
             if (x != prevX || y != prevY)
             {
-                rooms[GetRoomID(x, y)].Type = 2;
-                firstRooms[GetRoomID(x, y)].Type = 2;
                 path.Add(rooms[GetRoomID(x, y)]);
+                firstPath.Add(rooms[GetRoomID(x, y)]);
+                steps++;
             }
         }
 
@@ -129,7 +132,7 @@ public class Level
 
         for (int i = 0; i < numExits - 1; i++)
         {
-            Room startRoom = new List<Room>(path)[Random.Range(0, path.Count)];
+            Room startRoom = new List<Room>(firstPath)[Random.Range(0, firstPath.Count)];
 
             int x = startRoom.X, prevX = startRoom.X;
             int y = startRoom.Y, prevY = startRoom.Y;
@@ -177,12 +180,11 @@ public class Level
                         }
                         break;
                 }
-                //if (x == prevX && y == prevY) x++;
+                if (x != prevX || y != prevY)
+                {
+                    path.Add(rooms[GetRoomID(x, y)]);  // add the NEW position, not prev
+                }
 
-                //rooms[GetRoomID(x, y)].Type = 1;
-                path.Add(rooms[GetRoomID(prevX, prevY)]);
-                prevX = x;
-                prevY = y;
             }
 
             exits.Add(rooms[GetRoomID(x, y)]);
