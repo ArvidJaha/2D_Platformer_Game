@@ -15,6 +15,9 @@ public class LevelGenerator : MonoBehaviour
     [Range(1, 16)]
     [SerializeField] private int levelWidth = 4;
 
+    [SerializeField] private GameObject collectiblesParent;
+    [SerializeField] private GameObject fishPrefab;
+
     //Keep track of level
     Level level;
     public Vector3 spawnPos;
@@ -41,7 +44,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private Tilemap itemTilemap;
     [SerializeField] private Tilemap ladderTilemap;
     [SerializeField] private Tilemap background;
-    [SerializeField] private Tilemap Wall;
+    [SerializeField] private Tilemap wallTilemap;
 
     public Tilemap Tilemap { get => tilemap; }
 
@@ -108,6 +111,7 @@ public class LevelGenerator : MonoBehaviour
         ladderTilemap.ClearAllTiles();
         itemTilemap.ClearAllTiles();
         doorTilemap.ClearAllTiles();
+        wallTilemap.ClearAllTiles();
     }
 
     //Places a border around the rooms and a background
@@ -172,7 +176,7 @@ public class LevelGenerator : MonoBehaviour
                                 ladderTilemap.SetTile(pos, tiles[(uint)id]);
                                 break;
                             case TileID.Wall:
-                                Wall.SetTile(pos, tiles[(uint)id]);
+                                wallTilemap.SetTile(pos, tiles[(uint)id]);
                                 break;
                             default:
                                 tilemap.SetTile(pos, tiles[(uint)id]);
@@ -190,7 +194,7 @@ public class LevelGenerator : MonoBehaviour
             PlaceItems(r);
             //Place entrance, exit and set spawn pos
             if (r == level.Entrance) spawnPos = tilemap.GetCellCenterWorld(PlaceEntrance(r));
-            else if (r == level.Exit) PlaceExit(r);
+            else if (r == level.Exit) PlaceFish(r);
         }
     }
 
@@ -227,15 +231,20 @@ public class LevelGenerator : MonoBehaviour
     public Vector3Int PlaceEntrance(Room r)
     {
         Vector3Int pos = RandomDoorPosition(r);
+
+
         itemTilemap.SetTile(pos, tiles[(uint)TileID.ENTRANCE]);
         return pos;
     }
 
-    public void PlaceExit(Room r)
+    public void PlaceFish(Room r)
     {
-        Vector3Int pos = RandomDoorPosition(r);
-        doorTilemap.SetTile(pos, tiles[(uint)TileID.EXIT]);
-        exitPos = tilemap.GetCellCenterWorld(pos);
+        Vector3 pos = RandomDoorPosition(r);
+        Vector3 fishPosOffset = new Vector3(0.5f, 0.5f, 0f);
+        //doorTilemap.SetTile(pos, tiles[(uint)TileID.EXIT]);
+        //exitPos = tilemap.GetCellCenterWorld(pos);
+
+        Instantiate(fishPrefab, pos + fishPosOffset, Quaternion.identity, collectiblesParent.transform);
     }
 
     public Vector3Int RandomDoorPosition(Room r)

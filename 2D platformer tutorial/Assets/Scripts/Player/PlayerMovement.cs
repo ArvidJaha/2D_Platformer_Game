@@ -66,9 +66,17 @@ public class PlayerMovement : MonoBehaviour
     public float coyoteTime = 0.2f;
     float coyoteTimeCounter;
 
-    [Header("jump Buffer")]
-    float jumpBuffer = 0.2f;
-    float jumpBufferCounter;
+
+    [Header("Acceleration")]
+    public float groundAcceleration = 60f;
+    public float groundDeceleration = 60f;
+
+    public float iceAcceleration = 20f;
+    public float iceDeceleration = 5f;
+
+    bool isOnIce;
+    public LayerMask iceLayer;
+
 
     bool wasGrounded;
 
@@ -92,9 +100,7 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
 
-        //if (jumpBufferCounter > -0.1)
-        //    jumpBufferCounter -= Time.deltaTime;
-        //Debug.Log($"CoyoteTimeCounter: {coyoteTimeCounter}, JumpBufferCounter: {jumpBufferCounter}");
+
 
 
         ProcessGravity();
@@ -109,12 +115,31 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
 
             if (slideTimer <= 0)
+    
                 isSliding = false;
         }
 
         else if (!iswallJumping)
         {
-            rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
+            float targetSpeed = horizontalMovement * moveSpeed; // Calculate target speed based on input and move speed
+
+            float accel = isOnIce ? iceAcceleration : groundAcceleration; // Use different acceleration values for ice and ground
+            float decel = isOnIce ? iceDeceleration : groundDeceleration; // Use different deceleration values for ice and ground
+
+            if (Mathf.Abs(horizontalMovement) > 0.01f) // If there is significant horizontal input, accelerate towards target speed
+            {
+                rb.linearVelocity = new Vector2(
+                    Mathf.MoveTowards(rb.linearVelocity.x, targetSpeed, accel * Time.deltaTime),
+                    rb.linearVelocity.y
+                );
+            }
+            else // If there is no horizontal input, decelerate towards 0
+            {
+                rb.linearVelocity = new Vector2(
+                    Mathf.MoveTowards(rb.linearVelocity.x, 0f, decel * Time.deltaTime),
+                    rb.linearVelocity.y
+                );
+            }
             Flip();
 
         }
@@ -208,14 +233,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed)
         {
-            //jumpBufferCounter = jumpBuffer;
-            // Ground or coyote jump
+
             if (coyoteTimeCounter > 0)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
                 jumpsRemaining = maxJumps - 1;
                 coyoteTimeCounter = 0;
-                //jumpBufferCounter = 0;
+
                 JumpFX();
             }
             // Air jump
@@ -268,6 +292,8 @@ public class PlayerMovement : MonoBehaviour
         wasGrounded = isGrounded;
 
         isGrounded = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer | spikeLayer);
+
+        isOnIce = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, iceLayer);
 
         if (!wasGrounded && isGrounded) // landed this frame
         {
