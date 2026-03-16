@@ -13,6 +13,7 @@ public class BirdEnemy : MonoBehaviour
 
     private Vector2 startPoint;
     public float patrolDistance;
+    private int yDirection = 1; 
     private int patrolDirection = 1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -87,6 +88,8 @@ public class BirdEnemy : MonoBehaviour
             isChasing = false;
             isReturning = false;
             isPatroling = true;
+
+            yDirection = 1;
         }
         else
         {
@@ -101,12 +104,19 @@ public class BirdEnemy : MonoBehaviour
             {
                 Flip();
             }
+
         }
+        
     }
 
     private void Patrol()
     {
         float nextX = transform.position.x + patrolDirection * normalSpeed * Time.deltaTime;
+        float nextY = transform.position.y + yDirection * 0.5f * Time.deltaTime;
+
+        Vector3 scale = transform.localScale;
+        if (scale.x != patrolDirection)
+            Flip();
 
         // Clamp within patrol bounds
         if (nextX > startPoint.x + patrolDistance)
@@ -115,14 +125,24 @@ public class BirdEnemy : MonoBehaviour
             patrolDirection *= -1;
             Flip();
         }
-        else if (nextX < startPoint.x - patrolDistance)
+        else if (nextX < startPoint.x)
         {
-            nextX = startPoint.x - patrolDistance;
+            nextX = startPoint.x;
             patrolDirection *= -1;
             Flip();
         }
 
-        transform.position = new Vector3(nextX, transform.position.y, transform.position.z);
+        if (nextY > startPoint.y + 1)
+        {
+            nextY = startPoint.y + 1;
+            yDirection *= -1;
+        } else if (nextY < startPoint.y - 1)
+        {
+            nextY = startPoint.y - 1;
+            yDirection *= -1;
+        }
+
+        transform.position = new Vector3(nextX, nextY, transform.position.z);
     }
 
     private void Flip()

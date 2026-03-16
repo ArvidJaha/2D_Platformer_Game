@@ -1030,6 +1030,13 @@ MonoBehaviour:
   slideDuration: 0.5
   flopSpeed: 16
   coyoteTime: 0.2
+  groundAcceleration: 60
+  groundDeceleration: 60
+  iceAcceleration: 20
+  iceDeceleration: 5
+  iceLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!95 &248160940
 Animator:
   serializedVersion: 7
@@ -1611,7 +1618,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -12756,7 +12763,7 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2548589130913940950, guid: b0b54a1abaf1f92419a8fe5a34cee50b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.0666667, y: 1.0666667}
@@ -12773,7 +12780,7 @@ Transform:
   m_GameObject: {fileID: 8897364288022187590}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.31, y: 2.41, z: 0}
+  m_LocalPosition: {x: 7.39, y: 6.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
