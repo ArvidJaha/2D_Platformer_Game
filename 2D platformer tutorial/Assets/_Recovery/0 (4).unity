@@ -197,8 +197,8 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 602567231
-  m_SortingLayer: -1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: -1
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
@@ -1005,7 +1005,7 @@ MonoBehaviour:
   isFacingRight: 1
   smokeFX: {fileID: 1911687223}
   moveSpeed: 15
-  jumpPower: 30
+  jumpPower: 15
   maxJumps: 200
   groundCheckPos: {fileID: 2143693388}
   groundCheckSize: {x: 0.52, y: 0.02}
@@ -2808,37 +2808,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &906513659
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 906513660}
-  m_Layer: 0
-  m_Name: Enemies
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &906513660
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906513659}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4224, y: -0.86947, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &943674223
 GameObject:
   m_ObjectHideFlags: 0
@@ -4108,12 +4077,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20fee0ed4816f844abd67f202a0c224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelGenerator
-  levelHeight: 24
-  levelWidth: 24
+  levelHeight: 10
+  levelWidth: 10
   collectiblesParent: {fileID: 1190321215}
   fishPrefab: {fileID: 7506581446254049347, guid: b8fac49480232c04980495ba634f4a8d, type: 3}
-  enemyPrefab: {fileID: 4786435885615210929, guid: 2c93a86509909be48a423d9f87f9cce1, type: 3}
-  enemiesParent: {fileID: 906513659}
   spawnPos: {x: 0, y: 0, z: 0}
   tiles:
   - {fileID: 11400000, guid: 733a466c5e758d94c875e6db5aac32bb, type: 2}
@@ -4123,9 +4090,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2a30776855a06fe47bc0fbaa5b788565, type: 2}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 11400000, guid: 6c9dc62baa1f4b84b918f5a6c6f418e6, type: 2}
-  - {fileID: 11400000, guid: 6e0a49ab7b5bab349997127440b26831, type: 2}
-  - {fileID: 11400000, guid: 6e0a49ab7b5bab349997127440b26831, type: 2}
+  - {fileID: 0}
   tilemap: {fileID: 943674226}
   doorTilemap: {fileID: 2012602687}
   itemTilemap: {fileID: 1837766467}
@@ -4133,51 +4098,31 @@ MonoBehaviour:
   background: {fileID: 22817708}
   wallTilemap: {fileID: 1365240662}
   templates:
+  - images: []
+    openings: 0
   - images:
-    - {fileID: 2800000, guid: 78e7f0f8197c8d549ab1e7f1dafe00e0, type: 3}
+    - {fileID: 2800000, guid: c53fe7e069691fd42908a416734c43ed, type: 3}
     openings: 1
   - images:
-    - {fileID: 2800000, guid: 40834724a045c75419d8ed71fb50321f, type: 3}
+    - {fileID: 2800000, guid: 80534ebdc3903f94bbfbc1d58c90ee46, type: 3}
     openings: 2
   - images:
-    - {fileID: 2800000, guid: 9d5118afe5946464f9048a60a92cdd35, type: 3}
-    - {fileID: 2800000, guid: 2300bd16c671b154589780ac5bc38325, type: 3}
-    openings: 3
-  - images:
-    - {fileID: 2800000, guid: 106048780f3cbca41ac073b4eb88dda6, type: 3}
-    openings: 4
-  - images:
-    - {fileID: 2800000, guid: c1671e068d177b04aacef96728963f76, type: 3}
-    openings: 5
-  - images:
-    - {fileID: 2800000, guid: 7bfb12f4c62bf944b86855b551712805, type: 3}
+    - {fileID: 2800000, guid: a8dc3eaacd630d34ab3bf8154a921b9b, type: 3}
     openings: 6
   - images:
-    - {fileID: 2800000, guid: d834e3a09594bff4da254899db09e71f, type: 3}
+    - {fileID: 2800000, guid: 8fcb838db95f64a438bfec0614a7ec25, type: 3}
+    openings: 5
+  - images:
+    - {fileID: 2800000, guid: bf8afda6d56e5834ba5e4c9c2fbe11b8, type: 3}
     openings: 7
   - images:
-    - {fileID: 2800000, guid: 1a2b91c3584d29141a20508e4e9de7d5, type: 3}
-    openings: 8
-  - images:
-    - {fileID: 2800000, guid: 35848e4d2a66aa441923e72b8be7b42f, type: 3}
-    openings: 9
-  - images:
-    - {fileID: 2800000, guid: dd365b730229e8849a0d0c6f1cbbf61c, type: 3}
+    - {fileID: 2800000, guid: 9a82c851845c5d84ea7e5742943ddb92, type: 3}
     openings: 10
   - images:
-    - {fileID: 2800000, guid: 3bcc5edf3185fdc469cf35278f0585c4, type: 3}
-    openings: 11
+    - {fileID: 2800000, guid: 7bf6e192f8ad0b441b8a03320b223348, type: 3}
+    openings: 15
   - images:
-    - {fileID: 2800000, guid: 0f4a60599287f4c459f44a4eb5eab9eb, type: 3}
-    openings: 12
-  - images:
-    - {fileID: 2800000, guid: c54b0cd820951ad41b3797cb48410c3d, type: 3}
-    openings: 13
-  - images:
-    - {fileID: 2800000, guid: 9cf256d588c105f45ab05f07560c2675, type: 3}
-    openings: 14
-  - images:
-    - {fileID: 2800000, guid: 8237f997d23d8614dbee7c3d421a2983, type: 3}
+    - {fileID: 2800000, guid: 5eb619bed3e225f4488c5040f46f3475, type: 3}
     openings: 15
   doingSetup: 0
   exitPos: {x: 0, y: 0, z: 0}
@@ -13531,4 +13476,3 @@ SceneRoots:
   - {fileID: 671299776}
   - {fileID: 1190321216}
   - {fileID: 469035166}
-  - {fileID: 906513660}

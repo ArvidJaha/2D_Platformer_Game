@@ -10,13 +10,16 @@ using UnityEditor;
 public class LevelGenerator : MonoBehaviour
 {
     [Header("Level Size")]
-    [Range(1, 16)]
+    [Range(1, 32)]
     [SerializeField] private int levelHeight = 4;
-    [Range(1, 16)]
+    [Range(1, 32)]
     [SerializeField] private int levelWidth = 4;
 
     [SerializeField] private GameObject collectiblesParent;
     [SerializeField] private GameObject fishPrefab;
+
+    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject enemiesParent;
 
     //Keep track of level
     Level level;
@@ -32,7 +35,8 @@ public class LevelGenerator : MonoBehaviour
         ITEM,
         RANDOM,
         BACKGROUND,
-        EMPTY
+        EMPTY,
+        ENEMY
     }
 
     [Header("Tiles")]
@@ -53,6 +57,7 @@ public class LevelGenerator : MonoBehaviour
     public struct RoomTemplate
     {
         public Texture2D[] images;
+        public int openings;
     }
 
     [Header("Room templates")] //0 random, 1 corridor, 2 drop from, 3 drop to
@@ -72,7 +77,8 @@ public class LevelGenerator : MonoBehaviour
             [Color.red] = TileID.Spike,
             [Color.green] = TileID.RANDOM,
             [Color.white] = TileID.EMPTY,
-            [Color.clear] = TileID.EMPTY
+            [Color.clear] = TileID.EMPTY,
+            [new Color32(255, 255, 0, 255)] = TileID.ENEMY
         };
 
 
@@ -92,6 +98,7 @@ public class LevelGenerator : MonoBehaviour
         ClearTiles();
         //GenerateBorder();
         level = new Level(levelWidth, levelHeight);
+        FillBackground();
         level.Generate();
         BuildRooms();
 
@@ -112,8 +119,18 @@ public class LevelGenerator : MonoBehaviour
         itemTilemap.ClearAllTiles();
         doorTilemap.ClearAllTiles();
         wallTilemap.ClearAllTiles();
+        background.ClearAllTiles();
     }
-
+    private void FillBackground()
+    {
+        for (int x = 0; x < levelWidth * Config.ROOM_WIDTH; x++)
+        {
+            for (int y = 0; y < levelHeight * Config.ROOM_HEIGHT; y++)
+            {
+                tilemap.SetTile(new Vector3Int(x, y, 0), tiles[(uint)TileID.BACKGROUND]);
+            }
+        }
+    }
     //Places a border around the rooms and a background
     private void GenerateBorder()
     {
@@ -145,13 +162,19 @@ public class LevelGenerator : MonoBehaviour
             int offsetX = r.X * Config.ROOM_WIDTH; //Left to right
             int offsetY = r.Y * Config.ROOM_HEIGHT; //Top to bottom
 
-            //Try to get template from list, and store pixels into flattened array
-            if (r.Type >= templates.Length || templates[r.Type].images.Length == 0)
+
+            var valid = System.Array.FindAll(templates, t =>
+                t.images.Length > 0 && t.openings == r.Openings);
+
+            if (valid.Length == 0)
             {
-                Debug.LogError("Missing template for room type: " + r.Type);
+                Debug.LogWarning($"No template found for openings {r.Openings} on room {r.Id}, skipping");
                 continue;
             }
-            Color32[] colors = templates[r.Type].images[Random.Range(0, templates[r.Type].images.Length)].GetPixels32();
+
+            RoomTemplate chosen = valid[Random.Range(0, valid.Length)];
+            Color32[] colors = chosen.images[Random.Range(0, chosen.images.Length)].GetPixels32();
+
             for (int y = 0; y < Config.ROOM_HEIGHT; y++)
             {
                 for (int x = 0; x < Config.ROOM_WIDTH; x++)
@@ -163,7 +186,11 @@ public class LevelGenerator : MonoBehaviour
                         r.tiles[y * Config.ROOM_WIDTH + x].pos = pos;
                         r.tiles[y * Config.ROOM_WIDTH + x].id = id;
                         //Skip empty tiles
-                        if (id == TileID.EMPTY) continue;
+                        if (id == TileID.EMPTY)
+                        {
+                            tilemap.SetTile(pos, null); // carve out the ground
+                            continue;
+                        }
                         switch (id)
                         {
                             case TileID.RANDOM:
@@ -177,6 +204,10 @@ public class LevelGenerator : MonoBehaviour
                                 break;
                             case TileID.Wall:
                                 wallTilemap.SetTile(pos, tiles[(uint)id]);
+                                break;
+                            case TileID.ENEMY:
+                                tilemap.SetTile(pos, null);
+                                SpawnEnemy(pos);
                                 break;
                             default:
                                 tilemap.SetTile(pos, tiles[(uint)id]);
@@ -196,6 +227,12 @@ public class LevelGenerator : MonoBehaviour
             if (r == level.Entrance) spawnPos = tilemap.GetCellCenterWorld(PlaceEntrance(r));
             else if (level.exits.Contains(r)) PlaceFish(r);
         }
+    }
+
+    private void SpawnEnemy(Vector3Int pos)
+    {
+        Vector3 worldPos = tilemap.GetCellCenterWorld(pos);
+        Instantiate(enemyPrefab, worldPos, Quaternion.identity, enemiesParent.transform);
     }
 
     //Place item in a room depending on surrounding walls 
