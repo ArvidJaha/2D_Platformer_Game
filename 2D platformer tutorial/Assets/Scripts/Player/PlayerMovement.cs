@@ -104,8 +104,8 @@ public class PlayerMovement : MonoBehaviour
 
 
         ProcessGravity();
-        ProcessWallSlide();
-        processWallJump();
+        //ProcessWallSlide();
+        //processWallJump();
         if (isSliding)
         {
             slideTimer -= Time.deltaTime;

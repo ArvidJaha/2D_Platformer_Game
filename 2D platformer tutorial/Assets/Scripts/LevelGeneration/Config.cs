@@ -6,7 +6,7 @@ namespace Code.Utils
 {
     public static class Config
     {
-        public static readonly int ROOM_HEIGHT = 8;
-        public static readonly int ROOM_WIDTH = 10;
+        public static readonly int ROOM_HEIGHT = 10;
+        public static readonly int ROOM_WIDTH = 16;
     }
 }

@@ -8,6 +8,7 @@ public class Room
     public int Type { get; set; }
     public int X { get; set; }
     public int Y { get; set; }
+    public int Openings { get; set; }
 
     public struct Tile
     {
