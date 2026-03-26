@@ -1161,9 +1161,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score: 0
-
-'
+  m_text: 'Fish: 0 / 5'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -1259,7 +1257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 957, y: 493}
+  m_AnchoredPosition: {x: 943, y: 558.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &271245342
@@ -4237,8 +4235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20fee0ed4816f844abd67f202a0c224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelGenerator
-  levelHeight: 10
-  levelWidth: 18
+  levelHeight: 4
+  levelWidth: 4
   collectiblesParent: {fileID: 1190321215}
   fishPrefab: {fileID: 7506581446254049347, guid: b8fac49480232c04980495ba634f4a8d, type: 3}
   enemyPrefab: {fileID: 4786435885615210929, guid: 2c93a86509909be48a423d9f87f9cce1, type: 3}
@@ -4250,7 +4248,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 733a466c5e758d94c875e6db5aac32bb, type: 2}
   - {fileID: 11400000, guid: 6e0a49ab7b5bab349997127440b26831, type: 2}
   - {fileID: 11400000, guid: 14fcc0c545df1c54dae7afdcbe5270ee, type: 2}
-  - {fileID: 11400000, guid: 14fcc0c545df1c54dae7afdcbe5270ee, type: 2}
+  - {fileID: 11400000, guid: 2a30776855a06fe47bc0fbaa5b788565, type: 2}
   - {fileID: 11400000, guid: 2a30776855a06fe47bc0fbaa5b788565, type: 2}
   - {fileID: 0}
   - {fileID: 0}
@@ -4260,7 +4258,7 @@ MonoBehaviour:
   tilemap: {fileID: 943674226}
   doorTilemap: {fileID: 2012602687}
   itemTilemap: {fileID: 1837766467}
-  ladderTilemap: {fileID: 126441978}
+  spikeTilemap: {fileID: 126441978}
   background: {fileID: 22817708}
   wallTilemap: {fileID: 1365240662}
   templates:
@@ -4283,7 +4281,7 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 46a52ac2cbfb9ec46b230c00328e829c, type: 3}
     openings: 6
   - images:
-    - {fileID: 2800000, guid: d834e3a09594bff4da254899db09e71f, type: 3}
+    - {fileID: 2800000, guid: 7aeb99012295b6b4ea157f0f72c8f3d4, type: 3}
     openings: 7
   - images:
     - {fileID: 2800000, guid: 2aa005d83296dfa40b750522c7f41f52, type: 3}

@@ -55,7 +55,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private Tilemap doorTilemap;
     [SerializeField] private Tilemap itemTilemap;
-    [SerializeField] private Tilemap ladderTilemap;
+    [SerializeField] private Tilemap spikeTilemap;
     [SerializeField] private Tilemap background;
     [SerializeField] private Tilemap wallTilemap;
 
@@ -87,7 +87,8 @@ public class LevelGenerator : MonoBehaviour
             [Color.green] = TileID.RANDOM,
             [Color.white] = TileID.EMPTY,
             [Color.clear] = TileID.EMPTY,
-            [new Color32(255, 255, 0, 255)] = TileID.ENEMY
+            [new Color32(255, 255, 0, 255)] = TileID.ENEMY, //YELLOW
+            [new Color32(255, 0, 0, 255)] = TileID.Spike //YELLOW
         };
 
 
@@ -161,7 +162,7 @@ public class LevelGenerator : MonoBehaviour
     private void ClearTiles()
     {
         tilemap.ClearAllTiles();
-        ladderTilemap.ClearAllTiles();
+        spikeTilemap.ClearAllTiles();
         itemTilemap.ClearAllTiles();
         doorTilemap.ClearAllTiles();
         wallTilemap.ClearAllTiles();
@@ -242,7 +243,7 @@ public class LevelGenerator : MonoBehaviour
                         r.tiles[y * Config.ROOM_WIDTH + x].pos = pos;
                         r.tiles[y * Config.ROOM_WIDTH + x].id = id;
                         //Skip empty tiles
-                        if (id == TileID.EMPTY || id == TileID.Spike)
+                        if (id == TileID.EMPTY)
                         {
                             tilemap.SetTile(pos, null); // carve out the ground
                             continue;
@@ -256,7 +257,8 @@ public class LevelGenerator : MonoBehaviour
                                     tilemap.SetTile(pos, tiles[(uint)TileID.Ground]);
                                 break;
                             case TileID.Spike:
-                                ladderTilemap.SetTile(pos, tiles[(uint)id]);
+                                tilemap.SetTile(pos, null);
+                                spikeTilemap.SetTile(pos, tiles[(uint)id]);
                                 break;
                             case TileID.Wall:
                                 wallTilemap.SetTile(pos, tiles[(uint)id]);
@@ -381,7 +383,7 @@ public class LevelGenerator : MonoBehaviour
             if (tilemap.GetTile(pos) == null
                 && tilemap.GetTile(pos + Vector3Int.down) != null
                 && tilemap.GetTile(pos + Vector3Int.up) == null
-                && ladderTilemap.GetTile(pos) == null) //entrance dont spawn on ladders
+                && spikeTilemap.GetTile(pos) == null) //entrance dont spawn on ladders
                 availablePos.Add(pos);
         }
         if (availablePos.Count == 0)

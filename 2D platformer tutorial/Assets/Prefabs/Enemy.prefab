@@ -210,11 +210,6 @@ MonoBehaviour:
     m_Bits: 4294967295
   patrolDistance: 3
   patrolSpeed: 2
-  groundCheck: {fileID: 1366555795881146571}
-  groundCheckDistance: 1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!1 &5683351201527487598
 GameObject:
   m_ObjectHideFlags: 0
