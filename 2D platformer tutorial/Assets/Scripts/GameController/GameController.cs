@@ -32,7 +32,23 @@ public class GameController : MonoBehaviour
     void IncreaseScore(int value)
     {
         score += value;
-        scoreText.text = "Score: " + score;
+        scoreText.text = "Fish: " + score + " / 5";
+
+        if (score >= 2)
+        {
+            WinGame();
+        }
+    }
+
+    void WinGame()
+    {
+        Debug.Log("YOU WIN");
+
+        // stop player
+        player.GetComponent<PlayerMovement>().enabled = false;
+
+        // optional: freeze game
+        Time.timeScale = 0f;
     }
 
     //void SpawnExitTrigger()
