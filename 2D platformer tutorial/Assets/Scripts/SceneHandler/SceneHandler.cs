@@ -14,6 +14,11 @@ public class SceneHandler : MonoBehaviour
             PlayerPrefs.SetString("LastSavedScene", current);
         }
     }
+    public void ReloadLastScene()
+    {
+        string sceneToLoad = PlayerPrefs.GetString("LastSavedScene");
+        SceneManager.LoadScene(sceneToLoad);
+    }
     public void StartGame()
     {
         SceneManager.LoadScene("PCGTest");
@@ -22,6 +27,11 @@ public class SceneHandler : MonoBehaviour
     public void Tutorial()
     {
         SceneManager.LoadScene("Tutorial");
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("StartScene");
     }
 
     public void ExitGame()
