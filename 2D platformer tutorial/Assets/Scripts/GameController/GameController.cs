@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour
         ExitTrigger.OnPlayerEnteredExit += LoadLevel;
         player.transform.position = levelGenerator.spawnPos;
         Fish.OnFishCollected += IncreaseScore; // increment score when a fish is collected
-        SpawnExitTrigger();
+        //SpawnExitTrigger();
     }
 
     void IncreaseScore(int value)
@@ -35,23 +35,23 @@ public class GameController : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
-    void SpawnExitTrigger()
-    {
-        if (currentExit != null)
-            Destroy(currentExit);
+    //void SpawnExitTrigger()
+    //{
+    //    if (currentExit != null)
+    //        Destroy(currentExit);
 
-        currentExit = Instantiate(
-            exitTriggerPrefab,
-            levelGenerator.exitPos,
-            Quaternion.identity
-        );
-    }
+    //    currentExit = Instantiate(
+    //        exitTriggerPrefab,
+    //        levelGenerator.exitPos,
+    //        Quaternion.identity
+    //    );
+    //}
 
     void LoadLevel()
     {
         levelGenerator.GenerateLevel();
         player.transform.position = levelGenerator.spawnPos;
-        SpawnExitTrigger();
+        //SpawnExitTrigger();
     }
     void ResetGame()
     {        

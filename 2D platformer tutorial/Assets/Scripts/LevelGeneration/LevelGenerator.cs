@@ -21,9 +21,18 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject enemiesParent;
 
+    [Header("Enemy Settings")]
+    [Range(0f, 1f)]
+    [SerializeField] private float enemySpawnChance = 0.5f;
+    [SerializeField] private int minEnemiesPerRoom = 0;
+
     //Keep track of level
     Level level;
     public Vector3 spawnPos;
+
+
+
+
 
     public enum TileID : uint
     {
@@ -86,30 +95,67 @@ public class LevelGenerator : MonoBehaviour
     }
 
     public bool doingSetup;
-    public Vector3 exitPos;
 
     public void GenerateLevel()
     {
         Debug.Log("GENERATING");
         doingSetup = true;
-        //Keep track of time it takes to generate levels
         var watch = System.Diagnostics.Stopwatch.StartNew();
 
-        ClearTiles();
-        //GenerateBorder();
-        level = new Level(levelWidth, levelHeight);
-        FillBackground();
-        level.Generate();
-        BuildRooms();
+        int attempts = 0;
+        bool valid = false;
 
-        
+        while (!valid && attempts < 10)
+        {
+            attempts++;
+            ClearTiles();
+            level = new Level(levelWidth, levelHeight);
+            FillBackground();
+            level.Generate();
 
-        //Stop timer and print time elapsed
+            if (ValidateLevel())
+            {
+                valid = true;
+                Debug.Log($"Level valid after {attempts} attempt(s)");
+            }
+            else
+            {
+                Debug.LogWarning($"Attempt {attempts} failed validation, regenerating...");
+            }
+        }
+
+        if (!valid)
+            Debug.LogError("Could not generate valid level after 10 attempts, check your templates and config");
+        else
+            BuildRooms();
+
         watch.Stop();
-        var elapsedMs = watch.ElapsedMilliseconds;
-        Debug.Log("Generation Time: " + elapsedMs + "ms");
+        Debug.Log("Generation Time: " + watch.ElapsedMilliseconds + "ms");
         doingSetup = false;
     }
+
+    //public void GenerateLevel()
+    //{
+    //    Debug.Log("GENERATING");
+    //    doingSetup = true;
+    //    //Keep track of time it takes to generate levels
+    //    var watch = System.Diagnostics.Stopwatch.StartNew();
+
+    //    ClearTiles();
+    //    //GenerateBorder();
+    //    level = new Level(levelWidth, levelHeight);
+    //    FillBackground();
+    //    level.Generate();
+    //    BuildRooms();
+
+
+
+    //    //Stop timer and print time elapsed
+    //    watch.Stop();
+    //    var elapsedMs = watch.ElapsedMilliseconds;
+    //    Debug.Log("Generation Time: " + elapsedMs + "ms");
+    //    doingSetup = false;
+    //}
 
     //Clears tilemaps and rooms
     private void ClearTiles()
@@ -120,6 +166,13 @@ public class LevelGenerator : MonoBehaviour
         doorTilemap.ClearAllTiles();
         wallTilemap.ClearAllTiles();
         background.ClearAllTiles();
+
+        foreach (Transform child in enemiesParent.transform)
+            Destroy(child.gameObject);
+
+        foreach (Transform child in collectiblesParent.transform)
+            Destroy(child.gameObject);
+
     }
     private void FillBackground()
     {
@@ -159,6 +212,8 @@ public class LevelGenerator : MonoBehaviour
         foreach (Room r in level.Rooms)
         {
             if (r.Type == 0) continue;
+            Debug.Log($"Room {r.Id} openings: {r.Openings}");
+
             int offsetX = r.X * Config.ROOM_WIDTH; //Left to right
             int offsetY = r.Y * Config.ROOM_HEIGHT; //Top to bottom
 
@@ -174,6 +229,7 @@ public class LevelGenerator : MonoBehaviour
 
             RoomTemplate chosen = valid[Random.Range(0, valid.Length)];
             Color32[] colors = chosen.images[Random.Range(0, chosen.images.Length)].GetPixels32();
+            List<Vector3Int> enemyPositions = new List<Vector3Int>();
 
             for (int y = 0; y < Config.ROOM_HEIGHT; y++)
             {
@@ -186,7 +242,7 @@ public class LevelGenerator : MonoBehaviour
                         r.tiles[y * Config.ROOM_WIDTH + x].pos = pos;
                         r.tiles[y * Config.ROOM_WIDTH + x].id = id;
                         //Skip empty tiles
-                        if (id == TileID.EMPTY)
+                        if (id == TileID.EMPTY || id == TileID.Spike)
                         {
                             tilemap.SetTile(pos, null); // carve out the ground
                             continue;
@@ -207,7 +263,7 @@ public class LevelGenerator : MonoBehaviour
                                 break;
                             case TileID.ENEMY:
                                 tilemap.SetTile(pos, null);
-                                SpawnEnemy(pos);
+                                enemyPositions.Add(pos);
                                 break;
                             default:
                                 tilemap.SetTile(pos, tiles[(uint)id]);
@@ -221,11 +277,42 @@ public class LevelGenerator : MonoBehaviour
                     }
                 }
             }
+            SpawnEnemiesInRoom(r, enemyPositions);
+            enemyPositions.Clear();
             //Place items down
             PlaceItems(r);
             //Place entrance, exit and set spawn pos
             if (r == level.Entrance) spawnPos = tilemap.GetCellCenterWorld(PlaceEntrance(r));
-            else if (level.exits.Contains(r)) PlaceFish(r);
+            else if (level.fishRooms.Contains(r)) PlaceFish(r);
+        }
+    }
+
+
+    private void SpawnEnemiesInRoom(Room r, List<Vector3Int> enemyPositions)
+    {
+        if (enemyPositions.Count == 0) return;
+
+        // Guarantee at least this many enemies based on config
+        int guaranteed = Mathf.FloorToInt(enemyPositions.Count * enemySpawnChance);
+        guaranteed = Mathf.Max(guaranteed, minEnemiesPerRoom);
+        guaranteed = Mathf.Min(guaranteed, enemyPositions.Count);
+
+        // Shuffle positions so guaranteed ones are random
+        Shuffle(enemyPositions);
+
+        for (int i = 0; i < enemyPositions.Count; i++)
+        {
+            if (i < guaranteed || Random.value <= enemySpawnChance)
+                SpawnEnemy(enemyPositions[i]);
+        }
+    }
+
+    private void Shuffle(List<Vector3Int> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (list[i], list[j]) = (list[j], list[i]);
         }
     }
 
@@ -340,7 +427,7 @@ public class LevelGenerator : MonoBehaviour
             Handles.Label(r.Origin() + new Vector2(.5f, -.5f), r.Type.ToString(), style);
 
             if (r == level.Entrance) Gizmos.color = Color.green;
-            else if (r == level.Exit) Gizmos.color = Color.red;
+            else if (level.fishRooms.Contains(r)) Gizmos.color = Color.cyan;
             else continue;
             Gizmos.DrawWireCube(r.Center(), new Vector3(1, 1));
         }
@@ -362,5 +449,28 @@ public class LevelGenerator : MonoBehaviour
             previous = i;
         }
     }
+
+    private bool ValidateLevel()
+    {
+        if (level.Entrance == null)
+        {
+            Debug.LogWarning("Validation failed: no entrance");
+            return false;
+        }
+        if (level.fishRooms.Count == 0)
+        {
+            Debug.LogWarning("Validation failed: no fish rooms");
+            return false;
+        }
+        if (level.Path.Count < (levelWidth + levelHeight))
+        {
+            Debug.LogWarning($"Validation failed: path too short ({level.Path.Count} rooms)");
+            return false;
+        }
+        Debug.Log($"Path length: {level.Path.Count} rooms");
+        return true;
+    }
+
 #endif
 }
+

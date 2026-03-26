@@ -18,16 +18,14 @@ public class Level
     private HashSet<Room> firstPath;
 
     private Room entrance;
-    private Room exit;
-    public HashSet<Room> exits = new HashSet<Room>();
-    private int numExits = 5;
+    public HashSet<Room> fishRooms = new HashSet<Room>();
+    private int numFishes = 5;
 
     private Vector3Int spawnPos;
 
     public Room[] Rooms { get => rooms; }
     public List<Room> Path { get => path; }
     public Room Entrance { get => entrance; }
-    public Room Exit { get => exit; }
     public Vector3Int SpawnPos { get => spawnPos; set => spawnPos = value; }
 
     public void Generate()
@@ -90,7 +88,8 @@ public class Level
         firstPath.Add(entrance);
 
         int steps = 0;
-        int maxSteps = 15;
+        int maxSteps = 25;
+        int stuckCount = 0;
 
         while (steps < maxSteps)
         {
@@ -131,15 +130,23 @@ public class Level
                 }
             }
 
-            if (!moved) break;
+            if (!moved && steps >= MinSteps()) break;
+            else if (!moved)
+            {
+                stuckCount++;
+                if (stuckCount > 50) break; // end path if stuck
+                continue;
+            }
+            stuckCount = 0;
 
-            path.Add(rooms[GetRoomID(x, y)]);
-            firstPath.Add(rooms[GetRoomID(x, y)]);
+            Room current = rooms[GetRoomID(x, y)];
+            if (!path.Contains(current))
+                path.Add(current);
+            firstPath.Add(current);
             steps++;
         }
 
-        exit = rooms[GetRoomID(x, y)];
-        exits.Add(exit);
+        fishRooms.Add(rooms[GetRoomID(x, y)]);
     }
 
     private void GenerateRoomPath()
@@ -147,7 +154,7 @@ public class Level
         FirstPath();
 
         int attempts = 0;
-        while (exits.Count < numExits && attempts < 100)
+        while (fishRooms.Count < numFishes && attempts < 100)
         {
             attempts++;
             Room startRoom = new List<Room>(firstPath)[Random.Range(0, firstPath.Count)];
@@ -155,6 +162,9 @@ public class Level
             int y = startRoom.Y, prevY = startRoom.Y;
             int steps = 0;
             int maxSteps = 15;
+
+            int stuckCount = 0;
+
 
             while (steps < maxSteps)
             {
@@ -195,15 +205,24 @@ public class Level
                     }
                 }
 
-                if (!moved) break;
+                if (!moved && steps >= MinSteps()) break;
+                else if (!moved)
+                {
+                    stuckCount++;
+                    if (stuckCount > 50) break; // end path if stuck
+                    continue;
+                }
+                stuckCount = 0;
 
-                path.Add(rooms[GetRoomID(x, y)]);
+                Room current = rooms[GetRoomID(x, y)];
+                if (!path.Contains(current))
+                    path.Add(current);
                 steps++;
             }
 
             Room endRoom = rooms[GetRoomID(x, y)];
-            if (endRoom != startRoom && !exits.Contains(endRoom))
-                exits.Add(endRoom);
+            if (endRoom != startRoom && !fishRooms.Contains(endRoom))
+                fishRooms.Add(endRoom);
         }
     }
 
@@ -220,6 +239,10 @@ public class Level
             case 3: return Direction.LEFT;
             default: return Direction.RIGHT;
         }
+    }
+    private int MinSteps()
+    {
+        return (width + height) / 2;
     }
 
     private int GetRoomID(int x, int y)
