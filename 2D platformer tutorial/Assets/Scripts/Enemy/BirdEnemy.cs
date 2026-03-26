@@ -10,7 +10,6 @@ public class BirdEnemy : MonoBehaviour
 
     private bool isChasing = false;
     private bool isReturning = false;
-    private bool isPatroling = true;
 
     private Vector2 startPoint;
     public float patrolDistance;
@@ -50,7 +49,6 @@ public class BirdEnemy : MonoBehaviour
         {
             isChasing = true;
             isReturning = false;
-            isPatroling = false;
 
         }
             
@@ -62,7 +60,6 @@ public class BirdEnemy : MonoBehaviour
         {
             isChasing = false;
             isReturning = true;
-            isPatroling = false;
         }
     }
 
@@ -88,7 +85,6 @@ public class BirdEnemy : MonoBehaviour
         {
             isChasing = false;
             isReturning = false;
-            isPatroling = true;
 
             yDirection = 1;
         }
