@@ -88,7 +88,7 @@ public class Level
         firstPath.Add(entrance);
 
         int steps = 0;
-        int maxSteps = 25;
+        int maxSteps = 20;
         int stuckCount = 0;
 
         while (steps < maxSteps)
