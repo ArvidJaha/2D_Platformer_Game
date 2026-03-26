@@ -1,0 +1,32 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class SceneHandler : MonoBehaviour
+{
+    // Update is called once per frame
+    void Update()
+    {
+        string current = SceneManager.GetActiveScene().name;
+
+        // Only save if the scene is NOT one of the excluded ones
+        if (current != "EndScene" && current != "StartScene" && current != "LevelProgressScene")
+        {
+            PlayerPrefs.SetString("LastSavedScene", current);
+        }
+    }
+    public void StartGame()
+    {
+        SceneManager.LoadScene("PCGTest");
+    }
+
+    public void Tutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+        Debug.Log("Exiting game");
+    }
+}
