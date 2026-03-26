@@ -6,6 +6,7 @@ public class BirdEnemy : MonoBehaviour
     public float normalSpeed;
     public float chaseSpeed;
     private Transform player;
+    public Animator animator;
 
     private bool isChasing = false;
     private bool isReturning = false;
