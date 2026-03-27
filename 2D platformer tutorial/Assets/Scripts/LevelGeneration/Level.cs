@@ -88,7 +88,7 @@ public class Level
         firstPath.Add(entrance);
 
         int steps = 0;
-        int maxSteps = 20;
+        int maxSteps = 15;
         int stuckCount = 0;
 
         while (steps < maxSteps)
@@ -161,7 +161,7 @@ public class Level
             int x = startRoom.X, prevX = startRoom.X;
             int y = startRoom.Y, prevY = startRoom.Y;
             int steps = 0;
-            int maxSteps = 15;
+            int maxSteps = 10;
 
             int stuckCount = 0;
 

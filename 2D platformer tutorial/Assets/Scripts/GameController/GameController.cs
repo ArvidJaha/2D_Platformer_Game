@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
 
     public static event Action OnReset;
 
+    [SerializeField] private GameObject winScreen;
 
 
 
@@ -34,7 +35,7 @@ public class GameController : MonoBehaviour
         score += value;
         scoreText.text = "Fish: " + score + " / 5";
 
-        if (score >= 2)
+        if (score >= 5)
         {
             WinGame();
         }
@@ -46,6 +47,8 @@ public class GameController : MonoBehaviour
 
         // stop player
         player.GetComponent<PlayerMovement>().enabled = false;
+
+        winScreen.SetActive(true);
 
         // optional: freeze game
         Time.timeScale = 0f;
