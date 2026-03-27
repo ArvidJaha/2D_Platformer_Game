@@ -695,6 +695,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "OpenDoor",
+            "id": "eb295b21-13a1-4eb4-be70-176aac3b7c7e",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "989febdf-26f3-4712-9da2-189ab86561e7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "49935099-a988-4a5b-92b0-927ab3d0104e",
+                    "path": "<Keyboard>/#(E)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
