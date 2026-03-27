@@ -4369,13 +4369,13 @@ MonoBehaviour:
   tiles:
   - {fileID: 11400000, guid: 733a466c5e758d94c875e6db5aac32bb, type: 2}
   - {fileID: 11400000, guid: 6e0a49ab7b5bab349997127440b26831, type: 2}
-  - {fileID: 11400000, guid: 14fcc0c545df1c54dae7afdcbe5270ee, type: 2}
-  - {fileID: 11400000, guid: 2a30776855a06fe47bc0fbaa5b788565, type: 2}
-  - {fileID: 11400000, guid: 2a30776855a06fe47bc0fbaa5b788565, type: 2}
+  - {fileID: 11400000, guid: c59947e2202dbdd45bb12cdbfa357ed8, type: 2}
+  - {fileID: 11400000, guid: f0672e71187c1b54c91f5bb33c065ad5, type: 2}
+  - {fileID: 11400000, guid: f0672e71187c1b54c91f5bb33c065ad5, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 11400000, guid: 6c9dc62baa1f4b84b918f5a6c6f418e6, type: 2}
-  - {fileID: 11400000, guid: 6e0a49ab7b5bab349997127440b26831, type: 2}
+  - {fileID: 11400000, guid: 2b1c1b4028f1f3549ae1d435128ba0e8, type: 2}
   - {fileID: 11400000, guid: 6e0a49ab7b5bab349997127440b26831, type: 2}
   tilemap: {fileID: 943674226}
   doorTilemap: {fileID: 2012602687}

@@ -110,6 +110,7 @@ public class LevelGenerator : MonoBehaviour
         {
             attempts++;
             ClearTiles();
+            GenerateBorder();
             level = new Level(levelWidth, levelHeight);
             FillBackground();
             level.Generate();
@@ -188,24 +189,29 @@ public class LevelGenerator : MonoBehaviour
     //Places a border around the rooms and a background
     private void GenerateBorder()
     {
-        int width = (levelWidth * Config.ROOM_WIDTH);
-        int height = (levelHeight * Config.ROOM_HEIGHT);
-        BoundsInt area = new BoundsInt(0, -height + Config.ROOM_HEIGHT, 0, width, height, 1);
-
-        TileBase[] tileArray = new TileBase[width * height];
+        int width = levelWidth * Config.ROOM_WIDTH;
+        int height = levelHeight * Config.ROOM_HEIGHT;
 
         for (int x = -1; x <= width; x++)
         {
             for (int y = -1; y <= height; y++)
             {
-                //Fill border
-                if (x == -1 || y == -1 || x == width || y == height)
-                    tilemap.SetTile(new Vector3Int(x, -y + Config.ROOM_HEIGHT - 1, 0), tiles[(uint)TileID.Ground]);
-                //Fill background
-                else tileArray[y * width + x] = tiles[(uint)TileID.BACKGROUND];
+                bool isBorder =
+                    x == -1 || x == width ||
+                    y == -1 || y == height;
+
+                Vector3Int pos = new Vector3Int(x, y, 0);
+
+                if (isBorder)
+                {
+                    tilemap.SetTile(pos, tiles[(uint)TileID.BACKGROUND]);
+                }
+                else
+                {
+                    background.SetTile(pos, tiles[(uint)TileID.BACKGROUND]);
+                }
             }
         }
-        background.SetTilesBlock(area, tileArray);
     }
 
     private void BuildRooms()
@@ -258,7 +264,38 @@ public class LevelGenerator : MonoBehaviour
                                 break;
                             case TileID.Spike:
                                 tilemap.SetTile(pos, null);
-                                spikeTilemap.SetTile(pos, tiles[(uint)id]);
+                                bool hasBelow = tilemap.GetTile(pos + Vector3Int.down) != null;
+                                bool hasAbove = tilemap.GetTile(pos + Vector3Int.up) != null;
+                                bool hasLeft  = tilemap.GetTile(pos + Vector3Int.left) != null;
+                                bool hasRight = tilemap.GetTile(pos + Vector3Int.right) != null;
+
+                                spikeTilemap.SetTile(pos, tiles[(uint)TileID.Spike]);
+
+                                Matrix4x4 matrix = Matrix4x4.identity;
+
+                                // Priority: vertical first, then horizontal
+                                if (hasAbove && !hasBelow && !hasLeft && !hasRight)
+                                {
+                                    // Ceiling → point down
+                                    matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, 180));
+                                }
+                                else if (hasBelow)
+                                {
+                                    // Floor → default (point up)
+                                    matrix = Matrix4x4.identity;
+                                }
+                                else if (hasLeft)
+                                {
+                                    // Left wall → point right
+                                    matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, -90));
+                                }
+                                else if (hasRight)
+                                {
+                                    // Right wall → point left
+                                    matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, 90));
+                                }
+
+                                spikeTilemap.SetTransformMatrix(pos, matrix);
                                 break;
                             case TileID.Wall:
                                 wallTilemap.SetTile(pos, tiles[(uint)id]);
