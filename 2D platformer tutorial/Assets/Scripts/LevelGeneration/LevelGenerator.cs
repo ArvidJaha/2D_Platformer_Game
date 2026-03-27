@@ -45,7 +45,8 @@ public class LevelGenerator : MonoBehaviour
         RANDOM,
         BACKGROUND,
         EMPTY,
-        ENEMY
+        ENEMY,
+        ICEBLOCK
     }
 
     [Header("Tiles")]
@@ -81,14 +82,15 @@ public class LevelGenerator : MonoBehaviour
         byColor = new Dictionary<Color32, TileID>()
         {
             [Color.black] = TileID.Ground,
-            [Color.grey] = TileID.Wall,
+            [Color.grey] = TileID.Ground,
             [Color.blue] = TileID.Wall,
             [Color.red] = TileID.Spike,
             [Color.green] = TileID.RANDOM,
             [Color.white] = TileID.EMPTY,
             [Color.clear] = TileID.EMPTY,
             [new Color32(255, 255, 0, 255)] = TileID.ENEMY, //YELLOW
-            [new Color32(255, 0, 0, 255)] = TileID.Spike //YELLOW
+            [new Color32(255, 0, 0, 255)] = TileID.Spike, //YELLOW
+            [new Color32(203, 48, 48, 255)] = TileID.ICEBLOCK //DARK RED
         };
 
 
@@ -428,7 +430,7 @@ public class LevelGenerator : MonoBehaviour
             // Fallback: any non-null tile position in the room
             foreach (Room.Tile t in r.tiles)
             {
-                if (t.id != TileID.EMPTY && t.id != TileID.Wall)
+                if (t.id != TileID.EMPTY && t.id != TileID.Ground)
                     availablePos.Add(t.pos);
             }
         }
