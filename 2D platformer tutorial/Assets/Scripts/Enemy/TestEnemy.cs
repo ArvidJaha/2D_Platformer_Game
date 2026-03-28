@@ -1,9 +1,15 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Collections;
+using System;
 
 public class TestEnemy : MonoBehaviour
 
 {
+
+    private Rigidbody2D rb;
 
     [SerializeField] private float attackCooldown;
     [SerializeField] private float range;
@@ -24,20 +30,33 @@ public class TestEnemy : MonoBehaviour
 
     private Vector2 patrolPosition;
     private int patrolDirection = 1;
+    private Vector2 lastPosition;
+    private float stuckTimer = 0f;
+    private float stuckThreshold = 0.2f;
+
+    [SerializeField] private float groundCheckDistance = 0.5f;
+    [SerializeField] private LayerMask groundLayer;
 
     private Transform player;
     private bool isTargeting;
+
+    private SpriteRenderer spriteRenderer;
+
 
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         patrolPosition = transform.position;
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log($"isTargeting: {isTargeting}, canSee: {CanSeePlayer()}, dist: {Vector2.Distance(transform.position, player.position)}");
 
         if (player == null) return;
 
@@ -60,10 +79,12 @@ public class TestEnemy : MonoBehaviour
         if (isTargeting)
         {
             FollowPlayer();
+            spriteRenderer.color = Color.red;
         }
         else
         {
             Patrol();
+            spriteRenderer.color = Color.white;
         }
 
         // Attack logic (keep yours)
@@ -75,25 +96,56 @@ public class TestEnemy : MonoBehaviour
         }
     }
 
+    private bool GroundAhead()
+    {
+        Vector2 checkPos = transform.position + new Vector3(patrolDirection * 0.5f, -0.5f, 0);
+        RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, groundCheckDistance, groundLayer);
+        return hit.collider != null;
+    }
+
     private void Patrol()
     {
         float nextX = transform.position.x + patrolDirection * patrolSpeed * Time.deltaTime;
-         
-        // Clamp within patrol bounds
+
+        if (!GroundAhead())
+        {
+            patrolDirection *= -1;
+            Flip();
+            return;
+        }
+
         if (nextX > patrolPosition.x + patrolDistance)
         {
+            patrolDirection = -1;
             nextX = patrolPosition.x + patrolDistance;
-            patrolDirection *= -1;
             Flip();
         }
         else if (nextX < patrolPosition.x - patrolDistance)
         {
+            patrolDirection = 1;
             nextX = patrolPosition.x - patrolDistance;
-            patrolDirection *= -1;
             Flip();
         }
 
-        transform.position = new Vector3(nextX, transform.position.y, transform.position.z);
+        // Stuck detection
+        if (Vector2.Distance(transform.position, lastPosition) < 0.001f)
+        {
+            stuckTimer += Time.deltaTime;
+            if (stuckTimer >= stuckThreshold)
+            {
+                patrolDirection *= -1;
+                Flip();
+                stuckTimer = 0f;
+            }
+        }
+        else
+        {
+            stuckTimer = 0f;
+        }
+
+        lastPosition = transform.position;
+        rb.linearVelocity = new Vector2(patrolDirection * patrolSpeed, rb.linearVelocity.y);
+
     }
 
     private void Flip()
@@ -149,6 +201,12 @@ public class TestEnemy : MonoBehaviour
 
     private void FollowPlayer()
     {
+        if (!GroundAhead())
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            return;
+        }
+
         // Smooth movement toward player
         transform.position = Vector2.MoveTowards(
             transform.position,
@@ -163,4 +221,5 @@ public class TestEnemy : MonoBehaviour
             Flip();
         }
     }
+
 }
