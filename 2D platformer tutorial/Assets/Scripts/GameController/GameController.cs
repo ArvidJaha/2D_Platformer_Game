@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     public LevelGenerator levelGenerator;
     public GameObject exitTriggerPrefab;
     GameObject currentExit;
-    int score = 0;
+    public int score = 0;
     public TMP_Text scoreText;
 
     public static event Action OnReset;
