@@ -9,7 +9,11 @@ public class doorBehaviour : MonoBehaviour
     public GameObject player;
     private Collider2D door;
 
-    public GameController gameController;
+    public GameControllerWithoutPCG gc;
+
+    public int score = 0;
+
+    public int scoreThreshold = 5;
 
 
     void Start()
@@ -20,13 +24,14 @@ public class doorBehaviour : MonoBehaviour
     
     void Update()
     {
-        if(isOpen)
+        score = gc.score;
+        if (isOpen)
         {
             System.Threading.Thread.Sleep(1500);
             SceneManager.LoadScene("StartScene");
         }
 
-        if(isInRangeOfDoor())
+        if(isInRangeOfDoor() && scoreCheck())
         {
             animator.SetBool("Open", true);
         }
@@ -38,9 +43,14 @@ public class doorBehaviour : MonoBehaviour
 
     }
 
+    public bool scoreCheck()
+    {
+        return gc.score >= scoreThreshold;
+    }
+
     public void OpenDoor(InputAction.CallbackContext context)
     {
-        if (!isOpen && context.performed && IsCollidingWithPlayer() && isInRangeOfDoor() && gameController.score == 5)
+        if (!isOpen && context.performed && IsCollidingWithPlayer() && isInRangeOfDoor() && scoreCheck())
         {
             isOpen = true;
         }
