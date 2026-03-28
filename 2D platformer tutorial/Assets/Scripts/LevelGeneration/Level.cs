@@ -19,7 +19,7 @@ public class Level
 
     private Room entrance;
     public HashSet<Room> fishRooms = new HashSet<Room>();
-    private int numFishes = 5;
+    public int numFishes = 5;
 
     private Vector3Int spawnPos;
 

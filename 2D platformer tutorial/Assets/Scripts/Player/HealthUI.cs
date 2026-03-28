@@ -15,11 +15,11 @@ public class HealthUI : MonoBehaviour
 
     public void SetMaxHearts(int maxHearts)
     {
-        foreach(Image hear in hearts)
+        foreach (Image heart in hearts)
         {
-            Destroy(hear.gameObject);
+            if (heart != null)
+                Destroy(heart.gameObject);
         }
-
         hearts.Clear();
 
         for (int i = 0; i < maxHearts; i++)
@@ -35,6 +35,7 @@ public class HealthUI : MonoBehaviour
     {
         for (int i = 0; i < hearts.Count; i++)
         {
+            if (hearts[i] == null) continue;
             if (i < currentHealth)
             {
                 hearts[i].sprite = fullHeartSprite;

@@ -193,25 +193,21 @@ public class LevelGenerator : MonoBehaviour
     {
         int width = levelWidth * Config.ROOM_WIDTH;
         int height = levelHeight * Config.ROOM_HEIGHT;
+        int borderSize = 3;
 
-        for (int x = -1; x <= width; x++)
+        for (int x = -borderSize; x <= width + borderSize; x++)
         {
-            for (int y = -1; y <= height; y++)
+            for (int y = -borderSize; y <= height + borderSize; y++)
             {
                 bool isBorder =
-                    x == -1 || x == width ||
-                    y == -1 || y == height;
+                    x < 0 || x >= width ||
+                    y < 0 || y >= height;
 
                 Vector3Int pos = new Vector3Int(x, y, 0);
-
                 if (isBorder)
-                {
                     tilemap.SetTile(pos, tiles[(uint)TileID.BACKGROUND]);
-                }
                 else
-                {
                     background.SetTile(pos, tiles[(uint)TileID.BACKGROUND]);
-                }
             }
         }
     }
@@ -498,7 +494,7 @@ public class LevelGenerator : MonoBehaviour
             Debug.LogWarning("Validation failed: no entrance");
             return false;
         }
-        if (level.fishRooms.Count == 0)
+        if (level.fishRooms.Count != level.numFishes)
         {
             Debug.LogWarning("Validation failed: no fish rooms");
             return false;

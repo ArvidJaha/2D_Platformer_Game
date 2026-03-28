@@ -13,6 +13,7 @@ public class GameControllerWithoutPCG : MonoBehaviour
     public TMP_Text scoreText;
 
 
+    public static event Action OnReset;
 
 
 
@@ -21,7 +22,9 @@ public class GameControllerWithoutPCG : MonoBehaviour
         PlayerHealth.OnPlayerDeath += ResetGame; // subscribe to player death event
         player.transform.position = spawnPoint;
         Fish.OnFishCollected += IncreaseScore; // increment score when a fish is collected
-     
+        score = 0;
+        scoreText.text = "Fish: 0 / 5"; // or "Score: 0" for the tutorial one
+
     }
 
     void IncreaseScore(int value)
@@ -32,12 +35,18 @@ public class GameControllerWithoutPCG : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
-   
+    
     void ResetGame()
     {
         player.transform.position = spawnPoint; // reset player position
+        OnReset.Invoke(); // trigger game reset event for other scripts to reset their states
     }
 
+    private void OnDestroy()
+    {
+        PlayerHealth.OnPlayerDeath -= ResetGame;
+        Fish.OnFishCollected -= IncreaseScore;
+    }
 
 
 }

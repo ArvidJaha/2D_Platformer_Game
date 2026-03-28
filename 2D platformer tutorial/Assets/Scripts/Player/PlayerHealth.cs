@@ -25,6 +25,8 @@ public class PlayerHealth : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         GameController.OnReset += ResetHealth; // subscribe to game reset event
+        GameControllerWithoutPCG.OnReset += ResetHealth; // subscribe to game reset event
+        ResetHealth(); // always initialize hearts fresh
     }
 
     // Update is called once per frame
@@ -69,5 +71,11 @@ public class PlayerHealth : MonoBehaviour
         spriteRenderer.color = Color.red;    // turn red
         yield return new WaitForSeconds(0.2f); // wait 0.2 seconds
         spriteRenderer.color = Color.white;   // turn back
+    }
+
+    private void OnDestroy()
+    {
+        GameController.OnReset -= ResetHealth;
+        GameControllerWithoutPCG.OnReset -= ResetHealth;
     }
 }

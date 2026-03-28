@@ -13,7 +13,7 @@ public class doorBehaviour : MonoBehaviour
 
     public int score = 0;
 
-    public int scoreThreshold = 5;
+    public int scoreThreshold = 1;
 
 
     void Start()
@@ -45,7 +45,7 @@ public class doorBehaviour : MonoBehaviour
 
     public bool scoreCheck()
     {
-        return gc.score >= scoreThreshold;
+        return gc.score >= score;
     }
 
     public void OpenDoor(InputAction.CallbackContext context)

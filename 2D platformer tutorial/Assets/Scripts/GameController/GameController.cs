@@ -27,6 +27,8 @@ public class GameController : MonoBehaviour
         ExitTrigger.OnPlayerEnteredExit += LoadLevel;
         player.transform.position = levelGenerator.spawnPos;
         Fish.OnFishCollected += IncreaseScore; // increment score when a fish is collected
+        score = 0;
+        scoreText.text = "Fish: 0 / 5"; // or "Score: 0" for the tutorial one
         //SpawnExitTrigger();
     }
 
@@ -78,6 +80,11 @@ public class GameController : MonoBehaviour
         OnReset.Invoke(); // trigger game reset event for other scripts to reset their states
     }
 
-
+    private void OnDestroy()
+    {
+        PlayerHealth.OnPlayerDeath -= ResetGame;
+        ExitTrigger.OnPlayerEnteredExit -= LoadLevel;
+        Fish.OnFishCollected -= IncreaseScore;
+    }
 
 }
