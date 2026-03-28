@@ -202,14 +202,18 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  moveSpeed: 3
-  detectionRange: 4
-  loseRange: 6
+  moveSpeed: 9
+  detectionRange: 6
+  loseRange: 8
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
-  patrolDistance: 3
+    m_Bits: 8
+  patrolDistance: 6
   patrolSpeed: 2
+  groundCheckDistance: 0.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &5683351201527487598
 GameObject:
   m_ObjectHideFlags: 0
