@@ -9,6 +9,8 @@ public class doorBehaviour : MonoBehaviour
     public GameObject player;
     private Collider2D door;
 
+    public GameController gameController;
+
 
     void Start()
     {
@@ -32,11 +34,13 @@ public class doorBehaviour : MonoBehaviour
         {
             animator.SetBool("Open", false);
         }
+
+
     }
 
     public void OpenDoor(InputAction.CallbackContext context)
     {
-        if (!isOpen && context.performed && IsCollidingWithPlayer() && isInRangeOfDoor())
+        if (!isOpen && context.performed && IsCollidingWithPlayer() && isInRangeOfDoor() && gameController.score == 5)
         {
             isOpen = true;
         }
