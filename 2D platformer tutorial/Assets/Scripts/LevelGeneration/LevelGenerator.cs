@@ -89,7 +89,7 @@ public class LevelGenerator : MonoBehaviour
             [Color.white] = TileID.EMPTY,
             [Color.clear] = TileID.EMPTY,
             [new Color32(255, 255, 0, 255)] = TileID.ENEMY, //YELLOW
-            [new Color32(255, 0, 0, 255)] = TileID.Spike, //YELLOW
+            [new Color32(255, 0, 0, 255)] = TileID.Spike, //RED
             [new Color32(203, 48, 48, 255)] = TileID.ICEBLOCK //DARK RED
         };
 
@@ -235,6 +235,8 @@ public class LevelGenerator : MonoBehaviour
             RoomTemplate chosen = valid[Random.Range(0, valid.Length)];
             Color32[] colors = chosen.images[Random.Range(0, chosen.images.Length)].GetPixels32();
             List<Vector3Int> enemyPositions = new List<Vector3Int>();
+            List<Vector3Int> spikePositions = new List<Vector3Int>(); // collect spikes for second pass
+
 
             for (int y = 0; y < Config.ROOM_HEIGHT; y++)
             {
@@ -261,39 +263,10 @@ public class LevelGenerator : MonoBehaviour
                                     tilemap.SetTile(pos, tiles[(uint)TileID.Ground]);
                                 break;
                             case TileID.Spike:
+                                // Place tile now, rotation handled in second pass
                                 tilemap.SetTile(pos, null);
-                                bool hasBelow = tilemap.GetTile(pos + Vector3Int.down) != null;
-                                bool hasAbove = tilemap.GetTile(pos + Vector3Int.up) != null;
-                                bool hasLeft  = tilemap.GetTile(pos + Vector3Int.left) != null;
-                                bool hasRight = tilemap.GetTile(pos + Vector3Int.right) != null;
-
                                 spikeTilemap.SetTile(pos, tiles[(uint)TileID.Spike]);
-
-                                Matrix4x4 matrix = Matrix4x4.identity;
-
-                                // Priority: vertical first, then horizontal
-                                if (hasAbove && !hasBelow && !hasLeft && !hasRight)
-                                {
-                                    // Ceiling → point down
-                                    matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, 180));
-                                }
-                                else if (hasBelow)
-                                {
-                                    // Floor → default (point up)
-                                    matrix = Matrix4x4.identity;
-                                }
-                                else if (hasLeft)
-                                {
-                                    // Left wall → point right
-                                    matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, -90));
-                                }
-                                else if (hasRight)
-                                {
-                                    // Right wall → point left
-                                    matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, 90));
-                                }
-
-                                spikeTilemap.SetTransformMatrix(pos, matrix);
+                                spikePositions.Add(pos);
                                 break;
                             case TileID.Wall:
                                 wallTilemap.SetTile(pos, tiles[(uint)id]);
@@ -314,6 +287,24 @@ public class LevelGenerator : MonoBehaviour
                     }
                 }
             }
+            foreach (Vector3Int pos in spikePositions)
+            {
+                bool hasBelow = tilemap.GetTile(pos + Vector3Int.down) != null;
+                bool hasAbove = tilemap.GetTile(pos + Vector3Int.up) != null;
+                bool hasLeft = tilemap.GetTile(pos + Vector3Int.left) != null;
+                bool hasRight = tilemap.GetTile(pos + Vector3Int.right) != null;
+
+                Matrix4x4 matrix = Matrix4x4.identity;
+
+                if (hasAbove) matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, 180));
+                else if (hasBelow) matrix = Matrix4x4.identity;
+                else if (hasLeft) matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, -90));
+                else if (hasRight) matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 0, 90));
+
+                spikeTilemap.SetTransformMatrix(pos, matrix);
+            }
+            spikePositions.Clear();
+
             SpawnEnemiesInRoom(r, enemyPositions);
             enemyPositions.Clear();
             //Place items down

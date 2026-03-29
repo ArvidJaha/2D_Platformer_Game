@@ -24,8 +24,10 @@ public class TestEnemy : MonoBehaviour
     [SerializeField] private float detectionRange = 2f;
     [SerializeField] private float loseRange = 4f;
     [SerializeField] private LayerMask obstacleLayer;
+    private float loseTargetTimer = 0f;
+    [SerializeField] private float loseTargetDelay = 2f; // tweak in Inspector
 
-    [SerializeField] private float patrolDistance = 3f;
+    private float patrolDistance;
     [SerializeField] private float patrolSpeed = 2f;
 
     private Vector2 patrolPosition;
@@ -50,29 +52,40 @@ public class TestEnemy : MonoBehaviour
         patrolPosition = transform.position;
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        patrolDistance = UnityEngine.Random.Range(6f, 10f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log($"isTargeting: {isTargeting}, canSee: {CanSeePlayer()}, dist: {Vector2.Distance(transform.position, player.position)}");
-
         if (player == null) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         // Start targeting
         if (!isTargeting && distanceToPlayer <= detectionRange && CanSeePlayer())
+        {
             isTargeting = true;
+            loseTargetTimer = 0f;
+        }
 
-        // Stop targeting
+        // Delayed stop targeting
         if (isTargeting && (distanceToPlayer > loseRange || !CanSeePlayer()))
         {
-            isTargeting = false;
-            patrolPosition = transform.position;
+            loseTargetTimer += Time.deltaTime;
+            if (loseTargetTimer >= loseTargetDelay)
+            {
+                isTargeting = false;
+                patrolPosition = transform.position;
+                loseTargetTimer = 0f;
+            }
         }
-            
+        else if (isTargeting)
+        {
+            // Reset timer if player comes back into view
+            loseTargetTimer = 0f;
+        }
+
 
 
 
@@ -155,14 +168,22 @@ public class TestEnemy : MonoBehaviour
         transform.localScale = scale;
     }
 
+
     private bool CanSeePlayer()
     {
         if (player == null) return false;
 
-        Vector2 direction = (player.position - transform.position).normalized;
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        // Only check horizontal distance for detection
+        float horizontalDistance = Mathf.Abs(player.position.x - transform.position.x);
+        if (horizontalDistance > detectionRange) return false;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distanceToPlayer, obstacleLayer | playerLayer);
+        // Optional: restrict vertical range so enemy ignores player far above/below
+        float verticalDistance = Mathf.Abs(player.position.y - transform.position.y);
+        if (verticalDistance > 1.5f) return false; // tweak this value to taste
+
+        // Still raycast to check for walls between enemy and player
+        Vector2 direction = new Vector2(player.position.x - transform.position.x, 0).normalized;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, horizontalDistance, obstacleLayer | playerLayer);
 
         return hit.collider != null && hit.collider.CompareTag("Player");
     }
