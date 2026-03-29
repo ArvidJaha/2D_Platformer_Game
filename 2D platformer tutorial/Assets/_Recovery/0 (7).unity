@@ -1112,7 +1112,7 @@ MonoBehaviour:
   jumpPower: 10.5
   maxJumps: 2
   groundCheckPos: {fileID: 2143693388}
-  groundCheckSize: {x: 0.22, y: 0.02}
+  groundCheckSize: {x: 0.52, y: 0.02}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -3210,11 +3210,11 @@ Tilemap:
       e00: 0
       e01: 0
       e02: 0
-      e03: -2.535229e-13
+      e03: -3.9254692e+31
       e10: 0
       e11: 0
       e12: 0
-      e13: 2.62e-43
+      e13: 4.5e-44
       e20: 0
       e21: 0
       e22: 1e-45
@@ -3225,61 +3225,61 @@ Tilemap:
       e33: 4.591e-41
   - m_RefCount: 0
     m_Data:
-      e00: 0
+      e00: -3.9256703e+31
       e01: 0
-      e02: 0
-      e03: -2.535229e-13
-      e10: 0
+      e02: -3.9256936e+31
+      e03: -2.1684085e-19
+      e10: 4.5e-44
       e11: 0
-      e12: 0
-      e13: 2.62e-43
-      e20: 0
-      e21: 0
-      e22: 1e-45
-      e23: -3.266075e-12
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 4.591e-41
-  - m_RefCount: 0
-    m_Data:
-      e00: 0
-      e01: 0
-      e02: 0
-      e03: -2.535229e-13
-      e10: 0
-      e11: 0
-      e12: 0
-      e13: 2.62e-43
-      e20: 0
-      e21: 0
-      e22: 1e-45
-      e23: -3.266075e-12
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 4.591e-41
-  - m_RefCount: 0
-    m_Data:
-      e00: 1e-45
-      e01: 0
-      e02: -2.5354805e-13
-      e03: 1.7179902e+10
-      e10: 1e-45
-      e11: 0
-      e12: 2.62e-43
-      e13: 8.7e-43
+      e12: 4.5e-44
+      e13: 5.28e-43
       e20: -3.266075e-12
       e21: 0
-      e22: 3.4082653e-29
-      e23: -1.2829536e-27
+      e22: -1.1037402e-19
+      e23: 1.4534101e-18
       e30: 4.591e-41
       e31: 0
-      e32: 8.74e-43
-      e33: 8.7e-43
+      e32: 5.32e-43
+      e33: 5.3e-43
+  - m_RefCount: 0
+    m_Data:
+      e00: 0
+      e01: 0
+      e02: 0
+      e03: -3.9254692e+31
+      e10: 0
+      e11: 0
+      e12: 0
+      e13: 4.5e-44
+      e20: 0
+      e21: 0
+      e22: 1e-45
+      e23: -3.266075e-12
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 4.591e-41
+  - m_RefCount: 0
+    m_Data:
+      e00: -3.9256703e+31
+      e01: 0
+      e02: -3.9256936e+31
+      e03: -2.1684085e-19
+      e10: 4.5e-44
+      e11: 0
+      e12: 4.5e-44
+      e13: 5.28e-43
+      e20: -3.266075e-12
+      e21: 0
+      e22: -1.1037402e-19
+      e23: 1.5315423e-18
+      e30: 4.591e-41
+      e31: 0
+      e32: 5.32e-43
+      e33: 5.3e-43
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: 6.0752e-41, g: 6.0752e-41, b: 6.0752e-41, a: 6.0752e-41}
+    m_Data: {r: 5.8857e-41, g: 5.8857e-41, b: 5.8857e-41, a: 5.8857e-41}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4595,9 +4595,9 @@ MonoBehaviour:
     - {fileID: 2800000, guid: d5b32c1944b9b7240a4d0d8a44c0b123, type: 3}
     openings: 5
   - images:
+    - {fileID: 2800000, guid: 2f3ccd5b617ebd5448047484ad394b4c, type: 3}
     - {fileID: 2800000, guid: 4ccb9963b872a7543b9f5e262be150d8, type: 3}
     - {fileID: 2800000, guid: f1e1447bc3163e749b3341288e4fe8a5, type: 3}
-    - {fileID: 2800000, guid: 2f3ccd5b617ebd5448047484ad394b4c, type: 3}
     openings: 6
   - images:
     - {fileID: 2800000, guid: 01882ec423c8de24ab2e2add9d929099, type: 3}
@@ -4609,15 +4609,15 @@ MonoBehaviour:
     - {fileID: 2800000, guid: a71a0427381b84b43a6ca0d5e738b420, type: 3}
     openings: 9
   - images:
-    - {fileID: 2800000, guid: f1dc5fe25dcf6b54387be3f0aa880b66, type: 3}
     - {fileID: 2800000, guid: 01b028442b90d82488026c8900e5bf20, type: 3}
+    - {fileID: 2800000, guid: f1dc5fe25dcf6b54387be3f0aa880b66, type: 3}
     openings: 10
   - images:
     - {fileID: 2800000, guid: 35e8ed9aa1b0fe749b362e78754142bd, type: 3}
     openings: 11
   - images:
     - {fileID: 2800000, guid: 1cf6d3cd329b50c4eb37b1733d910553, type: 3}
-    - {fileID: 2800000, guid: b299ac9263c057d4bb807af1ed0fe374, type: 3}
+    - {fileID: 2800000, guid: a316898861518cf4db3ba7f42c18ebf1, type: 3}
     - {fileID: 2800000, guid: 9d7b3a87d46c4284483c7e81d208630d, type: 3}
     openings: 12
   - images:
@@ -12422,7 +12422,7 @@ TilemapRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.016129017, y: 0.016129017, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
