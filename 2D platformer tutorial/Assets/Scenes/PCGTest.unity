@@ -1112,23 +1112,16 @@ MonoBehaviour:
   jumpPower: 10.5
   maxJumps: 2
   groundCheckPos: {fileID: 2143693388}
-  groundCheckSize: {x: 0.22, y: 0.02}
+  groundCheckSize: {x: 0.13, y: 0.02}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   spikeLayer:
     serializedVersion: 2
     m_Bits: 128
-  wallCheckPos: {fileID: 68650121}
-  wallCheckSize: {x: 0.08, y: 0.76}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 64
   baseGravity: 2
   maxFallSpeed: 18
   fallSpeedMultiplier: 2
-  wallSlideSpeed: 1
-  isWallSliding: 0
   isAirSliding: 0
   wallJumpPower: {x: 5, y: 10}
   slideSpeed: 12
@@ -4585,8 +4578,8 @@ MonoBehaviour:
   - images:
     - {fileID: 2800000, guid: 059ad81e59341194d8a861b8616fc10f, type: 3}
     - {fileID: 2800000, guid: 48c5cb112bd496940b45692002236e94, type: 3}
-    - {fileID: 2800000, guid: b1063b3934923294eaa1cb5e17f4ebe6, type: 3}
-    - {fileID: 2800000, guid: 7ae2a1e6f2de0da4ab1c6cfa567a4aa7, type: 3}
+    - {fileID: 2800000, guid: 026e99e0908864042a9082894e626332, type: 3}
+    - {fileID: 2800000, guid: d3eac8222ae5dd7498729308ce0ddcaf, type: 3}
     openings: 3
   - images:
     - {fileID: 2800000, guid: 47f1a7bff5b291846ba27f78b221c271, type: 3}
@@ -4613,11 +4606,12 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 01b028442b90d82488026c8900e5bf20, type: 3}
     openings: 10
   - images:
-    - {fileID: 2800000, guid: 35e8ed9aa1b0fe749b362e78754142bd, type: 3}
+    - {fileID: 2800000, guid: 8e18f7cdb5f4afd478c759b0e7936752, type: 3}
+    - {fileID: 2800000, guid: fe144c758f1631e47a60e78b3b2c4fcf, type: 3}
     openings: 11
   - images:
     - {fileID: 2800000, guid: 1cf6d3cd329b50c4eb37b1733d910553, type: 3}
-    - {fileID: 2800000, guid: b299ac9263c057d4bb807af1ed0fe374, type: 3}
+    - {fileID: 2800000, guid: 3eec7e528baf9844f83938aee3c01013, type: 3}
     - {fileID: 2800000, guid: 9d7b3a87d46c4284483c7e81d208630d, type: 3}
     openings: 12
   - images:

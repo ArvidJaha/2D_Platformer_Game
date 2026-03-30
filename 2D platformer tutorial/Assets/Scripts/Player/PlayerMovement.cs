@@ -28,10 +28,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("spikeLayer")]
     public LayerMask spikeLayer;
 
-    [Header("wallCheck")]
-    public Transform wallCheckPos;
-    public Vector2 wallCheckSize = new Vector2(0.5f, 0.5f);
-    public LayerMask wallLayer;
+    //[Header("wallCheck")]
+    //public Transform wallCheckPos;
+    //public Vector2 wallCheckSize = new Vector2(0.5f, 0.5f);
+    //public LayerMask wallLayer;
 
 
     [Header("Gravity")]
@@ -39,9 +39,9 @@ public class PlayerMovement : MonoBehaviour
     public float maxFallSpeed = 18f;
     public float fallSpeedMultiplier = 2f;
 
-    [Header("wallMovement")]
-    public float wallSlideSpeed = 1f;
-    public bool isWallSliding;
+    //[Header("wallMovement")]
+    //public float wallSlideSpeed = 1f;
+    //public bool isWallSliding;
 
     [Header("SlidingInAir")]
     public bool isAirSliding = false;
@@ -119,8 +119,7 @@ public class PlayerMovement : MonoBehaviour
                 isSliding = false;
         }
 
-        else if (!iswallJumping)
-        {
+
             float targetSpeed = horizontalMovement * moveSpeed; // Calculate target speed based on input and move speed
 
             float accel = isOnIce ? iceAcceleration : groundAcceleration; // Use different acceleration values for ice and ground
@@ -142,19 +141,19 @@ public class PlayerMovement : MonoBehaviour
             }
             Flip();
 
-        }
+        
 
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
         animator.SetFloat("magnitude", rb.linearVelocity.magnitude);
-        animator.SetBool("isWallSliding", isWallSliding);
+        //animator.SetBool("isWallSliding", isWallSliding);
         animator.SetBool("isSliding", isSliding);
     }
 
-    private bool WallJumpCheck()
-    {
-        return Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, wallLayer);
+    //private bool WallJumpCheck()
+    //{
+    //    return Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, wallLayer);
 
-    }
+    //}
 
 
 
@@ -171,34 +170,34 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void ProcessWallSlide()
-    {
-        if (!isGrounded && WallJumpCheck() && horizontalMovement != 0)
-        {
-            isWallSliding = true;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -wallSlideSpeed));
-        }
-        else
-        {
-            isWallSliding = false;
-        }
-    }
+    //private void ProcessWallSlide()
+    //{
+    //    if (!isGrounded && WallJumpCheck() && horizontalMovement != 0)
+    //    {
+    //        isWallSliding = true;
+    //        rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -wallSlideSpeed));
+    //    }
+    //    else
+    //    {
+    //        isWallSliding = false;
+    //    }
+    //}
 
-    private void processWallJump()
-    {
-        if (isWallSliding)
-        {
-            iswallJumping = false;
-            wallJumpDirection = -transform.localScale.x;
-            wallJumpTimer = wallJumpTime;
+    //private void processWallJump()
+    //{
+    //    if (isWallSliding)
+    //    {
+    //        iswallJumping = false;
+    //        wallJumpDirection = -transform.localScale.x;
+    //        wallJumpTimer = wallJumpTime;
 
-            CancelInvoke(nameof(CancelWallJump));
-        }
-        else if (wallJumpTimer > 0)
-        {
-            wallJumpTimer -= Time.deltaTime;
-        }
-    }
+    //        CancelInvoke(nameof(CancelWallJump));
+    //    }
+    //    else if (wallJumpTimer > 0)
+    //    {
+    //        wallJumpTimer -= Time.deltaTime;
+    //    }
+    //}
 
     private void CancelWallJump()
     {
@@ -291,14 +290,21 @@ public class PlayerMovement : MonoBehaviour
     {
         wasGrounded = isGrounded;
 
-        isGrounded = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer | spikeLayer);
+        RaycastHit2D hit = Physics2D.BoxCast(
+            groundCheckPos.position,
+            groundCheckSize,
+            0f,
+            Vector2.down,
+            0.05f,
+            groundLayer | spikeLayer
+        );
+
+        isGrounded = hit.collider != null && hit.normal.y > 0.5f;
 
         isOnIce = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, iceLayer);
 
-        if (!wasGrounded && isGrounded) // landed this frame
-        {
+        if (!wasGrounded && isGrounded)
             jumpsRemaining = maxJumps;
-        }
     }
 
     private void Flip()
@@ -323,7 +329,7 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(groundCheckPos.position, groundCheckSize);
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(wallCheckPos.position, wallCheckSize);
+        //Gizmos.DrawWireCube(wallCheckPos.position, wallCheckSize);
     }
 
 
