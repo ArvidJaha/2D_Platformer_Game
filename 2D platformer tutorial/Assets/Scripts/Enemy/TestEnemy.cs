@@ -105,7 +105,7 @@ public class TestEnemy : MonoBehaviour
         if (cooldownTimer >= attackCooldown && PlayerIsInRange())
         {
             cooldownTimer = 0f;
-            Attack();
+            //Attack();
         }
     }
 

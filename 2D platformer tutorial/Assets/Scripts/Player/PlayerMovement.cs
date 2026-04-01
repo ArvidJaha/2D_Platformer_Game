@@ -94,9 +94,12 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             coyoteTimeCounter = coyoteTime;
+            jumpsRemaining = maxJumps;
         }
         else
         {
+            if (wasGrounded && !isGrounded)
+                jumpsRemaining = maxJumps - 1; // walked off edge, consume one jump
             coyoteTimeCounter -= Time.deltaTime;
         }
 

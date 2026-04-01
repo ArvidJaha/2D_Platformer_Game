@@ -13,7 +13,9 @@ public class GameController : MonoBehaviour
     public GameObject exitTriggerPrefab;
     GameObject currentExit;
     public int score = 0;
+    public int deathCount = 0;
     public TMP_Text scoreText;
+    public TMP_Text deathText;
 
     public static event Action OnReset;
 
@@ -78,6 +80,8 @@ public class GameController : MonoBehaviour
     {        
         player.transform.position = levelGenerator.spawnPos; // reset player position
         OnReset.Invoke(); // trigger game reset event for other scripts to reset their states
+        deathCount++;
+        deathText.text = "Deaths: " + deathCount;
     }
 
     private void OnDestroy()

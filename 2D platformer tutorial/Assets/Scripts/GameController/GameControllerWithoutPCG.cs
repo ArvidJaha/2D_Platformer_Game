@@ -10,7 +10,9 @@ public class GameControllerWithoutPCG : MonoBehaviour
     public GameObject player;
     public Vector3 spawnPoint;
     public int score = 0;
+    public int deaths = 0;
     public TMP_Text scoreText;
+    public TMP_Text deathText;
 
 
     public static event Action OnReset;
@@ -40,6 +42,9 @@ public class GameControllerWithoutPCG : MonoBehaviour
     {
         player.transform.position = spawnPoint; // reset player position
         OnReset.Invoke(); // trigger game reset event for other scripts to reset their states
+        deaths++;
+        deathText.text = "Deaths: " + deaths;
+
     }
 
     private void OnDestroy()
