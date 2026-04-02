@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour
         player.GetComponent<PlayerMovement>().enabled = false;
 
         winScreen.SetActive(true);
-
+        System.Threading.Thread.Sleep(1500);
         SceneManager.LoadScene("EndScene");
     }
 
