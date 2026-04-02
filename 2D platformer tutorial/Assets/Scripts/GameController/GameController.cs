@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -54,8 +55,7 @@ public class GameController : MonoBehaviour
 
         winScreen.SetActive(true);
 
-        // optional: freeze game
-        Time.timeScale = 0f;
+        SceneManager.LoadScene("EndScene");
     }
 
     //void SpawnExitTrigger()

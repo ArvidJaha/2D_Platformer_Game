@@ -27,7 +27,7 @@ public class doorBehaviour : MonoBehaviour
         score = gc.score;
         if (isOpen)
         {
-            System.Threading.Thread.Sleep(1500);
+            System.Threading.Thread.Sleep(500);
             SceneManager.LoadScene("StartScene");
         }
 
