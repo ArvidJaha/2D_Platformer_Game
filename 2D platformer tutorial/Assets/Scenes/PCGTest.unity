@@ -4544,8 +4544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20fee0ed4816f844abd67f202a0c224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelGenerator
-  levelHeight: 6
-  levelWidth: 10
+  levelHeight: 12
+  levelWidth: 12
   collectiblesParent: {fileID: 1190321215}
   fishPrefab: {fileID: 7506581446254049347, guid: b8fac49480232c04980495ba634f4a8d, type: 3}
   enemyPrefab: {fileID: 4786435885615210929, guid: 2c93a86509909be48a423d9f87f9cce1, type: 3}
@@ -4574,21 +4574,36 @@ MonoBehaviour:
   templates:
   - images:
     - {fileID: 2800000, guid: fe37fc43a31c0a94988a0adc79dcd93f, type: 3}
+    - {fileID: 2800000, guid: da2320a38264c2c4881a9a941e92df27, type: 3}
+    - {fileID: 2800000, guid: 7da6df026a8ca924db97a710bda47c11, type: 3}
+    - {fileID: 2800000, guid: b0c2bc4fcdd32ba4d996c568cc4c4321, type: 3}
+    - {fileID: 2800000, guid: 57258973c7356e14990943390a8b2aae, type: 3}
+    - {fileID: 2800000, guid: cd1f5ffa04e09f449bffea98b6cfc22e, type: 3}
     openings: 1
   - images:
     - {fileID: 2800000, guid: e840df392e6cf21489c77af15900112f, type: 3}
+    - {fileID: 2800000, guid: ed4e91c2807cff9489e0fcf003c27431, type: 3}
+    - {fileID: 2800000, guid: 5150cdc987b712e4ab3582919e5457c4, type: 3}
+    - {fileID: 2800000, guid: ccd67de5425f60e47be46b2c4791644f, type: 3}
+    - {fileID: 2800000, guid: ad4af75025786694a8d48ccfca62ba79, type: 3}
+    - {fileID: 2800000, guid: f68d6565f9a2d9a4993922334ea07140, type: 3}
     openings: 2
   - images:
     - {fileID: 2800000, guid: 059ad81e59341194d8a861b8616fc10f, type: 3}
     - {fileID: 2800000, guid: 48c5cb112bd496940b45692002236e94, type: 3}
     - {fileID: 2800000, guid: 026e99e0908864042a9082894e626332, type: 3}
     - {fileID: 2800000, guid: d3eac8222ae5dd7498729308ce0ddcaf, type: 3}
+    - {fileID: 2800000, guid: 69e4c553cb88efd4e83c18c1ace5119b, type: 3}
     openings: 3
   - images:
     - {fileID: 2800000, guid: 47f1a7bff5b291846ba27f78b221c271, type: 3}
+    - {fileID: 2800000, guid: 2bb54012f8084984985211d8792ac7d7, type: 3}
+    - {fileID: 2800000, guid: 3e4eafbc2d7e79d419acc0c95a83c7f0, type: 3}
     openings: 4
   - images:
     - {fileID: 2800000, guid: d5b32c1944b9b7240a4d0d8a44c0b123, type: 3}
+    - {fileID: 2800000, guid: 3d0f5763161dc234390670405659ad63, type: 3}
+    - {fileID: 2800000, guid: b6328b4363bf8824996cb3529e038481, type: 3}
     openings: 5
   - images:
     - {fileID: 2800000, guid: 4ccb9963b872a7543b9f5e262be150d8, type: 3}
@@ -4597,9 +4612,14 @@ MonoBehaviour:
     openings: 6
   - images:
     - {fileID: 2800000, guid: 01882ec423c8de24ab2e2add9d929099, type: 3}
+    - {fileID: 2800000, guid: f89ac18e38784e3458743bf1d5e11e28, type: 3}
+    - {fileID: 2800000, guid: a088d9691f7b5fc47b8978c9d1424b25, type: 3}
     openings: 7
   - images:
     - {fileID: 2800000, guid: 2aa005d83296dfa40b750522c7f41f52, type: 3}
+    - {fileID: 2800000, guid: 46cd6f1192478b34dbcd3bd6a55c6e69, type: 3}
+    - {fileID: 2800000, guid: 4432d303ecca835438bc6d3cde455572, type: 3}
+    - {fileID: 2800000, guid: f1164475d46fe5a4e8c22f669f8a6bac, type: 3}
     openings: 8
   - images:
     - {fileID: 2800000, guid: a71a0427381b84b43a6ca0d5e738b420, type: 3}
@@ -4626,6 +4646,8 @@ MonoBehaviour:
     openings: 14
   - images:
     - {fileID: 2800000, guid: 8237f997d23d8614dbee7c3d421a2983, type: 3}
+    - {fileID: 2800000, guid: 03175cd3153bf594f8c47a1909457fcf, type: 3}
+    - {fileID: 2800000, guid: 08ff8a393feead44e806d8e5f44ae37f, type: 3}
     openings: 15
   doingSetup: 0
   style:
