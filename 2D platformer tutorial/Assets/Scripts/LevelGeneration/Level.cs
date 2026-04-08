@@ -89,7 +89,7 @@ public class Level
         firstPath.Add(entrance);
 
         int steps = 0;
-        int maxSteps = 7 + (int)(8 * _difficulty);
+        int maxSteps = 7 + (int)(6 * _difficulty);
         int stuckCount = 0;
 
         while (steps < maxSteps)
@@ -152,14 +152,7 @@ public class Level
 
     private void GenerateRoomPath()
     {
-        if(_difficulty == 0)
-        {
-            numFishes = 3;
-        }
-        else
-        {
-            numFishes = 3 + (int)(5 * _difficulty);
-        }
+        numFishes = 3 + (int)(5 * _difficulty);
         FirstPath();
 
         int attempts = 0;
@@ -170,7 +163,7 @@ public class Level
             int x = startRoom.X, prevX = startRoom.X;
             int y = startRoom.Y, prevY = startRoom.Y;
             int steps = 0;
-            int maxSteps = 4 + (int)(5 * _difficulty);
+            int maxSteps = 4 + (int)(3 * _difficulty);
 
             int stuckCount = 0;
 

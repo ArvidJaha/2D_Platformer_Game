@@ -19,28 +19,29 @@ public class GameController : MonoBehaviour
     public TMP_Text deathText;
 
     public static event Action OnReset;
-
+    private int numFishes;
     [SerializeField] private GameObject winScreen;
 
 
 
     private void Start()
     {
+        numFishes = 3 + (int)(5 * PlayerPrefs.GetFloat("difficultyIntensity"));
         PlayerHealth.OnPlayerDeath += ResetGame; // subscribe to player death event
         ExitTrigger.OnPlayerEnteredExit += LoadLevel;
         player.transform.position = levelGenerator.spawnPos;
         Fish.OnFishCollected += IncreaseScore; // increment score when a fish is collected
         score = 0;
-        scoreText.text = "Fish: 0 / 5"; // or "Score: 0" for the tutorial one
+        scoreText.text = "Fish: 0 / " + numFishes; // or "Score: 0" for the tutorial one
         //SpawnExitTrigger();
     }
 
     void IncreaseScore(int value)
     {
         score += value;
-        scoreText.text = "Fish: " + score + " / 5";
+        scoreText.text = "Fish: " + score + " / " + numFishes;
 
-        if (score >= 5)
+        if (score >= numFishes)
         {
             WinGame();
         }

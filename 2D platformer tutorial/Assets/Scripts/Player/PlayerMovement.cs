@@ -11,11 +11,11 @@ public class PlayerMovement : MonoBehaviour
     public bool isFacingRight = true;
     public ParticleSystem smokeFX;
     [Header("Movement")]
-    public float moveSpeed = 5f;
+    public float moveSpeed = 3f;
     float horizontalMovement;
 
     [Header("Jumping")]
-    public float jumpPower = 10f;
+    public float jumpPower = 11f;
     public int maxJumps = 2;
     int jumpsRemaining;
 
