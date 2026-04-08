@@ -28,7 +28,8 @@ public class DifficultyManager : MonoBehaviour
 
     public float GetDifficultyIntensity()
     {
-        return _difficulty;
+        _difficulty = PlayerPrefs.GetFloat("difficultyIntensity");
+        return PlayerPrefs.GetFloat("difficultyIntensity");
     }
 
     private void Load()

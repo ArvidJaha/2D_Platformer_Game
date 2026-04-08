@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Level
@@ -11,6 +12,7 @@ public class Level
 
     private int width;
     private int height;
+    private float _difficulty = PlayerPrefs.GetFloat("difficultyIntensity");
 
     private Room[] rooms;
     private Room[] firstRooms;
@@ -19,7 +21,7 @@ public class Level
 
     private Room entrance;
     public HashSet<Room> fishRooms = new HashSet<Room>();
-    public int numFishes = 5;
+    public int numFishes;
 
     private Vector3Int spawnPos;
 
@@ -41,7 +43,6 @@ public class Level
         firstRooms = new Room[width * height];
         path = new List<Room>();
         firstPath = new HashSet<Room>();
-
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -88,7 +89,7 @@ public class Level
         firstPath.Add(entrance);
 
         int steps = 0;
-        int maxSteps = 8;
+        int maxSteps = 7 + (int)(8 * _difficulty);
         int stuckCount = 0;
 
         while (steps < maxSteps)
@@ -151,6 +152,14 @@ public class Level
 
     private void GenerateRoomPath()
     {
+        if(_difficulty == 0)
+        {
+            numFishes = 3;
+        }
+        else
+        {
+            numFishes = 3 + (int)(5 * _difficulty);
+        }
         FirstPath();
 
         int attempts = 0;
@@ -161,7 +170,7 @@ public class Level
             int x = startRoom.X, prevX = startRoom.X;
             int y = startRoom.Y, prevY = startRoom.Y;
             int steps = 0;
-            int maxSteps = 7;
+            int maxSteps = 4 + (int)(5 * _difficulty);
 
             int stuckCount = 0;
 
