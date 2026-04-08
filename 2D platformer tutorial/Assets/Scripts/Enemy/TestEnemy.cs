@@ -20,9 +20,9 @@ public class TestEnemy : MonoBehaviour
     private float cooldownTimer = Mathf.Infinity;
     private PlayerHealth playerHealth;
 
-    [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float detectionRange = 2f;
-    [SerializeField] private float loseRange = 4f;
+    [SerializeField] private float loseRange = 3f;
     [SerializeField] private LayerMask obstacleLayer;
     private float loseTargetTimer = 0f;
     [SerializeField] private float loseTargetDelay = 2f; // tweak in Inspector
