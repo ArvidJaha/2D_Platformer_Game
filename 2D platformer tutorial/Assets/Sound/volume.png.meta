@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 3a040f5c360d21449a4c2cf525db8026
+guid: 113e5b61a37a05d4199d222cbfff52d8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5899277268141849447
-    second: 15-1.png_0
+      213: -8503093942092619827
+    second: volume_0
+  - first:
+      213: -4070619982659432352
+    second: volume_1
+  - first:
+      213: 2056557654602513532
+    second: volume_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +30,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TestTemplate-1.png_0
+      name: volume_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 10
-        height: 8
+        x: 11
+        y: 37
+        width: 118
+        height: 182
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +121,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7334362683a8c5e90800000000000000
-      internalID: -7035596543086083273
+      spriteID: dcf1bc96c11fef980800000000000000
+      internalID: -8503093942092619827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: volume_1
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 68
+        width: 47
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0605afd51b04287c0800000000000000
+      internalID: -4070619982659432352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: volume_2
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 32
+        width: 63
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7c71be6a4c5a8c10800000000000000
+      internalID: 2056557654602513532
       vertices: []
       indices: 
       edges: []
@@ -135,7 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TestTemplate-1.png_0: -7035596543086083273
+      volume_0: -8503093942092619827
+      volume_1: -4070619982659432352
+      volume_2: 2056557654602513532
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

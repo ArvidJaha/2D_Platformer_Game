@@ -33,7 +33,6 @@ public class LevelGenerator : MonoBehaviour
 
 
 
-
     public enum TileID : uint
     {
         Ground,
@@ -193,7 +192,7 @@ public class LevelGenerator : MonoBehaviour
     {
         int width = levelWidth * Config.ROOM_WIDTH;
         int height = levelHeight * Config.ROOM_HEIGHT;
-        int borderSize = 3;
+        int borderSize = 5;
 
         for (int x = -borderSize; x <= width + borderSize; x++)
         {

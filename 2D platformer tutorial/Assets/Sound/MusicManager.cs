@@ -18,6 +18,23 @@ public class MusicManager : MonoBehaviour
         }
     }
 
+    public void OnOffVolume()
+    {
+        float musictemp = AudioListener.volume;
+        float slidertemp = volumeSlider.value;
+        if (musictemp != 0 && slidertemp != 0)
+        {
+            AudioListener.volume = 0;
+            volumeSlider.value = 0;
+        }
+        else
+        {
+            AudioListener.volume = musictemp;
+            volumeSlider.value = slidertemp;
+        }
+
+    }
+
     public void ChangeVolume()
     {
         AudioListener.volume = volumeSlider.value;

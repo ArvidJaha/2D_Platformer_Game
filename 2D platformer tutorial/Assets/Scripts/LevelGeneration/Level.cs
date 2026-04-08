@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Level
@@ -11,6 +12,7 @@ public class Level
 
     private int width;
     private int height;
+    private float _difficulty = PlayerPrefs.GetFloat("difficultyIntensity");
 
     private Room[] rooms;
     private Room[] firstRooms;
@@ -19,7 +21,7 @@ public class Level
 
     private Room entrance;
     public HashSet<Room> fishRooms = new HashSet<Room>();
-    public int numFishes = 5;
+    public int numFishes;
 
     private Vector3Int spawnPos;
 
@@ -41,7 +43,6 @@ public class Level
         firstRooms = new Room[width * height];
         path = new List<Room>();
         firstPath = new HashSet<Room>();
-
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -88,7 +89,7 @@ public class Level
         firstPath.Add(entrance);
 
         int steps = 0;
-        int maxSteps = 10;
+        int maxSteps = 7 + (int)(8 * _difficulty);
         int stuckCount = 0;
 
         while (steps < maxSteps)
@@ -151,6 +152,14 @@ public class Level
 
     private void GenerateRoomPath()
     {
+        if(_difficulty == 0)
+        {
+            numFishes = 3;
+        }
+        else
+        {
+            numFishes = 3 + (int)(5 * _difficulty);
+        }
         FirstPath();
 
         int attempts = 0;
@@ -161,7 +170,7 @@ public class Level
             int x = startRoom.X, prevX = startRoom.X;
             int y = startRoom.Y, prevY = startRoom.Y;
             int steps = 0;
-            int maxSteps = 5;
+            int maxSteps = 4 + (int)(5 * _difficulty);
 
             int stuckCount = 0;
 
@@ -173,7 +182,7 @@ public class Level
                 int moveAttempts = 0;
                 bool moved = false;
 
-                while (!moved && moveAttempts < 6)
+                /*while (!moved && moveAttempts < 20)
                 {
                     moveAttempts++;
                     switch (RandomDirection())
@@ -181,26 +190,57 @@ public class Level
                         case Direction.RIGHT:
                             if (x < width - 1
                                 && rooms[GetRoomID(x + 1, y)].Type == 0
-                                && (!HasMultipleNeighbours(x + 1, y, x, y) || Random.value < 0.02f))
-                            { x++; rooms[GetRoomID(x, y)].Type = 2; firstRooms[GetRoomID(x, y)].Type = 2; moved = true; }
+                                && !HasMultipleNeighbours(x + 1, y, x, y))
+                            { x++; rooms[GetRoomID(x, y)].Type = 2; moved = true; }
                             break;
                         case Direction.UP:
                             if (y > 0
                                 && rooms[GetRoomID(x, y - 1)].Type == 0
-                                && (!HasMultipleNeighbours(x, y - 1, x, y) || Random.value < 0.02f))
-                            { y--; rooms[GetRoomID(x, y)].Type = 3; firstRooms[GetRoomID(x, y)].Type = 3; moved = true; }
+                                && !HasMultipleNeighbours(x, y - 1, x, y))
+                            { y--; rooms[GetRoomID(x, y)].Type = 3; moved = true; }
                             break;
                         case Direction.DOWN:
                             if (y < height - 1
                                 && rooms[GetRoomID(x, y + 1)].Type == 0
-                                && (!HasMultipleNeighbours(x, y + 1, x, y) || Random.value < 0.02f))
-                            { y++; rooms[GetRoomID(x, y)].Type = 4; firstRooms[GetRoomID(x, y)].Type = 4; moved = true; }
+                                && !HasMultipleNeighbours(x, y + 1, x, y))
+                            { y++; rooms[GetRoomID(x, y)].Type = 4; moved = true; }
                             break;
                         case Direction.LEFT:
                             if (x > 0
                                 && rooms[GetRoomID(x - 1, y)].Type == 0
-                                && (!HasMultipleNeighbours(x - 1, y, x, y) || Random.value < 0.02f))
-                            { x--; rooms[GetRoomID(x, y)].Type = 5; firstRooms[GetRoomID(x, y)].Type = 5; moved = true; }
+                                && !HasMultipleNeighbours(x - 1, y, x, y))
+                            { x--; rooms[GetRoomID(x, y)].Type = 5; moved = true; }
+                            break;
+                    }
+                }*/
+                while (!moved && moveAttempts < 20)
+                {
+                    moveAttempts++;
+                    switch (RandomDirection())
+                    {
+                        case Direction.RIGHT:
+                            if (x < width - 1
+                                && rooms[GetRoomID(x + 1, y)].Type == 0
+                                && (!HasMultipleNeighbours(x + 1, y, x, y) || Random.value < 0.002f))
+                            { x++; rooms[GetRoomID(x, y)].Type = 2; moved = true; }
+                            break;
+                        case Direction.UP:
+                            if (y > 0
+                                && rooms[GetRoomID(x, y - 1)].Type == 0
+                                && (!HasMultipleNeighbours(x, y - 1, x, y) || Random.value < 0.002f))
+                            { y--; rooms[GetRoomID(x, y)].Type = 3; moved = true; }
+                            break;
+                        case Direction.DOWN:
+                            if (y < height - 1
+                                && rooms[GetRoomID(x, y + 1)].Type == 0
+                                && (!HasMultipleNeighbours(x, y + 1, x, y) || Random.value < 0.002f))
+                            { y++; rooms[GetRoomID(x, y)].Type = 4; moved = true; }
+                            break;
+                        case Direction.LEFT:
+                            if (x > 0
+                                && rooms[GetRoomID(x - 1, y)].Type == 0
+                                && (!HasMultipleNeighbours(x - 1, y, x, y) || Random.value < 0.002f))
+                            { x--; rooms[GetRoomID(x, y)].Type = 5; moved = true; }
                             break;
                     }
                 }

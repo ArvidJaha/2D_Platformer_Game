@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 3a040f5c360d21449a4c2cf525db8026
+guid: 4f954f34a72f5dd42b6c5b00bba09ff3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5899277268141849447
-    second: 15-1.png_0
+      213: 2204991055137215863
+    second: volume (1)_0
+  - first:
+      213: -7057643283011180619
+    second: volume (1)_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +27,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -37,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TestTemplate-1.png_0
+      name: volume (1)_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 10
-        height: 8
+        x: 24
+        y: 75
+        width: 233
+        height: 362
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7334362683a8c5e90800000000000000
-      internalID: -7035596543086083273
+      spriteID: 7751e5e9ea3b99e10800000000000000
+      internalID: 2204991055137215863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: volume (1)_1
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 178
+        width: 156
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b762bcb3d63e0e90800000000000000
+      internalID: -7057643283011180619
       vertices: []
       indices: 
       edges: []
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TestTemplate-1.png_0: -7035596543086083273
+      volume (1)_0: 2204991055137215863
+      volume (1)_1: -7057643283011180619
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

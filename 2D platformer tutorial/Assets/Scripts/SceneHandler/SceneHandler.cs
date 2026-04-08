@@ -34,6 +34,10 @@ public class SceneHandler : MonoBehaviour
         SceneManager.LoadScene("StartScene");
     }
 
+    public void Winscreen()
+    {
+        SceneManager.LoadScene("EndScene");
+    }
     public void ExitGame()
     {
         Application.Quit();
