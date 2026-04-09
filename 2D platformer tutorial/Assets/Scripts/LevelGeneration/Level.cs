@@ -20,8 +20,8 @@ public class Level
     private HashSet<Room> firstPath;
 
     private Room entrance;
-    public HashSet<Room> fishRooms = new HashSet<Room>();
-    public int numFishes;
+    [SerializeField] public HashSet<Room> fishRooms = new HashSet<Room>();
+    [SerializeField] public int numFishes;
 
     private Vector3Int spawnPos;
 
@@ -148,6 +148,7 @@ public class Level
         }
 
         fishRooms.Add(rooms[GetRoomID(x, y)]);
+        Debug.Log($"First path generated with {path.Count} rooms and {fishRooms.Count} fish rooms.");
     }
 
     private void GenerateRoomPath()
@@ -164,7 +165,7 @@ public class Level
             int y = startRoom.Y, prevY = startRoom.Y;
             int steps = 0;
             int maxSteps = 4 + (int)(3 * _difficulty);
-
+            Debug.Log(maxSteps);
             int stuckCount = 0;
 
 
@@ -256,6 +257,8 @@ public class Level
             Room endRoom = rooms[GetRoomID(x, y)];
             if (endRoom != startRoom && !fishRooms.Contains(endRoom))
                 fishRooms.Add(endRoom);
+                Debug.Log($"Added fish room at ({endRoom.X}, {endRoom.Y}). Total fish rooms: {fishRooms.Count} numfishes is {numFishes}");
+                
         }
     }
 

@@ -11,6 +11,9 @@ public class Room
     public int Y { get; set; }
     public int Openings { get; set; }
 
+    public bool hasEnemy = false;
+
+
     public List neighbours { get; set; }
     public struct Tile
     {

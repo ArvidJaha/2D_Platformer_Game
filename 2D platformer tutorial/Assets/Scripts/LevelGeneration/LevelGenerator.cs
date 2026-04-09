@@ -224,7 +224,7 @@ public class LevelGenerator : MonoBehaviour
         foreach (Room r in level.Rooms)
         {
             if (r.Type == 0) continue;
-            Debug.Log($"Room {r.Id} openings: {r.Openings}");
+            //Debug.Log($"Room {r.Id} openings: {r.Openings}");
 
             int offsetX = r.X * Config.ROOM_WIDTH; //Left to right
             int offsetY = r.Y * Config.ROOM_HEIGHT; //Top to bottom
@@ -269,6 +269,7 @@ public class LevelGenerator : MonoBehaviour
                         if (id == TileID.EMPTY)
                         {
                             tilemap.SetTile(pos, null); // carve out the ground
+                            background.SetTile(pos, null);
                             continue;
                         }
                         switch (id)
@@ -282,6 +283,7 @@ public class LevelGenerator : MonoBehaviour
                             case TileID.Spike:
                                 // Place tile now, rotation handled in second pass
                                 tilemap.SetTile(pos, null);
+                                background.SetTile(pos, null);
                                 spikeTilemap.SetTile(pos, tiles[(uint)TileID.Spike]);
                                 spikePositions.Add(pos);
                                 break;
@@ -290,11 +292,15 @@ public class LevelGenerator : MonoBehaviour
                                 break;
                             case TileID.ENEMY:
                                 tilemap.SetTile(pos, null);
+                                background.SetTile(pos, null);
                                 enemyPositions.Add(pos);
+                                r.hasEnemy = true;
                                 break;
                             case TileID.BIRD:
                                 tilemap.SetTile(pos, null);
+                                background.SetTile(pos, null);
                                 SpawnBird(pos);
+                                r.hasEnemy = true;
                                 break;
                             default:
                                 tilemap.SetTile(pos, tiles[(uint)id]);
@@ -331,11 +337,40 @@ public class LevelGenerator : MonoBehaviour
             //Place items down
             PlaceItems(r);
             //Place entrance, exit and set spawn pos
-            if (r == level.Entrance) spawnPos = tilemap.GetCellCenterWorld(PlaceEntrance(r));
+            if (r == level.Entrance)
+            {
+                if (r.hasEnemy)
+                {
+                    Room safeRoom = FindSafeRoom();
+                    spawnPos = tilemap.GetCellCenterWorld(PlaceEntrance(safeRoom));
+                }
+                else
+                {
+                    spawnPos = tilemap.GetCellCenterWorld(PlaceEntrance(r));
+                }
+            }
             else if (level.fishRooms.Contains(r)) PlaceFish(r);
         }
     }
 
+    private Room FindSafeRoom()
+    {
+        List<Room> validRooms = new List<Room>();
+
+        foreach (Room room in level.Rooms)
+        {
+            if (!room.hasEnemy)
+                validRooms.Add(room);
+        }
+
+        if (validRooms.Count == 0)
+        {
+            Debug.LogWarning("No safe rooms found, using default entrance room");
+            return level.Entrance;
+        }
+
+        return validRooms[Random.Range(0, validRooms.Count)];
+    }
 
     private void SpawnEnemiesInRoom(Room r, List<Vector3Int> enemyPositions)
     {
@@ -428,29 +463,35 @@ public class LevelGenerator : MonoBehaviour
 
     public Vector3Int RandomDoorPosition(Room r)
     {
+        int minY = 1; // avoid bottom row touching border
+
         List<Vector3Int> availablePos = new List<Vector3Int>();
         foreach (Room.Tile t in r.tiles)
         {
             var pos = t.pos;
-            //If there is a floor below make position available for door placement
+            if (pos.y < minY) continue; // skip bottom row
             if (tilemap.GetTile(pos) == null
                 && tilemap.GetTile(pos + Vector3Int.down) != null
                 && tilemap.GetTile(pos + Vector3Int.up) == null
-                && spikeTilemap.GetTile(pos) == null) //entrance dont spawn on ladders
+                && spikeTilemap.GetTile(pos) == null)
                 availablePos.Add(pos);
         }
         if (availablePos.Count == 0)
         {
-            // Fallback: any non-null tile position in the room
             foreach (Room.Tile t in r.tiles)
             {
-                if (t.id != TileID.EMPTY && t.id != TileID.Ground)
+                if (t.pos.y < minY) continue;
+                if (t.id != TileID.EMPTY && t.id != TileID.Ground && t.id != TileID.BACKGROUND)
                     availablePos.Add(t.pos);
             }
         }
+        if (availablePos.Count == 0)
+        {
+            Debug.LogError($"RandomDoorPosition found no valid positions in room {r.Id}");
+            return Vector3Int.zero;
+        }
 
-        Vector3Int doorPos = availablePos[Random.Range(0, availablePos.Count)];
-        return doorPos;
+        return availablePos[Random.Range(0, availablePos.Count)];
     }
 
 #if UNITY_EDITOR
@@ -514,12 +555,7 @@ public class LevelGenerator : MonoBehaviour
         }
         if (level.fishRooms.Count != level.numFishes)
         {
-            Debug.LogWarning("Validation failed: no fish rooms");
-            return false;
-        }
-        if (level.Path.Count < (levelWidth + levelHeight))
-        {
-            Debug.LogWarning($"Validation failed: path too short ({level.Path.Count} rooms)");
+            Debug.LogWarning("validation failed: no fish rooms");
             return false;
         }
         Debug.Log($"Path length: {level.Path.Count} rooms");
