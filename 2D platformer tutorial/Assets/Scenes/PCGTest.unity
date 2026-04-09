@@ -677,6 +677,37 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 126441972}
+--- !u!1 &171686545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 171686546}
+  m_Layer: 0
+  m_Name: Birds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &171686546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171686545}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 84.15829, y: 13.64416, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &235716892
 GameObject:
   m_ObjectHideFlags: 0
@@ -4132,6 +4163,8 @@ MonoBehaviour:
   fishPrefab: {fileID: 7506581446254049347, guid: b8fac49480232c04980495ba634f4a8d, type: 3}
   enemyPrefab: {fileID: 4786435885615210929, guid: 2c93a86509909be48a423d9f87f9cce1, type: 3}
   enemiesParent: {fileID: 906513659}
+  birdPrefab: {fileID: 7821117757057933692, guid: 003e759df16c5184a9d5722c145e52ce, type: 3}
+  birdParent: {fileID: 171686545}
   enemySpawnChance: 0.507
   minEnemiesPerRoom: 1
   spawnPos: {x: 0, y: 0, z: 0}
@@ -4147,6 +4180,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 11400000, guid: a2d1059000173bf4b999bee673faf13a, type: 2}
   - {fileID: 11400000, guid: 2b1c1b4028f1f3549ae1d435128ba0e8, type: 2}
+  - {fileID: 0}
   tilemap: {fileID: 943674226}
   doorTilemap: {fileID: 2012602687}
   itemTilemap: {fileID: 1837766467}
@@ -4176,6 +4210,7 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 026e99e0908864042a9082894e626332, type: 3}
     - {fileID: 2800000, guid: d3eac8222ae5dd7498729308ce0ddcaf, type: 3}
     - {fileID: 2800000, guid: 69e4c553cb88efd4e83c18c1ace5119b, type: 3}
+    - {fileID: 2800000, guid: 38679b74850bcc14abaa514bc69894f9, type: 3}
     openings: 3
   - images:
     - {fileID: 2800000, guid: 47f1a7bff5b291846ba27f78b221c271, type: 3}
@@ -8765,3 +8800,4 @@ SceneRoots:
   - {fileID: 321198718}
   - {fileID: 89566269}
   - {fileID: 1939667202}
+  - {fileID: 171686546}

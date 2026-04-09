@@ -21,6 +21,9 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject enemiesParent;
 
+    [SerializeField] private GameObject birdPrefab;
+    [SerializeField] private GameObject birdParent;
+
     [Header("Enemy Settings")]
     [Range(0f, 1f)]
     [SerializeField] private float enemySpawnChance = 0.5f;
@@ -45,7 +48,8 @@ public class LevelGenerator : MonoBehaviour
         BACKGROUND,
         EMPTY,
         ENEMY,
-        ICEBLOCK
+        ICEBLOCK,
+        BIRD
     }
 
     [Header("Tiles")]
@@ -88,6 +92,7 @@ public class LevelGenerator : MonoBehaviour
             [Color.white] = TileID.EMPTY,
             [Color.clear] = TileID.EMPTY,
             [new Color32(255, 255, 0, 255)] = TileID.ENEMY, //YELLOW
+            [new Color32(0, 0, 255, 255)] = TileID.BIRD, //BLUE
             [new Color32(255, 0, 0, 255)] = TileID.Spike, //RED
             [new Color32(203, 48, 48, 255)] = TileID.ICEBLOCK //DARK RED
         };
@@ -176,6 +181,9 @@ public class LevelGenerator : MonoBehaviour
         foreach (Transform child in collectiblesParent.transform)
             Destroy(child.gameObject);
 
+        foreach (Transform child in birdParent.transform)
+            Destroy(child.gameObject);
+
     }
     private void FillBackground()
     {
@@ -232,7 +240,17 @@ public class LevelGenerator : MonoBehaviour
             }
 
             RoomTemplate chosen = valid[Random.Range(0, valid.Length)];
-            Color32[] colors = chosen.images[Random.Range(0, chosen.images.Length)].GetPixels32();
+            //Color32[] colors = chosen.images[Random.Range(0, chosen.images.Length)].GetPixels32();
+
+            int imgIndex = Random.Range(0, chosen.images.Length);
+            Texture2D img = chosen.images[imgIndex];
+            Color32[] colors = img.GetPixels32();
+            if (colors.Length != Config.ROOM_WIDTH * Config.ROOM_HEIGHT)
+            {
+                Debug.LogError($"Skipping bad image in template openings {r.Openings}");
+                continue;
+            }
+
             List<Vector3Int> enemyPositions = new List<Vector3Int>();
             List<Vector3Int> spikePositions = new List<Vector3Int>(); // collect spikes for second pass
 
@@ -273,6 +291,10 @@ public class LevelGenerator : MonoBehaviour
                             case TileID.ENEMY:
                                 tilemap.SetTile(pos, null);
                                 enemyPositions.Add(pos);
+                                break;
+                            case TileID.BIRD:
+                                tilemap.SetTile(pos, null);
+                                SpawnBird(pos);
                                 break;
                             default:
                                 tilemap.SetTile(pos, tiles[(uint)id]);
@@ -347,6 +369,12 @@ public class LevelGenerator : MonoBehaviour
     {
         Vector3 worldPos = tilemap.GetCellCenterWorld(pos);
         Instantiate(enemyPrefab, worldPos, Quaternion.identity, enemiesParent.transform);
+    }
+
+    private void SpawnBird(Vector3Int pos)
+    {
+        Vector3 worldPos = tilemap.GetCellCenterWorld(pos);
+        Instantiate(birdPrefab, worldPos, Quaternion.identity, birdParent.transform);
     }
 
     //Place item in a room depending on surrounding walls 
