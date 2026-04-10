@@ -446,6 +446,26 @@ public class LevelGenerator : MonoBehaviour
     {
         Vector3Int pos = RandomDoorPosition(r);
 
+        // If no valid position found, try other rooms
+        if (pos == Vector3Int.zero)
+        {
+            foreach (Room room in level.Rooms)
+            {
+                if (room.Type == 0) continue;
+                pos = RandomDoorPosition(room);
+                if (pos != Vector3Int.zero)
+                {
+                    Debug.Log($"Entrance moved to room {room.Id}");
+                    break;
+                }
+            }
+        }
+
+        if (pos == Vector3Int.zero)
+        {
+            Debug.LogError("Could not place entrance anywhere");
+            return Vector3Int.zero;
+        }
 
         itemTilemap.SetTile(pos, tiles[(uint)TileID.ENTRANCE]);
         return pos;
@@ -453,12 +473,26 @@ public class LevelGenerator : MonoBehaviour
 
     public void PlaceFish(Room r)
     {
-        Vector3 pos = RandomDoorPosition(r);
-        Vector3 fishPosOffset = new Vector3(0.5f, 0.5f, 0f);
-        //doorTilemap.SetTile(pos, tiles[(uint)TileID.EXIT]);
-        //exitPos = tilemap.GetCellCenterWorld(pos);
+        Vector3Int tilePos = RandomDoorPosition(r);
 
-        Instantiate(fishPrefab, pos + fishPosOffset, Quaternion.identity, collectiblesParent.transform);
+        if (tilePos == Vector3Int.zero)
+        {
+            foreach (Room room in level.Rooms)
+            {
+                if (room.Type == 0 || room == level.Entrance) continue;
+                tilePos = RandomDoorPosition(room);
+                if (tilePos != Vector3Int.zero) break;
+            }
+        }
+
+        if (tilePos == Vector3Int.zero)
+        {
+            Debug.LogError("Could not place fish anywhere");
+            return;
+        }
+
+        Vector3 fishPosOffset = new Vector3(0.5f, 0.5f, 0f);
+        Instantiate(fishPrefab, tilePos + fishPosOffset, Quaternion.identity, collectiblesParent.transform);
     }
 
     public Vector3Int RandomDoorPosition(Room r)
