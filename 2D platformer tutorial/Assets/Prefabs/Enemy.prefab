@@ -202,13 +202,13 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  moveSpeed: 9
+  moveSpeed: 6
   detectionRange: 6
   loseRange: 8
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 8
-  patrolDistance: 6
+  loseTargetDelay: 2
   patrolSpeed: 2
   groundCheckDistance: 0.5
   groundLayer:
