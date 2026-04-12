@@ -33,7 +33,7 @@ public class LevelGenerator : MonoBehaviour
     Level level;
     public Vector3 spawnPos;
 
-
+    private static readonly Vector3Int INVALID_POS = new Vector3Int(int.MinValue, int.MinValue, 0);
 
 
     public enum TileID : uint
@@ -357,7 +357,7 @@ public class LevelGenerator : MonoBehaviour
     {
         List<Room> validRooms = new List<Room>();
 
-        foreach (Room room in level.Rooms)
+        foreach (Room room in level.Path) // use Path instead of Rooms
         {
             if (!room.hasEnemy)
                 validRooms.Add(room);
@@ -365,13 +365,12 @@ public class LevelGenerator : MonoBehaviour
 
         if (validRooms.Count == 0)
         {
-            Debug.LogWarning("No safe rooms found, using default entrance room");
+            Debug.LogWarning("No safe rooms found, using entrance room");
             return level.Entrance;
         }
 
         return validRooms[Random.Range(0, validRooms.Count)];
     }
-
     private void SpawnEnemiesInRoom(Room r, List<Vector3Int> enemyPositions)
     {
         if (enemyPositions.Count == 0) return;
@@ -444,33 +443,29 @@ public class LevelGenerator : MonoBehaviour
     }
     public Vector3Int PlaceEntrance(Room r)
     {
+        // First try the given room
         Vector3Int pos = RandomDoorPosition(r);
 
-        // If no valid position found, try other rooms
-        if (pos == Vector3Int.zero)
+        // If failed or room has enemy, find a safe room with valid positions
+        if (pos == INVALID_POS || r.hasEnemy)
         {
-            foreach (Room room in level.Rooms)
+            foreach (Room room in level.Path) // use Path instead of Rooms
             {
-                if (room.Type == 0) continue;
+                if (room.hasEnemy) continue;
                 pos = RandomDoorPosition(room);
-                if (pos != Vector3Int.zero)
-                {
-                    Debug.Log($"Entrance moved to room {room.Id}");
-                    break;
-                }
+                if (pos != INVALID_POS) break;
             }
         }
 
-        if (pos == Vector3Int.zero)
+        if (pos == INVALID_POS)
         {
-            Debug.LogError("Could not place entrance anywhere");
+            Debug.LogError("Could not place entrance in any safe room");
             return Vector3Int.zero;
         }
 
         itemTilemap.SetTile(pos, tiles[(uint)TileID.ENTRANCE]);
         return pos;
     }
-
     public void PlaceFish(Room r)
     {
         Vector3Int tilePos = RandomDoorPosition(r);
@@ -497,32 +492,32 @@ public class LevelGenerator : MonoBehaviour
 
     public Vector3Int RandomDoorPosition(Room r)
     {
-        int minY = 1; // avoid bottom row touching border
-
         List<Vector3Int> availablePos = new List<Vector3Int>();
         foreach (Room.Tile t in r.tiles)
         {
-            var pos = t.pos;
-            if (pos.y < minY) continue; // skip bottom row
-            if (tilemap.GetTile(pos) == null
-                && tilemap.GetTile(pos + Vector3Int.down) != null
-                && tilemap.GetTile(pos + Vector3Int.up) == null
-                && spikeTilemap.GetTile(pos) == null)
-                availablePos.Add(pos);
-        }
-        if (availablePos.Count == 0)
-        {
-            foreach (Room.Tile t in r.tiles)
+            if (t.id == TileID.EMPTY
+                && r.tiles.Length > (t.pos.y - r.tiles[0].pos.y) * Config.ROOM_WIDTH)
             {
-                if (t.pos.y < minY) continue;
-                if (t.id != TileID.EMPTY && t.id != TileID.Ground && t.id != TileID.BACKGROUND)
+                // Check tile below is ground
+                Vector3Int below = t.pos + Vector3Int.down;
+                bool hasFloorBelow = false;
+                foreach (Room.Tile t2 in r.tiles)
+                {
+                    if (t2.pos == below && (t2.id == TileID.Ground || t2.id == TileID.RANDOM))
+                    {
+                        hasFloorBelow = true;
+                        break;
+                    }
+                }
+                if (hasFloorBelow)
                     availablePos.Add(t.pos);
             }
         }
+
         if (availablePos.Count == 0)
         {
             Debug.LogError($"RandomDoorPosition found no valid positions in room {r.Id}");
-            return Vector3Int.zero;
+            return INVALID_POS;
         }
 
         return availablePos[Random.Range(0, availablePos.Count)];

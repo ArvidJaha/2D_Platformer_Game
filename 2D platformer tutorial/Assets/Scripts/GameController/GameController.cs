@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -80,9 +81,39 @@ public class GameController : MonoBehaviour
     void ResetGame()
     {        
         player.transform.position = levelGenerator.spawnPos; // reset player position
+
+        // Stop all movement
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        if (rb != null) rb.linearVelocity = Vector2.zero;
+
+        // Reset player movement state
+        PlayerMovement pm = player.GetComponent<PlayerMovement>();
+        if (pm != null)
+        {
+            pm.isSliding = false;
+            pm.enabled = false;
+
+        }
+
+        Animator anim = player.GetComponent<Animator>();
+        if (anim != null)
+        {
+            anim.SetFloat("yVelocity", 0f);
+            anim.SetFloat("magnitude", 0f);
+            anim.SetBool("isSliding", false);
+        }
+
         OnReset.Invoke(); // trigger game reset event for other scripts to reset their states
         deathCount++;
         deathText.text = "Deaths: " + deathCount;
+        StartCoroutine(ReenableMovement(pm));
+
+    }
+
+    private IEnumerator ReenableMovement(PlayerMovement pm)
+    {
+        yield return new WaitForSeconds(0.35f); // half second freeze after respawn
+        if (pm != null) pm.enabled = true;
     }
 
     private void OnDestroy()

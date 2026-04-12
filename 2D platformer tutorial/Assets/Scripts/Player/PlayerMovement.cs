@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     public float slideSpeed = 10f;
     public float slideDuration = 0.5f;
     float slideTimer; 
-    bool isSliding;
+    public bool isSliding;
 
     [Header("Flop")]
     public float flopSpeed = 13f;
