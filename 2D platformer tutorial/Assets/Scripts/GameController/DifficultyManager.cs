@@ -11,7 +11,7 @@ public class DifficultyManager : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("difficultyIntensity"))
         {
-            PlayerPrefs.SetFloat("difficultyIntensity", 1);
+            PlayerPrefs.SetFloat("difficultyIntensity", 0.5f);
             Load();
         }
         else
@@ -34,7 +34,7 @@ public class DifficultyManager : MonoBehaviour
 
     private void Load()
     {
-        difficultySlider.value = PlayerPrefs.GetFloat("difficultyIntensity");
+        difficultySlider.value = 0.5f;
     }
 
     private void Save()
