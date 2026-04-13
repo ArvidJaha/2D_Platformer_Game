@@ -1,8 +1,15 @@
+using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SceneHandler : MonoBehaviour
 {
+
+    private void Awake()
+    {
+        PlayerPrefs.SetFloat("difficultintensity", 0.5f);
+    }
     // Update is called once per frame
     void Update()
     {
