@@ -523,6 +523,22 @@ public class LevelGenerator : MonoBehaviour
         return availablePos[Random.Range(0, availablePos.Count)];
     }
 
+    private bool ValidateLevel()
+    {
+        if (level.Entrance == null)
+        {
+            Debug.LogWarning("Validation failed: no entrance");
+            return false;
+        }
+        if (level.fishRooms.Count != level.numFishes)
+        {
+            Debug.LogWarning("validation failed: no fish rooms");
+            return false;
+        }
+        Debug.Log($"Path length: {level.Path.Count} rooms");
+        return true;
+    }
+
 #if UNITY_EDITOR
     [Header("Gizmos")]
     public GUIStyle style;
@@ -575,21 +591,6 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private bool ValidateLevel()
-    {
-        if (level.Entrance == null)
-        {
-            Debug.LogWarning("Validation failed: no entrance");
-            return false;
-        }
-        if (level.fishRooms.Count != level.numFishes)
-        {
-            Debug.LogWarning("validation failed: no fish rooms");
-            return false;
-        }
-        Debug.Log($"Path length: {level.Path.Count} rooms");
-        return true;
-    }
 
 #endif
 }

@@ -1,7 +1,6 @@
 ﻿// Pol Lozano Llorens
 using UnityEngine;
 using Code.Utils;
-using NUnit.Framework;
 
 public class Room
 {
@@ -13,8 +12,6 @@ public class Room
 
     public bool hasEnemy = false;
 
-
-    public List neighbours { get; set; }
     public struct Tile
     {
         public LevelGenerator.TileID id;

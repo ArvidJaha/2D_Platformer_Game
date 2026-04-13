@@ -28,10 +28,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("spikeLayer")]
     public LayerMask spikeLayer;
 
-    //[Header("wallCheck")]
-    //public Transform wallCheckPos;
-    //public Vector2 wallCheckSize = new Vector2(0.5f, 0.5f);
-    //public LayerMask wallLayer;
 
 
     [Header("Gravity")]
@@ -39,19 +35,10 @@ public class PlayerMovement : MonoBehaviour
     public float maxFallSpeed = 18f;
     public float fallSpeedMultiplier = 2f;
 
-    //[Header("wallMovement")]
-    //public float wallSlideSpeed = 1f;
-    //public bool isWallSliding;
 
     [Header("SlidingInAir")]
     public bool isAirSliding = false;
 
-    //wall Jumping 
-    bool iswallJumping;
-    float wallJumpDirection;
-    float wallJumpTime = 0.45f;
-    float wallJumpTimer;
-    public Vector2 wallJumpPower = new Vector2(5f, 10f);
 
     [Header("Slide")]
     public float slideSpeed = 10f;
@@ -107,8 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         ProcessGravity();
-        //ProcessWallSlide();
-        //processWallJump();
+
         if (isSliding)
         {
             slideTimer -= Time.deltaTime;
@@ -148,15 +134,10 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
         animator.SetFloat("magnitude", rb.linearVelocity.magnitude);
-        //animator.SetBool("isWallSliding", isWallSliding);
         animator.SetBool("isSliding", isSliding);
     }
 
-    //private bool WallJumpCheck()
-    //{
-    //    return Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, wallLayer);
 
-    //}
 
 
 
@@ -173,39 +154,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //private void ProcessWallSlide()
-    //{
-    //    if (!isGrounded && WallJumpCheck() && horizontalMovement != 0)
-    //    {
-    //        isWallSliding = true;
-    //        rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, -wallSlideSpeed));
-    //    }
-    //    else
-    //    {
-    //        isWallSliding = false;
-    //    }
-    //}
 
-    //private void processWallJump()
-    //{
-    //    if (isWallSliding)
-    //    {
-    //        iswallJumping = false;
-    //        wallJumpDirection = -transform.localScale.x;
-    //        wallJumpTimer = wallJumpTime;
 
-    //        CancelInvoke(nameof(CancelWallJump));
-    //    }
-    //    else if (wallJumpTimer > 0)
-    //    {
-    //        wallJumpTimer -= Time.deltaTime;
-    //    }
-    //}
-
-    private void CancelWallJump()
-    {
-        iswallJumping = false;
-    }
 
     public void Slide(InputAction.CallbackContext context)
     {
@@ -260,26 +210,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        //wall jump
-        if (context.performed && wallJumpTimer > 0)
-        {
-            iswallJumping = true;
-            rb.linearVelocity = new Vector2(wallJumpDirection * wallJumpPower.x, wallJumpPower.y);
-            wallJumpTimer = 0;
-            JumpFX();
-
-            //force flip
-            if (transform.localScale.x != wallJumpDirection)
-            {
-                isFacingRight = !isFacingRight;
-                Vector3 ls = transform.localScale;
-                ls.x *= -1f;
-                transform.localScale = ls;
-            }
-
-            Invoke(nameof(CancelWallJump), wallJumpTime);
-
-        }
     }
 
     private void JumpFX()
@@ -332,7 +262,6 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(groundCheckPos.position, groundCheckSize);
         Gizmos.color = Color.blue;
-        //Gizmos.DrawWireCube(wallCheckPos.position, wallCheckSize);
     }
 
 
