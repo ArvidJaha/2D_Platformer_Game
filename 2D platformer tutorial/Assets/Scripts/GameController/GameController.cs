@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
@@ -35,6 +36,14 @@ public class GameController : MonoBehaviour
         score = 0;
         scoreText.text = "Fish: 0 / " + numFishes; // or "Score: 0" for the tutorial one
         //SpawnExitTrigger();
+    }
+
+    void Update()
+    {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            ResetGame();
+        }
     }
 
     void IncreaseScore(int value)
